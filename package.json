@@ -54,7 +54,7 @@
 		"build:vercel:verbose": "cross-env ADAPTER=vercel OPTIONS='{}' yarn build:verbose",
 		"build:static:ssr": "cross-env ADAPTER=static OPTIONS='{}' SSR=true yarn build",
 		"build:node:ssr": "cross-env ADAPTER=node OPTIONS='{}' SSR=true yarn build",
-		"build:netlify:ssr": "cross-env ADAPTER=netlify OPTIONS='{}' SSR=true yarn build",
+		"build:netlify:ssr": "cross-env ADAPTER=netlify OPTIONS='{}' SSR=true npm run build",
 		"build:vercel:ssr": "cross-env ADAPTER=vercel OPTIONS='{}' SSR=true yarn build",
 		"build:static:verbose:ssr": "cross-env ADAPTER=static OPTIONS='{}' SSR=true yarn build:verbose",
 		"build:node:verbose:ssr": "cross-env ADAPTER=node OPTIONS='{}' SSR=true yarn build:verbose",
