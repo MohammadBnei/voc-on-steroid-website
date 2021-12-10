@@ -4,7 +4,7 @@ import { deleteCookies, extractTokenFromCookie } from '$lib/utils/auth';
 
 export const get: RequestHandler = async (req) => {
 	const { refreshToken } = extractTokenFromCookie(req);
-	const res = await api.post(api.USER_API + 'accounts/revoke-token', { token: refreshToken }, req.locals.jwt);
+	const res = await api.post(req.locals.USER_API + 'accounts/revoke-token', { token: refreshToken }, req.locals.jwt);
 
 	const data = await api.handleRes(res, 'Auth');
 	const headers = {

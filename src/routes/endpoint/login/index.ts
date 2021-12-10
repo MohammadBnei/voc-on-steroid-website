@@ -2,8 +2,8 @@ import type { RequestHandler } from '@sveltejs/kit';
 import { AuthData, handleAuthResponse } from '$lib/utils/auth';
 import * as api from '$lib/utils/api';
 
-export const post: RequestHandler = async ({ body }) => {
-	const res = await api.post(api.USER_API + 'accounts/authenticate', body);
+export const post: RequestHandler = async ({ body, locals }) => {
+	const res = await api.post(locals.USER_API + 'accounts/authenticate', body);
 
 	const data = await api.handleRes(res, 'Auth');
 	if (!res.ok) {
