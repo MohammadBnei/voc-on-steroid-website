@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+    website:
+        image: node:14-alpine3.13
+        working_dir: /app
+        volumes:
+            - /app/node_modules
+            - ./:/app
+        ports:
+            - 8080:3000
+            - 6006:6006
+            - 24678:24678
+        command: npm run dev
+        stdin_open: true
+
+networks:
+    default:
+        external: true
+        name: users
