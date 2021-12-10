@@ -4,6 +4,12 @@ import type { Handle, GetSession } from '@sveltejs/kit/types/hooks';
 import * as api from '$lib/utils/api';
 import { AuthData, handleAuthResponse } from '$lib/utils/auth';
 
+const {
+	VITE_USER_API,
+	VITE_WORD_API,
+	VITE_ASSOC_API
+} = import.meta.env;
+
 export const handle: Handle = async ({ request, resolve }) => {
 	const { user, jwt, refreshToken } = cookie.parse(request.headers.cookie || '');
 	let setCookie = null;
@@ -12,7 +18,7 @@ export const handle: Handle = async ({ request, resolve }) => {
 	request.locals.jwt = jwt;
 
 	if (!jwt && refreshToken) {
-		const res = await api.post(api.USER_API + 'accounts/refresh-token', {
+		const res = await api.post(VITE_USER_API + 'accounts/refresh-token', {
 			refreshToken,
 		});
 		const data = await api.handleRes(res, 'Auth');
@@ -28,6 +34,10 @@ export const handle: Handle = async ({ request, resolve }) => {
 			request.locals.jwt = data.jwtToken;
 		}
 	}
+
+	request.locals.USER_API = VITE_USER_API;
+	request.locals.WORD_API = VITE_WORD_API;
+	request.locals.ASSOC_API = VITE_ASSOC_API;
 
 	const response = await resolve(request);
 
