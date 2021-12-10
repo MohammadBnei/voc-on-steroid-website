@@ -63,7 +63,3 @@ export async function handleRes(res: Response, loggerInstance?: string): Promise
 
 	return data;
 }
-
-export const USER_API = 'http://user-api:4000/';
-export const WORD_MANAGAER_API = 'http://word-manager:4000/';
-export const WORD_API = 'http://word-api:3000/';
