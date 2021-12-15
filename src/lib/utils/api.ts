@@ -16,15 +16,15 @@ interface Opts {
 async function send({ method, path, data, token }: Opts): Promise<Response> {
 	isFetching.update(() => true);
 	const opts: RequestInit = { method, headers: {} };
-	
+
 	if (data) {
 		opts.headers['Content-Type'] = 'application/json';
 		opts.headers['Accept'] = 'application/json';
 		opts.body = JSON.stringify(data);
 	}
-	
+
 	if (token) opts.headers['Authorization'] = `Bearer ${token}`;
-	
+
 	const url = path.startsWith('http') ? path : `${base}/${path}`;
 	const res = await fetch(url, opts);
 	isFetching.update(() => false);
@@ -48,18 +48,22 @@ export function put(path: string, data: unknown, token?: string): Promise<Respon
 }
 
 export async function handleRes(res: Response, loggerInstance?: string): Promise<Record<string, string> | null> {
-	const data = await res.json();
-	if (browser && res.status === 401) {
-		toast.push('Unauthorized. You must log out and back in.');
-		session.update((s) => ({ ...s, user: null }));
+	try {
+		const data = await res.json();
+		if (browser && res.status === 401) {
+			toast.push('Unauthorized. You must log out and back in.');
+			session.update((s) => ({ ...s, user: null }));
+			return data;
+		}
+
+		if (!res.ok) {
+			const errMsg = data?.message || 'Something went wrong';
+			browser && toast.push(errMsg, { dismissable: true });
+		}
+
 		return data;
+	} catch (error) {
+		loggerInstance && LoggerUtils.getInstance(loggerInstance).error(error);
+		return error;
 	}
-
-	if (!res.ok) {
-		const errMsg = data?.message || 'Something went wrong';
-		loggerInstance && LoggerUtils.getInstance(loggerInstance).error(errMsg);
-		browser && toast.push(errMsg, { dismissable: true });
-	}
-
-	return data;
 }

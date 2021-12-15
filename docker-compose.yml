@@ -7,14 +7,10 @@ services:
         volumes:
             - /app/node_modules
             - ./:/app
+        environment:
+            - VITE_API_URL=http://api.voconsteroid.com:50000/
         ports:
             - 8080:3000
             - 6006:6006
             - 24678:24678
-        command: npm run dev
         stdin_open: true
-
-networks:
-    default:
-        external: true
-        name: users

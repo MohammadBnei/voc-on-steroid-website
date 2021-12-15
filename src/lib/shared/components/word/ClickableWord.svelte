@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	export const testClickable = /\b[a-zA-Z-âéèêâîïûùôç]{3,}\b/gi;
+	export const testClickable = /[a-zA-ZÀÁÂÄÅÃÆÇÉÈÊËÍÌÎÏÑÓÒÔÖØÕŒÚÙÛÜÝŸŶÇÔÏŒâéèêâîïûùôçœ]{3,}/gi;
 </script>
 
 <script lang="ts">
@@ -8,7 +8,7 @@
 </script>
 
 {#if text.length > 2}
-	<a href="{`/${href}`}" sveltekit:prefetch class="hover:font-bold">{text}</a>
+	<a sveltekit:prefetch href="{`/${href}`}" class="hover:font-bold">{text}</a>
 {:else}
 	{text}
 {/if}

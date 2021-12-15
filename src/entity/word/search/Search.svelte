@@ -10,15 +10,13 @@
 		results = (await fetchResemblingWord(input)) as WordListModel;
 	};
 
-	const handleSearch = async (word: string) => {
+	const handleSearch = (word: string) => {
 		if (!word) {
 			return;
 		}
-		const r = await searchWord(word);
-
-		if (r) {
-			goto('/' + word);
-		}
+		searchWord(word)
+			.then((r) => goto('/' + r.word))
+			.catch((err) => console.log(err));
 	};
 
 	const listId = 'ResultList';
@@ -35,11 +33,7 @@
 		<div class="fixed w-96">
 			<datalist id="{listId}" class="bg-white border border-gray-100 mt-2">
 				{#each results as r}
-					<option
-						value="{r.key}"
-						label="{r.key.normalize('NFD').replace(/[\u0300-\u036f]/g, '')}"
-					>
-					</option>
+					<option value="{r.key}" label="{r.key.normalize('NFD').replace(/[\u0300-\u036f]/g, '')}"> </option>
 				{/each}
 			</datalist>
 		</div>

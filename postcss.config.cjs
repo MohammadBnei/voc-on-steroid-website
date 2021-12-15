@@ -5,7 +5,7 @@ const postcssAtRulesVariables = require('postcss-at-rules-variables');
 const postcssSimpleVars = require('postcss-simple-vars');
 const postcssImport = require('postcss-import');
 const tailwindcss = require('tailwindcss');
-const postcssNested = require('postcss-nested');
+const postcssNesting = require('tailwindcss/nesting');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
@@ -25,7 +25,7 @@ module.exports = {
 		postcssSimpleVars({
 			variables: variables,
 		}),
-		postcssNested(),
+		postcssNesting(),
 		tailwindcss(),
 
 		// But others, like autoprefixer, need to run after

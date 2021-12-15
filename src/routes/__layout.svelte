@@ -30,7 +30,7 @@
 
 	onMount(() => {
 		if ($session.user) {
-			fetchUserWords($session.user.id).then((data) => assocStore.setList(data));
+			fetchUserWords($session.user.id);
 		}
 	});
 </script>

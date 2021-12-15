@@ -4,11 +4,11 @@ import type { Handle, GetSession } from '@sveltejs/kit/types/hooks';
 import * as api from '$lib/utils/api';
 import { AuthData, handleAuthResponse } from '$lib/utils/auth';
 
-const {
-	VITE_USER_API,
-	VITE_WORD_API,
-	VITE_ASSOC_API
-} = import.meta.env;
+const { VITE_API_URL } = import.meta.env;
+
+const USER_API = VITE_API_URL + 'api/auth/';
+const WORD_API = VITE_API_URL + 'api/words/';
+const ASSOC_API = VITE_API_URL + 'api/assoc/';
 
 export const handle: Handle = async ({ request, resolve }) => {
 	const { user, jwt, refreshToken } = cookie.parse(request.headers.cookie || '');
@@ -18,7 +18,7 @@ export const handle: Handle = async ({ request, resolve }) => {
 	request.locals.jwt = jwt;
 
 	if (!jwt && refreshToken) {
-		const res = await api.post(VITE_USER_API + 'accounts/refresh-token', {
+		const res = await api.post(USER_API + 'accounts/refresh-token', {
 			refreshToken,
 		});
 		const data = await api.handleRes(res, 'Auth');
@@ -35,9 +35,9 @@ export const handle: Handle = async ({ request, resolve }) => {
 		}
 	}
 
-	request.locals.USER_API = VITE_USER_API;
-	request.locals.WORD_API = VITE_WORD_API;
-	request.locals.ASSOC_API = VITE_ASSOC_API;
+	request.locals.USER_API = USER_API;
+	request.locals.WORD_API = WORD_API;
+	request.locals.ASSOC_API = ASSOC_API;
 
 	const response = await resolve(request);
 
