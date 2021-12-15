@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { prefetch } from '$app/navigation';
+
 	import Time from 'svelte-time';
 
 	export let word: string;
@@ -6,11 +8,11 @@
 </script>
 
 <div class="flex flex-col p-3">
-	<a href="{'/' + word}" sveltekit:prefetch>
+	<a href="{'/' + word}" on:mouseenter="{() => prefetch('/' + word)}">
 		<div class="flex p-2 rounded-lg hover:bg-gray-100 align-items:center justify-around">
-            <span class="text-lg font-semibold w-52">
-                {word}
-            </span>
+			<span class="text-lg font-semibold w-52">
+				{word}
+			</span>
 			<div>
 				<Time timestamp="{created}" format="dddd @ h:mm A · MMMM D, YYYY" />
 			</div>
