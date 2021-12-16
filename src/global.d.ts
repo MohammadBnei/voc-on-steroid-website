@@ -3,9 +3,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-    VITE_USER_API: string;
-    VITE_WORD_API: string;
-    VITE_ASSOC_API: string;
+    VITE_API_URL: string;
 }
 
 interface ImportMeta {

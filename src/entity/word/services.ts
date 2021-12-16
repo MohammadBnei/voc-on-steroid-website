@@ -4,9 +4,9 @@ import type { IWord, IWordList } from './iword.interface';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function fetchResemblingWord(input: string): Promise<WordListModel | []> {
-	let url = 'api/words/resemblance';
-	url += `?value=${input}`;
-	const res = await fetch(url);
+	let url = 'resemblance';
+	url += `?value=${input.toLocaleLowerCase()}`;
+	const res = await get(url);
 	const data = (await handleRes(res, 'Words')) as unknown as [IWordList];
 	if (!res.ok) {
 		return [];

@@ -7,11 +7,8 @@ export interface AssocWord {
 	created: Date;
 }
 
-const assocUrl = 'assoc/';
-
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function fetchUserWords(userId: string): Promise<AssocWord[]> {
-	const res = await api.get(assocUrl + userId);
+	const res = await api.get('assoc/' + userId);
 	const data = (await api.handleRes(res)) as unknown as AssocWord[];
 	assocStore.setList(data);
 
