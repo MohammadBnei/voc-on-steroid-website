@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 const URL = process.env.BASE_URL;
-const BASE_URL = URL ? URL : 'http://localhost';
+const BASE_URL = URL ? URL : 'https://voconsteroid.com';
 const pages = [''];
 
 fs.readdirSync('./src/routes').forEach((file) => {
