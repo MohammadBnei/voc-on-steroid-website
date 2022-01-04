@@ -2,7 +2,8 @@ import * as cookie from 'cookie';
 import { Buffer } from 'buffer';
 import type { Handle, GetSession } from '@sveltejs/kit/types/hooks';
 import * as api from '$lib/utils/api';
-import { AuthData, handleAuthResponse } from '$lib/utils/auth';
+import { AuthData, deleteCookies, handleAuthResponse } from '$lib/utils/auth';
+import { LoggerUtils } from '$lib/utils';
 
 const { VITE_API_URL } = import.meta.env;
 
@@ -18,20 +19,28 @@ export const handle: Handle = async ({ request, resolve }) => {
 	request.locals.jwt = jwt;
 
 	if (!jwt && refreshToken) {
-		const res = await api.post(USER_API + 'accounts/refresh-token', {
-			refreshToken,
-		});
-		const data = await api.handleRes(res, 'Auth');
-		if (res.ok) {
-			const { headers, user: freshUser } = handleAuthResponse({
-				jwt: data.jwtToken,
-				refreshToken: data.refreshToken,
-				user: data,
-			} as unknown as AuthData);
+		try {
 
-			setCookie = headers['set-cookie'];
-			request.locals.user = freshUser;
-			request.locals.jwt = data.jwtToken;
+			const res = await api.post(USER_API + 'accounts/refresh-token', {
+				refreshToken,
+			});
+			const data = await api.handleRes(res, 'Auth');
+			if (res.ok) {
+				const { headers, user: freshUser } = handleAuthResponse({
+					jwt: data.jwtToken,
+					refreshToken: data.refreshToken,
+					user: data,
+				} as unknown as AuthData);
+
+				setCookie = headers['set-cookie'];
+				request.locals.user = freshUser;
+				request.locals.jwt = data.jwtToken;
+			}
+		} catch (error) {
+			LoggerUtils.getInstance('Hooks').error(error);
+			setCookie = deleteCookies;
+			request.locals.user = null;
+			request.locals.jwt = null;
 		}
 	}
 
