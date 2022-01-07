@@ -1,6 +1,6 @@
 ---
 apps:
-  - script: ./prod/index.js
+  - script: ./build/index.js
     name: site
     env:
       NODE_ENV: development

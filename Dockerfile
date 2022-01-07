@@ -14,6 +14,8 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY --from=0 /app/ /app/
+COPY --from=0 /app/build/ /app/build/
+COPY ecosystem.yml .
+COPY package.json .
 
 CMD pm2-runtime start ecosystem.yml
