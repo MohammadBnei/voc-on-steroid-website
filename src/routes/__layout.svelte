@@ -14,7 +14,6 @@
 <script lang="ts">
 	import PageTransition from '$lib/shared/components/transition/PageTransition.svelte';
 	import { session } from '$app/stores';
-	import { assocStore } from '$lib/utils/stores';
 	import Header from '$ui/components/header/Header.svelte';
 	import { onMount } from 'svelte';
 	import SvelteToast from '$lib/shared/ui/components/toast/SvelteToast.svelte';
@@ -49,14 +48,14 @@
 		<AuthHeader />
 	</div>
 </div>
-{#if $isFetching}
-	<div class="fixed right-0 top-0">
-		<Spinner name="pulse" color="rgba(239, 68, 68)" />
-	</div>
-{/if}
 <div use:slimscroll="{{ height: `calc(100vh - ${h}px` }}">
 	<PageTransition refresh="{key}">
 		<slot />
 	</PageTransition>
 </div>
+{#if $isFetching}
+	<div class="fixed right-0 top-0">
+		<Spinner name="pulse" color="rgba(239, 68, 68)" />
+	</div>
+{/if}
 <SvelteToast />
