@@ -6,7 +6,7 @@ COPY . .
 
 RUN npm i
 
-RUN npm run build:node
+RUN npm run build:node:ssr
 
 FROM keymetrics/pm2:14-alpine
 
