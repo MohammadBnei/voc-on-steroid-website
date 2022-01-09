@@ -5,7 +5,7 @@ import * as api from '$lib/utils/api';
 import { AuthData, deleteCookies, handleAuthResponse } from '$lib/utils/auth';
 import { LoggerUtils } from '$lib/utils';
 
-const { VITE_API_URL } = import.meta.env;
+const VITE_API_URL = import.meta.env.VITE_API_URL || process.env.VITE_API_URL;
 
 const USER_API = VITE_API_URL + 'api/auth/';
 const WORD_API = VITE_API_URL + 'api/words/';
