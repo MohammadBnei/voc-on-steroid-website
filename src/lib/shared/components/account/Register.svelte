@@ -25,7 +25,7 @@
 			toast.push('You have to type all informations and accept the terms');
 			return;
 		}
-		const res = await post('register', userInfos);
+		const res = await post({ path: 'register', data: userInfos });
 		handleRes(res, 'Auth');
 		res.ok && toast.push('Successfully registered. You can now log in.');
 	};

@@ -8,7 +8,7 @@ export interface AssocWord {
 }
 
 export async function fetchUserWords(userId: string): Promise<AssocWord[]> {
-	const res = await api.get('assoc/' + userId);
+	const res = await api.get({ path: 'assoc/' + userId });
 	const data = (await api.handleRes(res)) as unknown as AssocWord[];
 	assocStore.setList(data);
 
@@ -16,9 +16,7 @@ export async function fetchUserWords(userId: string): Promise<AssocWord[]> {
 }
 
 export async function addWord(word: string): Promise<null | Response> {
-	const res = await api.post('assoc', {
-		word,
-	});
+	const res = await api.post({ path: 'assoc', data: { word } });
 	const data = (await api.handleRes(res)) as unknown as AssocWord;
 	if (res.ok) {
 		assocStore.addWord(data);
@@ -28,7 +26,7 @@ export async function addWord(word: string): Promise<null | Response> {
 }
 
 export async function removeWord(word: string): Promise<null | Response> {
-	const res = await api.del(`assoc?word=${word}`);
+	const res = await api.del({ path: `assoc?word=${word}` });
 	api.handleRes(res);
 	if (res.ok) {
 		assocStore.removeWord(word);

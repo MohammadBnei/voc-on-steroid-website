@@ -21,9 +21,7 @@ export const handle: Handle = async ({ request, resolve }) => {
 	if (!jwt && refreshToken) {
 		try {
 
-			const res = await api.post(USER_API + 'accounts/refresh-token', {
-				refreshToken,
-			});
+			const res = await api.post({ path: USER_API + 'accounts/refresh-token', data: { refreshToken } });
 			const data = await api.handleRes(res, 'Auth');
 			if (res.ok) {
 				const { headers, user: freshUser } = handleAuthResponse({

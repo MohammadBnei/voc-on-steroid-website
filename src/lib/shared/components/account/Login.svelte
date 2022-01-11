@@ -20,7 +20,7 @@
 			toast.push('You have to type your email AND password');
 			return;
 		}
-		const res = await post('login', { email, password });
+		const res = await post({ path: 'login', data: { email, password } });
 		const data = await handleRes(res);
 		if (res.ok) {
 			toast.push('Successfully logged in.');

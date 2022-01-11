@@ -3,7 +3,7 @@ import { AuthData, handleAuthResponse } from '$lib/utils/auth';
 import * as api from '$lib/utils/api';
 
 export const post: RequestHandler = async ({ body, locals }) => {
-	const res = await api.post(locals.USER_API + 'accounts/authenticate', body);
+	const res = await api.post({ path: locals.USER_API + 'accounts/authenticate', data: body });
 
 	const data = await api.handleRes(res, 'Auth');
 	if (!res.ok) {

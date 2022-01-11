@@ -9,7 +9,7 @@
 	import { handleRes, get } from '$lib/utils/api';
 
 	export const load: Load = async ({ params, fetch }) => {
-		const res = await fetch('/endpoint/words?value=' + encodeURIComponent(params.word));
+		const res = await get({ path: 'words?value=' + encodeURIComponent(params.word), fetch });
 		const data = await handleRes(res, 'Words');
 		if (!res.ok) {
 			return {
@@ -18,7 +18,7 @@
 				error: data?.message || 'Could not load word definition',
 			};
 		}
-		const wordModel = new WordModel().deserialize((data as unknown) as IWord);
+		const wordModel = new WordModel().deserialize(data as unknown as IWord);
 		return {
 			props: {
 				word: wordModel,
