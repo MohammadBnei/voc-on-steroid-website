@@ -8,10 +8,8 @@
 	import Detail from '$lib/shared/ui/components/word/detail/Detail.svelte';
 	import { handleRes, get } from '$lib/utils/api';
 
-	export const ssr = false;
-
-	export const load: Load = async ({ page }) => {
-		const res = await get('words?value=' + encodeURIComponent(page.params.word));
+	export const load: Load = async ({ params, fetch }) => {
+		const res = await fetch('/endpoint/words?value=' + encodeURIComponent(params.word));
 		const data = await handleRes(res, 'Words');
 		if (!res.ok) {
 			return {

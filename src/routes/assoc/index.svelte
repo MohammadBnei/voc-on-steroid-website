@@ -2,7 +2,7 @@
 	import { get } from '$lib/utils/api';
 	import { handleRes } from '$lib/utils/api';
 
-	export async function load({ session }) {
+	export async function load({ session, fetch }) {
 		if (!session.user) {
 			return {
 				status: 302,
@@ -10,8 +10,8 @@
 			};
 		}
 
-		const res = await get('assoc/' + session.user.id);
-		const data = await handleRes(res, 'Endpoint:Assoc');
+		const res = await fetch('/endpoint/assoc/' + session.user.id);
+		const data = (await handleRes(res, 'Endpoint:Assoc'));
 
 		if (!res.ok) {
 			return {
@@ -21,7 +21,7 @@
 
 		return {
 			props: { words: data },
-			maxage: 10
+			maxage: 10,
 		};
 	}
 </script>
@@ -29,10 +29,11 @@
 <script lang="ts">
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
 	import Assoc from '$lib/shared/ui/components/word/Assoc.svelte';
+	import type { AssocWord } from '$entity/assoc/services';
 
-	export let words = [];
+	export let words: AssocWord[] = [];
 
-	$: sortedWords = words.sort((a, b) => a?.word.localeCompare(b.word))
+	$: sortedWords = words.sort((a, b) => a?.word.localeCompare(b.word));
 
 	let search = '';
 

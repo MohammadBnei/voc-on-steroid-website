@@ -11,8 +11,8 @@ export const post: RequestHandler = async ({ body, locals }) => {
 	};
 };
 
-export const del: RequestHandler = async ({ query, locals }) => {
-	const res = await api.del(locals.ASSOC_API + query.get('word'), locals.jwt);
+export const del: RequestHandler = async ({ url, locals }) => {
+	const res = await api.del(locals.ASSOC_API + url.searchParams.get('word'), locals.jwt);
 	const data = await api.handleRes(res, 'Endpoit:Assoc');
 
 	return {

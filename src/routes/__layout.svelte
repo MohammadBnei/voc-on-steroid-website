@@ -2,10 +2,10 @@
 	import { fetchUserWords } from '$entity/assoc/services';
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page }) => {
+	export const load: Load = async ({ url }) => {
 		return {
 			props: {
-				key: page.path,
+				key: url.pathname,
 			},
 		};
 	};
@@ -48,11 +48,11 @@
 		<AuthHeader />
 	</div>
 </div>
-<div use:slimscroll="{{ height: `calc(100vh - ${h}px` }}">
-	<PageTransition refresh="{key}">
+<PageTransition refresh="{key}">
+	<div use:slimscroll="{{ height: `calc(100vh - ${h}px` }}">
 		<slot />
-	</PageTransition>
-</div>
+	</div>
+</PageTransition>
 {#if $isFetching}
 	<div class="fixed right-0 top-0">
 		<Spinner name="pulse" color="rgba(239, 68, 68)" />
