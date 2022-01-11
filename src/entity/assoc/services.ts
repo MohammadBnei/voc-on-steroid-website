@@ -1,5 +1,5 @@
 import * as api from '$lib/utils/api';
-import { assocStore } from '$lib/utils/stores';
+import { assocStore } from '$stores';
 import { toast } from '$lib/shared/ui/components/toast';
 
 export interface AssocWord {

@@ -14,7 +14,7 @@
 				{word}
 			</span>
 			<div>
-				<Time timestamp="{created}" format="dddd @ h:mm A · MMMM D, YYYY" />
+				<Time timestamp="{created}" format="MMMM D, YYYY" />
 			</div>
 		</div>
 	</a>

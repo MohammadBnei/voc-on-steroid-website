@@ -18,11 +18,11 @@
 	import { onMount } from 'svelte';
 	import SvelteToast from '$lib/shared/ui/components/toast/SvelteToast.svelte';
 	import Search from '$entity/word/search/Search.svelte';
-	import { slimscroll } from 'svelte-slimscroll';
 	import Actions from '$entity/assoc/Actions.svelte';
-	import { currentWord, isFetching } from '$stores';
+	import { headerHeight, isFetching } from '$stores';
 	import AuthHeader from '$lib/shared/components/account/AuthHeader.svelte';
 	import { Spinner } from '$lib/shared/ui/components/spinner';
+	import { browser } from '$app/env';
 	export let key: string;
 
 	let h: number;
@@ -32,15 +32,14 @@
 			fetchUserWords($session.user.id);
 		}
 	});
+
+	$: {
+		browser && headerHeight.update(() => h);
+	}
 </script>
 
-<div class="flex justify-center flex-col md:flex-row items-center" bind:offsetHeight="{h}">
+<div class="flex justify-center flex-col md:flex-row items-center bg-slate-300" bind:clientHeight="{h}">
 	<Header title="Voc On Steroid" />
-	{#if $session.user && $currentWord}
-		<div class="px-5">
-			<Actions word="{$currentWord}" />
-		</div>
-	{/if}
 	<div class="px-5">
 		<Search />
 	</div>
@@ -49,9 +48,7 @@
 	</div>
 </div>
 <PageTransition refresh="{key}">
-	<div use:slimscroll="{{ height: `calc(100vh - ${h}px` }}">
-		<slot />
-	</div>
+	<slot />
 </PageTransition>
 {#if $isFetching}
 	<div class="fixed right-0 top-0">

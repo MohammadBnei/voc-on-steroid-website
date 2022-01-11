@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { assocStore } from '$lib/utils/stores';
+	import { assocStore } from '$stores';
 	import Button from '$lib/shared/ui/components/button/Button.svelte';
 	import { addWord, removeWord } from './services';
 

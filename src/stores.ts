@@ -25,3 +25,4 @@ const createAssocStore = () => {
 };
 
 export const assocStore = createAssocStore();
+export const headerHeight = writable(0);
