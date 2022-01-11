@@ -10,7 +10,7 @@
 			};
 		}
 
-		const res = await fetch('/endpoint/assoc/' + session.user.id);
+		const res = await get({ path: 'assoc/' + session.user.id, fetch });
 		const data = await handleRes(res, 'Endpoint:Assoc');
 
 		if (!res.ok) {

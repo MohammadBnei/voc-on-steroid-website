@@ -7,8 +7,6 @@
 </style>
 
 <script lang="ts">
-	import { browser } from '$app/env';
-
 	import { session } from '$app/stores';
 	import Actions from '$entity/assoc/Actions.svelte';
 
