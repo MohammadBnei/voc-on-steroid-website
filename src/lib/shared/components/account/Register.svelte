@@ -47,7 +47,7 @@
 			<Checkbox display="Accept terms" bind:value="{acceptTerms}" />
 
 			<div class="flex w-full mt-6 justify-center items-center gap-3">
-				<Button text="Register" on:click="{handleRegister}" type="submit" />
+				<Button text="Register" type="submit" />
 				<!-- <a href="/account" class="rounded-lg hover:shadow-md p-3">Log in to your account</a> -->
 			</div>
 		</div>
