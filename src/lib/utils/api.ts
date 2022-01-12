@@ -1,5 +1,5 @@
 import { LoggerUtils } from '$lib/utils';
-import { browser, dev } from '$app/env';
+import { browser, mode } from '$app/env';
 import { session } from '$app/stores';
 import { toast } from '$lib/shared/ui/components/toast';
 import { isFetching } from '$stores';
@@ -74,7 +74,7 @@ export async function handleRes(res: Response, loggerInstance?: string): Promise
 
 		return data;
 	} catch (error) {
-		dev && loggerInstance && LoggerUtils.getInstance(loggerInstance).error(error);
+		mode === 'dev' && loggerInstance && LoggerUtils.getInstance(loggerInstance).error(error);
 		return error;
 	}
 }
