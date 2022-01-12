@@ -52,3 +52,15 @@ pids
 *.pid.lock
 *.eslintcache
 
+static/favicon.ico
+static/favicon.png
+static/logo-72.png
+static/logo-96.png
+static/logo-120.png
+static/logo-144.png
+static/logo-152.png
+static/logo-180.png
+static/logo-192.png
+static/logo-256.png
+static/logo-384.png
+static/logo-512.png
