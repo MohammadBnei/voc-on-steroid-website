@@ -35,8 +35,8 @@
 	<div class="flex flex-col items-center justify-center min-h-screen w-full px-4 py-8">
 		<div class="rounded-md bg-white w-full max-w-sm sm:max-w-md border border-gray-500 shadow-md px-4 py-6 sm:p-8">
 			<div class="text-sm sm:text-base text-gray-600 my-4">Log In</div>
-			<Input display="Email adress" bind:value="{email}" />
-			<Input display="Password" bind:value="{password}" options="{{ type: 'password' }}" />
+			<Input display="Email adress" bind:value="{email}" options="{{ type: 'email', required: 'true' }}" />
+			<Input display="Password" bind:value="{password}" options="{{ type: 'password', required: 'true' }}" />
 
 			<div class="flex w-full mt-6 justify-center items-center gap-3">
 				<Button text="Login" type="submit" />
