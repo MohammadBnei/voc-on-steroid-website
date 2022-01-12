@@ -5,7 +5,9 @@
 </script>
 
 <div class="flex flex-col mb-4">
-	<label for="{display}" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">{display} :</label>
+	{#if display}
+		<label for="{display}" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">{display} :</label>
+	{/if}
 	<input
 		id="{display}"
 		type="text"

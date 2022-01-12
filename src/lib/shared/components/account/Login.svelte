@@ -31,15 +31,17 @@
 	};
 </script>
 
-<div class="flex flex-col items-center justify-center min-h-screen w-full px-4 py-8">
-	<div class="rounded-md bg-white w-full max-w-sm sm:max-w-md border border-gray-500 shadow-md px-4 py-6 sm:p-8">
-		<div class="text-sm sm:text-base text-gray-600 my-4">Log In</div>
-		<Input display="Email adress" bind:value="{email}" />
-		<Input display="Password" bind:value="{password}" options="{{ type: 'password' }}" />
+<form on:submit|preventDefault="{handleLogin}">
+	<div class="flex flex-col items-center justify-center min-h-screen w-full px-4 py-8">
+		<div class="rounded-md bg-white w-full max-w-sm sm:max-w-md border border-gray-500 shadow-md px-4 py-6 sm:p-8">
+			<div class="text-sm sm:text-base text-gray-600 my-4">Log In</div>
+			<Input display="Email adress" bind:value="{email}" />
+			<Input display="Password" bind:value="{password}" options="{{ type: 'password' }}" />
 
-		<div class="flex w-full mt-6 justify-center items-center gap-3">
-			<Button text="Login" on:click="{handleLogin}" />
-			<a href="/account/register" class="rounded-lg hover:shadow-md p-3">Create an account</a>
+			<div class="flex w-full mt-6 justify-center items-center gap-3">
+				<Button text="Login" type="submit" />
+				<!-- <a href="/account/register" class="rounded-lg hover:shadow-md p-3">Create an account</a> -->
+			</div>
 		</div>
 	</div>
-</div>
+</form>

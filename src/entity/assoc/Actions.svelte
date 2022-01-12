@@ -10,7 +10,7 @@
 </script>
 
 {#if $assocStore.some((v) => v.word === word)}
-	<Button text="Remove from your list" on:click="{handleRemoveWord}" />
+	<Button text=" - " on:click="{handleRemoveWord}" />
 {:else}
-	<Button text="Add to your list" on:click="{handleAddWord}" />
+	<Button text=" + " on:click="{handleAddWord}" />
 {/if}

@@ -42,4 +42,6 @@
 	<Input display="Filter" options="{{ placeholder: '...' }}" bind:value="{search}" />
 	<div class="w-52 text-center self-center">{filteredList.length}</div>
 </div>
-<AssocList words="{filteredList}" />
+<div class="mx-96 flex flex-wrap gap-5" >
+	<AssocList words="{filteredList}" />
+</div>

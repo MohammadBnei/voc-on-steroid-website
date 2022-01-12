@@ -7,10 +7,8 @@
 	$: sortedWords = words.sort((a, b) => a?.word.localeCompare(b.word));
 </script>
 
-<div>
-	{#each sortedWords as word}
-		<Assoc {...word} />
-	{:else}
-		<div> No word yet. Go search for some </div>
-	{/each}
-</div>
+{#each sortedWords as word}
+	<Assoc {...word} />
+{:else}
+	<div> No word yet. Go search for some </div>
+{/each}

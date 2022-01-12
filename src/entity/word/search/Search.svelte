@@ -25,7 +25,6 @@
 <div class="self-center">
 	<SearchBar
 		on:type="{(e) => handleType(e.detail.input)}"
-		on:change="{(e) => handleSearch(e.detail.input)}"
 		on:search="{(e) => handleSearch(e.detail.input)}"
 		listId="{listId}"
 	/>

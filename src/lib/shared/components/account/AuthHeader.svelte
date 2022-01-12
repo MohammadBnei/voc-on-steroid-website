@@ -6,7 +6,7 @@
 	import { get } from '$lib/utils/api';
 
 	const logout = async () => {
-		const res = await get('logout');
+		const res = await get({ path: 'logout' });
 
 		if (res.ok) {
 			$session.user = null;

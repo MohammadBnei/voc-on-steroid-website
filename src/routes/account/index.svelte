@@ -18,7 +18,7 @@
 </script>
 
 <section>
-	<div class="flex">
+	<div class="grid grid-cols-2 grid-rows-1">
 		<Login />
 		<Register />
 	</div>
