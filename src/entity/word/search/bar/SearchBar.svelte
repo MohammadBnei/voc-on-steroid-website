@@ -36,7 +36,7 @@
 		<button
 			class="h-14 w-14 ml-2 text-white rounded-lg bg-red-500 hover:bg-red-600 align-items:center"
 			type="submit"
-			name="search"
+			aria-label="search button"
 		>
 			<div class="pl-3.5">
 				<svg

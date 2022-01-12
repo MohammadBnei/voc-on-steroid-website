@@ -39,7 +39,7 @@
 			<Input display="Password" bind:value="{password}" options="{{ type: 'password', required: 'true' }}" />
 
 			<div class="flex w-full mt-6 justify-center items-center gap-3">
-				<Button text="Login" type="submit" name="login"/>
+				<Button text="Login" type="submit"/>
 				<!-- <a href="/account/register" class="rounded-lg hover:shadow-md p-3">Create an account</a> -->
 			</div>
 		</div>
