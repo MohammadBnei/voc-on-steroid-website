@@ -56,7 +56,7 @@
 	$: showList = $session.user && w > 840;
 
 	let metaData: Partial<IMetaTagProperties> = {
-		title: `${word?.word || 'Not found'} | Voc On Steroid`,
+		title: `${word?.word || 'Not found'}`,
 		description:
 			'Voc On Steroid project created with sveltekit, typescript, tailwindcss, postcss, husky, and storybook. The project has the structure set up for the scaleable project. (sveltekit, typescript, tailwindcss, postcss, husky, Storybook).',
 		url: `https://voconsteroid.com/${word.word}`,

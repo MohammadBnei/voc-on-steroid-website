@@ -18,7 +18,7 @@
 			{#if $session.user}
 				<a sveltekit:prefetch class="mr-5 hover:text-gray-900" href="/account/profile">Account</a>
 				<a sveltekit:prefetch class="mr-5 hover:text-gray-900" href="/assoc">Your Words</a>
-				<a sveltekit:prefetch class="mr-5 hover:text-gray-900" href="/experimental">Experimental</a>
+				<!-- <a sveltekit:prefetch class="mr-5 hover:text-gray-900" href="/experimental">Experimental</a> -->
 				{/if}
 				<a sveltekit:prefetch class="mr-5 hover:text-gray-900" href="/about">About</a>
 		</nav>
