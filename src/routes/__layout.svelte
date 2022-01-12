@@ -18,7 +18,6 @@
 	import { onMount } from 'svelte';
 	import SvelteToast from '$lib/shared/ui/components/toast/SvelteToast.svelte';
 	import Search from '$entity/word/search/Search.svelte';
-	import Actions from '$entity/assoc/Actions.svelte';
 	import { headerHeight, isFetching } from '$stores';
 	import AuthHeader from '$lib/shared/components/account/AuthHeader.svelte';
 	import { Spinner } from '$lib/shared/ui/components/spinner';
