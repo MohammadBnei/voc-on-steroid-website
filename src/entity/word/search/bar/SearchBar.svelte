@@ -8,6 +8,7 @@
 
 	let input = '';
 	const handleType = debounce(() => {
+		if (!input) return;
 		dispatch('type', {
 			input,
 		});
@@ -17,8 +18,8 @@
 	$: input && handleType();
 
 	const search = () => {
-		input = '';
 		dispatch('search', { input });
+		input = '';
 	};
 </script>
 
