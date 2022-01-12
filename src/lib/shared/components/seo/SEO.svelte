@@ -58,7 +58,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=100%, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+	<meta name="viewport" content="width=1980, shrink-to-fit=no" />
 
 	<meta name="robots" content="{metaData.robots}" />
 	<meta name="googlebot" content="{metaData.robots}" />
