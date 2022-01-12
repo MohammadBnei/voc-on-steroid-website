@@ -1,8 +1,8 @@
 {
 	"background_color": "#ffffff",
-	"theme_color": "#ff6600",
+	"theme_color": "#73462C",
 	"name": "Voc On Steroids",
-	"short_name": "Sveltekit",
+	"short_name": "VocOnSteroid",
 	"display": "minimal-ui",
 	"start_url": "/",
 	"icons": [
@@ -13,8 +13,14 @@
 			"purpose": "any maskable"
 		},
 		{
+			"src": "logo-256.png",
+			"sizes": "256x206",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
 			"src": "logo-512.png",
-			"sizes": "512x512",
+			"sizes": "512x412",
 			"type": "image/png",
 			"purpose": "any maskable"
 		}
