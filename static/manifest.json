@@ -7,61 +7,61 @@
 	"start_url": "/",
 	"icons": [
 		{
-			"src": "logo-72.png",
+			"src": "voconsteroidLogoNT72.png",
 			"sizes": "72x72",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "logo-96.png",
+			"src": "voconsteroidLogoNT96.png",
 			"sizes": "96x96",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "logo-120.png",
+			"src": "voconsteroidLogoNT120.png",
 			"sizes": "120x120",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "logo-144.png",
+			"src": "voconsteroidLogoNT144.png",
 			"sizes": "144x144",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "logo-152.png",
+			"src": "voconsteroidLogoNT152.png",
 			"sizes": "152x152",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "logo-180.png",
+			"src": "voconsteroidLogoNT180.png",
 			"sizes": "180x180",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "logo-192.png",
+			"src": "voconsteroidLogo192.png",
 			"sizes": "192x192",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "logo-256.png",
+			"src": "voconsteroidLogo256.png",
 			"sizes": "256x256",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "logo-384.png",
+			"src": "voconsteroidLogo384.png",
 			"sizes": "384x384",
 			"type": "image/png",
 			"purpose": "any"
 		},
 		{
-			"src": "logo-512.png",
+			"src": "voconsteroidLogo512.png",
 			"sizes": "512x512",
 			"type": "image/png",
 			"purpose": "any"
