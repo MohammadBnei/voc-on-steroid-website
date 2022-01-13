@@ -57,9 +57,10 @@ import { access } from 'fs';
 	$: showList = $session.user && w > 840;
 
 	let metaData: Partial<IMetaTagProperties> = {
-		title: `${word?.word || 'Not found'}`,
+		title: `VocOnSteroid : ${word?.word || 'Not found'}`,
 		description: ` Etymologie : ${word.etymologies}
 				Definitions : ${word.results.reduce((acc, cur) => {
+					acc += cur.type + ' : '
 					acc += cur.definitions.reduce((acc, cur) => {
 						acc += cur.definition
 						acc += '\n'
