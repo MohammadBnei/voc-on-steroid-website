@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 const URL = process.env.BASE_URL;
 const BASE_URL = URL ? URL : 'https://voconsteroid.com';
 const pages = ['', 'about', 'account', 'assoc', 'endpoint', 'experimental'];
