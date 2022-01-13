@@ -58,8 +58,7 @@ import { access } from 'fs';
 
 	let metaData: Partial<IMetaTagProperties> = {
 		title: `VocOnSteroid : ${word?.word || 'Not found'}`,
-		description: ` Etymologie : ${word.etymologies}
-				Definitions : ${word.results.reduce((acc, cur) => {
+		description: ` Definitions : ${word.results.reduce((acc, cur) => {
 					acc += cur.type + ' : '
 					acc += cur.definitions.reduce((acc, cur) => {
 						acc += cur.definition
@@ -71,6 +70,7 @@ import { access } from 'fs';
 					acc += '\n'
 					return acc
 				}, '')}
+				Etymologie : ${word.etymologies}
 		`,
 		url: `https://voconsteroid.com/${word.word}`,
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
