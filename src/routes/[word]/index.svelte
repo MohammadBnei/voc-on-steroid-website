@@ -76,6 +76,7 @@ import { access } from 'fs';
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
 		keywords: [word?.word, 'Definition', 'Voc On Steroid', 'Voc On Steroid words'],
 		searchUrl: `https://voconsteroid.com/${word.word}`,
+		image: 'https://voconsteroid.com/logo-512.png',
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',
 	};
 
