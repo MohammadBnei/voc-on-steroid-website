@@ -44,6 +44,7 @@
 	import { AssocList } from '$lib/shared/components/assoc';
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
 	import { slimscroll } from 'svelte-slimscroll';
+import { access } from 'fs';
 
 	export let word: WordModel;
 	let h: number;
@@ -57,11 +58,22 @@
 
 	let metaData: Partial<IMetaTagProperties> = {
 		title: `${word?.word || 'Not found'}`,
-		description:
-			'Voc On Steroid project created with sveltekit, typescript, tailwindcss, postcss, husky, and storybook. The project has the structure set up for the scaleable project. (sveltekit, typescript, tailwindcss, postcss, husky, Storybook).',
+		description: ` Etymologie : ${word.etymologies}
+				Definitions : ${word.results.reduce((acc, cur) => {
+					acc += cur.definitions.reduce((acc, cur) => {
+						acc += cur.definition
+						acc += '\n'
+						
+						return acc
+					}, '')
+					
+					acc += '\n'
+					return acc
+				}, '')}
+		`,
 		url: `https://voconsteroid.com/${word.word}`,
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
-		keywords: ['sveltekit', 'Voc On Steroid', 'Voc On Steroid words'],
+		keywords: [word?.word, 'Definition', 'Voc On Steroid', 'Voc On Steroid words'],
 		searchUrl: `https://voconsteroid.com/${word.word}`,
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',
 	};
