@@ -40,7 +40,7 @@
 		<p>
 			{error.name}
 		</p>
-		{#if dev && error.stack}
+		{#if error.stack}
 			<pre> {error.message} </pre>
 		{/if}
 	</div>
