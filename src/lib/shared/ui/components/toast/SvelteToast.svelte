@@ -1,8 +1,8 @@
 <style>
 	ul {
-		top: var(--toastContainerTop, 1.5rem);
+		top: var(--toastContainerTop, auto);
 		right: var(--toastContainerRight, 2rem);
-		bottom: var(--toastContainerBottom, auto);
+		bottom: var(--toastContainerBottom, 1.5rem);
 		left: var(--toastContainerLeft, auto);
 		position: fixed;
 		margin: 0;
