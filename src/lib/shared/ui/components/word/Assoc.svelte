@@ -8,7 +8,7 @@
 </script>
 
 <div class="ml-7 p-2 rounded-lg hover:bg-gray-100 align-items:center w-min">
-	<a href="{'/' + word}" on:mouseenter="{() => prefetch('/' + word)}">
+	<a href="{'/word/' + word}" on:mouseenter="{() => prefetch('/' + word)}">
 		<span class="text-lg font-semibold w-52">
 			{word}
 		</span>

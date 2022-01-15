@@ -15,7 +15,7 @@
 			return;
 		}
 		searchWord(word)
-			.then((r) => goto('/' + r.word))
+			.then((r) => goto('/word/' + r.word))
 			.catch((err) => console.log(err));
 	};
 

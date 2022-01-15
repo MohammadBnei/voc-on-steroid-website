@@ -22,7 +22,7 @@
 	import AuthHeader from '$lib/shared/components/account/AuthHeader.svelte';
 	import { Spinner } from '$lib/shared/ui/components/spinner';
 	import { browser } from '$app/env';
-	export let key: string;
+	export let key: string = '/';
 
 	let h: number;
 
@@ -37,7 +37,7 @@
 	}
 </script>
 
-<div class="flex justify-center flex-col md:flex-row items-center bg-slate-300 w-screen" bind:clientHeight="{h}">
+<div class="flex justify-center flex-col md:flex-row items-center bg-slate-300" bind:clientHeight="{h}">
 	<Header title="Voc On Steroid" />
 	<div class="px-5">
 		<Search />
@@ -46,7 +46,7 @@
 		<AuthHeader />
 	</div>
 </div>
-<PageTransition refresh="{key}">
+<PageTransition refresh="{key.split('/')[1]}">
 	<slot />
 </PageTransition>
 {#if $isFetching}

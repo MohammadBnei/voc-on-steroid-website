@@ -3,13 +3,8 @@
 		if (session.user) {
 			return { redirect: '/', status: 302 };
 		}
-		try {
-			await fetch('/sitemap.xml');
 
-			return true;
-		} catch (error) {
-			console.error(error);
-		}
+		return true
 	}
 </script>
 

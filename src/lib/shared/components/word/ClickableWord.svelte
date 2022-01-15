@@ -7,7 +7,7 @@
 
 	export let text: string;
 	export let href: string;
-	$: path = `/${href}`;
+	$: path = `/word/${href}`;
 </script>
 
 {#if text.length > 2}
