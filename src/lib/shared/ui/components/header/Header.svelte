@@ -1,13 +1,10 @@
-<style lang="postcss">
-</style>
-
 <script lang="ts">
 	import { session } from '$app/stores';
 
 	export let title = '';
 </script>
 
-<header class="text-gray-600 body-font">
+<header class="text-gray-600 body-font stop-scroll-side">
 	<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
 		<a sveltekit:prefetch class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="/">
 			<span class="ml-3 text-xl">{title}</span>

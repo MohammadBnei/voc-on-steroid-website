@@ -4,7 +4,7 @@
 </script>
 
 {#key refresh}
-	<div in:fade out:blur>
+	<div in:fade="{{ delay: 200 }}" out:blur="{{ duration: 200 }}">
 		<slot />
 	</div>
 {/key}
