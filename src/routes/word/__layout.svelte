@@ -40,8 +40,8 @@
 	$: filteredList = search.length ? $assocStore.filter(({ word }) => word.includes(search)) : $assocStore;
 </script>
 
-<div class="word-layout">
-	<div class="px-5 overflow-y-auto">
+<div class="word-layout overflow-y-hidden">
+	<div class="px-5">
 		<PageTransition refresh="{key.split('/').pop()}">
 			<div use:slimscroll="{{ height: `calc(100vh - ${$headerHeight}px` }}">
 				<slot />
