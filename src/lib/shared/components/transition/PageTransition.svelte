@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { fade, blur } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
+	import { expoOut, quintIn } from 'svelte/easing';
 	export let refresh = '';
 </script>
 
 {#key refresh}
-	<div in:fade="{{ delay: 200 }}" out:blur="{{ duration: 200 }}">
+	<div in:fade="{{ easing: quintIn }}" out:fade="{{ duration: 200, easing: expoOut }}">
 		<slot />
 	</div>
 {/key}

@@ -2,6 +2,16 @@
 	.word-layout {
 		display: grid;
 		grid-template-columns: 7fr minmax(240px, 1fr);
+		grid-template-areas: 
+		"word assoc";
+	}
+
+	.word {
+		grid-area: word;
+	}
+
+	.assoc {
+		grid-area: assoc;
 	}
 
 	.assoc-layout {
@@ -40,16 +50,14 @@
 	$: filteredList = search.length ? $assocStore.filter(({ word }) => word.includes(search)) : $assocStore;
 </script>
 
-<div class="word-layout overflow-y-hidden">
-	<div class="px-5">
-		<PageTransition refresh="{key.split('/').pop()}">
-			<div use:slimscroll="{{ height: `calc(100vh - ${$headerHeight}px` }}">
-				<slot />
-			</div>
-		</PageTransition>
-	</div>
+<div class="word-layout">
+	<PageTransition refresh="{key.split('/').pop()}">
+		<div use:slimscroll="{{ height: `calc(100vh - ${$headerHeight}px` }}" class="word">
+			<slot />
+		</div>
+	</PageTransition>
 	{#if $session.user}
-		<div class="assoc-layout">
+		<div class="assoc-layout assoc">
 			<div class="mx-2" bind:clientHeight="{h}">
 				<div class="flex justify-evenly items-center p-2">
 					<p class="text-xl text-opacity-70 font-bold text-gray-700">Saved Words</p>
