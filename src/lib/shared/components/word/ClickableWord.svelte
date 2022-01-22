@@ -8,10 +8,22 @@
 	export let text: string;
 	export let href: string;
 	$: path = `/word/${href}`;
+
+	let notFound = false;
+
+	const handlePrefetch = () => {
+		prefetch(path).then((r) => {
+			if (r?.props?.page?.status === 404) {
+				notFound = true;
+			}
+		});
+	};
+
+	$: clickable = href && !notFound;
 </script>
 
-{#if text.length > 2}
-	<a on:mouseenter="{() => prefetch(path)}" href="{path}" class="hover:underline">{text}</a>
+{#if clickable}
+	<a on:mouseenter="{handlePrefetch}" href="{path}" class="hover:underline">{text}</a>
 {:else}
 	{text}
 {/if}
