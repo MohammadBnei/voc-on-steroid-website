@@ -4,7 +4,6 @@
 // command env properties
 const hasAdapter = process.env.ADAPTER;
 const adapt = hasAdapter ? hasAdapter : 'node';
-const isSSR = process.env.SSR ? true : false;
 const isAMP = process.env.AMP ? true : false;
 
 // Imports

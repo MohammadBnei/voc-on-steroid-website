@@ -4,7 +4,7 @@
 
 	export let words: AssocWord[];
 
-	$: sortedWords = words.sort((a, b) => a?.word.localeCompare(b.word));
+	$: sortedWords = words.sort((a, b) => a?.id?.localeCompare(b.id));
 </script>
 
 {#each sortedWords as word}

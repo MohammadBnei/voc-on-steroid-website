@@ -9,8 +9,8 @@
 	const handleRemoveWord = () => removeWord(word);
 </script>
 
-{#if $assocStore.some((v) => v.word === word)}
-	<Button text=" - " on:click="{handleRemoveWord}" aria-label="forget word button"/>
+{#if $assocStore.some((v) => v.id === word)}
+	<Button text=" - " on:click="{handleRemoveWord}" aria-label="forget word button" />
 {:else}
-	<Button text=" + " on:click="{handleAddWord}" aria-label="save word button"/>
+	<Button text=" + " on:click="{handleAddWord}" aria-label="save word button" />
 {/if}

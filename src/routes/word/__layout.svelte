@@ -47,7 +47,7 @@
 
 	export let key = '';
 
-	$: filteredList = search.length ? $assocStore.filter(({ word }) => word.includes(search)) : $assocStore;
+	$: filteredList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
 </script>
 
 <div class="word-layout">

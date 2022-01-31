@@ -1,14 +1,11 @@
 import * as cookie from 'cookie';
 import { Buffer } from 'buffer';
-import type { Request } from '@sveltejs/kit';
+import { handleRes, handleResponseCookies } from './api';
 
-interface Tokens {
-	jwt: string;
-	refreshToken: string;
-}
-
-export interface AuthData extends Tokens {
-	user: User;
+export interface AuthData {
+	user?: User;
+	jwt?: string;
+	refreshToken?: string;
 }
 
 interface User {
@@ -23,66 +20,64 @@ interface User {
 	refreshToken?: string;
 }
 
-interface AuthHeader extends Tokens {
-	user: string;
-}
-
 interface AuthResponse {
-	headers: {
+	status?: number;
+	headers?: {
 		'set-cookie': string[];
 	};
-	user: User;
+	body?: Record<string, any>;
 }
 
-export const getAuthCookies = (authResponse: AuthData): AuthHeader => {
+export const getAuthCookies = (authResponse: AuthData): string[] => {
 	const jwt = authResponse.jwt
 		? cookie.serialize('jwt', authResponse.jwt, {
-				httpOnly: true,
-				path: '/',
-				expires: new Date(Date.now() + 5 * 60 * 1000),
-		  })
+			httpOnly: true,
+			path: '/',
+			expires: new Date(Date.now() + 5 * 60 * 1000),
+		})
 		: '';
 
 	const refreshToken = authResponse.refreshToken
 		? cookie.serialize('refreshToken', authResponse.refreshToken, {
-				httpOnly: true,
-				path: '/',
-				expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-		  })
+			httpOnly: true,
+			path: '/',
+			expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+		})
 		: '';
 
 	const user = authResponse.user
 		? cookie.serialize('user', Buffer.from(JSON.stringify(authResponse.user)).toString('base64'), {
-				httpOnly: true,
-				path: '/',
-				expires: new Date(Date.now() + 5 * 60 * 1000),
-		  })
+			httpOnly: true,
+			path: '/',
+			expires: new Date(Date.now() + 5 * 60 * 1000),
+		})
 		: '';
 
-	return {
+	return [
 		jwt,
 		refreshToken,
 		user,
-	};
+	].filter(c => c!== '');
 };
 
-export const handleAuthResponse = ({ jwt, refreshToken, user }: AuthData): AuthResponse => {
-	user.jwtToken && delete user.jwtToken;
-	user.refreshToken && delete user.refreshToken;
-	
-	const { ...cookies } = getAuthCookies({ jwt, refreshToken, user });
+export const handleAuthResponse = async (res: Response): Promise<AuthResponse> => {
+	const { data } = await handleRes(res, 'Auth');
+
+	if (!res.ok) {
+		return {
+			status: res.status,
+			body: await res.json()
+		};
+	}
+
+	const { jwt, user } = data as any;
+
+	const cookies = getAuthCookies({ jwt, user });
 
 	return {
-		headers: {
-			'set-cookie': Object.values(cookies),
-		},
-		user,
+		...handleResponseCookies(res, ...cookies),
+		body: { user },
 	};
-};
-
-export const extractTokenFromCookie = (req: Request): Tokens => {
-	const { jwt, refreshToken } = cookie.parse(req.headers.cookie || '');
-	return { jwt, refreshToken };
 };
 
 export const deleteCookies = [

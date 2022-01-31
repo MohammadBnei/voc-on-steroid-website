@@ -3,30 +3,32 @@ import { assocStore } from '$stores';
 import { toast } from '$lib/shared/ui/components/toast';
 
 export interface AssocWord {
-	word: string;
+	id: string;
 	created: Date;
 }
 
-export async function fetchUserWords(userId: string): Promise<AssocWord[]> {
-	const res = await api.get({ path: 'assoc/' + userId });
-	const data = (await api.handleRes(res)) as unknown as AssocWord[];
-	assocStore.setList(data);
+export async function fetchUserWords(): Promise<AssocWord[]> {
+	const res = await api.get({ path: 'assoc/' });
+	const data = await api.handleRes(res);
+	if (data.words) {
+		assocStore.setList(data.words);
+	}
 
-	return data;
+	return data.words;
 }
 
 export async function addWord(word: string): Promise<null | Response> {
-	const res = await api.post({ path: 'assoc', data: { word } });
-	const data = (await api.handleRes(res)) as unknown as AssocWord;
+	const res = await api.put({ path: 'assoc', data: { word } });
+	const data = (await api.handleRes(res));
 	if (res.ok) {
-		assocStore.addWord(data);
+		assocStore.setList(data.words);
 		toast.push(`Successfully added ${word}`);
 		return null;
 	}
 }
 
 export async function removeWord(word: string): Promise<null | Response> {
-	const res = await api.del({ path: `assoc?word=${word}` });
+	const res = await api.del({ path: `assoc`, data: { word } });
 	api.handleRes(res);
 	if (res.ok) {
 		assocStore.removeWord(word);

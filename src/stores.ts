@@ -12,7 +12,7 @@ const createAssocStore = () => {
 
 	const updateList = (words: AssocWord[]) => update((list) => [...words, ...list]);
 	const addWord = (word: AssocWord) => update((list) => [word, ...list]);
-	const removeWord = (word: string) => update((list) => list.filter((v) => v.word !== word));
+	const removeWord = (word: string) => update((list) => list.filter((v) => v.id !== word));
 	const setList = (words: AssocWord[]) => set([...words]);
 
 	return {

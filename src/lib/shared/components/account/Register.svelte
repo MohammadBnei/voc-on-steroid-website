@@ -5,15 +5,13 @@
 	import { toast } from '$lib/shared/ui/components/toast';
 	import { handleRes, post } from '$lib/utils/api';
 
-	let firstName = '',
-		lastName = '',
+	let username = '',
 		email = '',
 		password = '',
 		confirmPassword = '';
 	let acceptTerms = false;
 	$: userInfos = {
-		firstName,
-		lastName,
+		username,
 		email,
 		password,
 		confirmPassword,
@@ -35,8 +33,7 @@
 	<div class="flex flex-col items-center justify-center min-h-screen w-full px-4 py-8">
 		<div class="rounded-md bg-white w-full max-w-sm sm:max-w-md border border-gray-500 shadow-md px-4 py-6 sm:p-8">
 			<div class="text-sm sm:text-base text-gray-600 my-4">Register</div>
-			<Input display="Firstname" bind:value="{firstName}" />
-			<Input display="Lastname" bind:value="{lastName}" />
+			<Input display="Username" bind:value="{username}" />
 			<Input display="Email adress" bind:value="{email}" options="{{ type: 'email', required: true }}" />
 			<Input display="Password" bind:value="{password}" options="{{ type: 'password', required: true }}" />
 			<Input

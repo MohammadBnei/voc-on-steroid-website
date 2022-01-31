@@ -1,8 +1,7 @@
 <script lang="ts" context="module">
-	import { get } from '$lib/utils/api';
-	import { handleRes } from '$lib/utils/api';
+	import type { Load } from '@sveltejs/kit';
 
-	export async function load({ session, fetch }) {
+	export const load: Load = async ({ session }) => {
 		if (!session.user) {
 			return {
 				status: 302,
@@ -10,34 +9,24 @@
 			};
 		}
 
-		const res = await get({ path: 'assoc/' + session.user.id, fetch });
-		const data = await handleRes(res, 'Endpoint:Assoc');
-
-		if (!res.ok) {
-			return {
-				status: res.status,
-			};
-		}
-
-		return {
-			props: { words: data },
-			maxage: 10,
-		};
-	}
+		return {};
+	};
 </script>
 
 <script lang="ts">
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
-	import type { AssocWord } from '$entity/assoc/services';
 	import { AssocList } from '$lib/shared/components/assoc';
 	import type { IMetaTagProperties } from '$lib/models';
 	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
+	import { assocStore } from '$stores';
+	import { onMount } from 'svelte';
+	import { fetchUserWords } from '$entity/assoc/services';
 
-	export let words: AssocWord[] = [];
+	onMount(fetchUserWords);
 
 	let search = '';
 
-	$: filteredList = search.length ? words.filter(({ word }) => word.includes(search)) : words;
+	$: filteredList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
 
 	let metaData: Partial<IMetaTagProperties> = {
 		title: `Your Words`,

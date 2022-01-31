@@ -28,7 +28,7 @@
 
 	onMount(() => {
 		if ($session.user) {
-			fetchUserWords($session.user.id);
+			fetchUserWords();
 		}
 	});
 

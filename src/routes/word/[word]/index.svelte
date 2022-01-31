@@ -61,7 +61,6 @@
 		$currentWord = word.word;
 	});
 
-	
 	onDestroy(() => {
 		$currentWord = null;
 	});
