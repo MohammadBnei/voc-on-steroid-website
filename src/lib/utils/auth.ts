@@ -60,26 +60,6 @@ export const getAuthCookies = (authResponse: AuthData): string[] => {
 	].filter(c => c !== '');
 };
 
-export const handleAuthResponse = async (res: Response): Promise<AuthResponse> => {
-	const { data } = await handleRes(res, 'Auth');
-
-	if (!res.ok) {
-		return {
-			status: res.status,
-			body: await res.json()
-		};
-	}
-
-	const { jwt, user } = data as any;
-
-	const cookies = getAuthCookies({ jwt, user });
-
-	return {
-		...handleResponseCookies(res, ...cookies),
-		body: { user },
-	};
-};
-
 export const deleteCookies = [
 	'jwt=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
 	'user=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT',
