@@ -57,7 +57,7 @@ export const getAuthCookies = (authResponse: AuthData): string[] => {
 		jwt,
 		refreshToken,
 		user,
-	].filter(c => c!== '');
+	].filter(c => c !== '');
 };
 
 export const handleAuthResponse = async (res: Response): Promise<AuthResponse> => {

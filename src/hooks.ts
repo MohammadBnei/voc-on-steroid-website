@@ -32,7 +32,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 
 	let response = await resolve(event);
-	
+
 	if (response.status === 401 && refreshToken) {
 		setCookies = await updateToken(event);
 		response = await resolve(event);
@@ -61,7 +61,6 @@ const updateToken = async (event) => {
 		const { data } = await res.json();
 		const { user, jwt } = data;
 		setCookies = getAuthCookies({
-			jwt,
 			user: user
 		});
 		event.locals.user = user;
