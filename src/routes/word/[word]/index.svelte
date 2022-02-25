@@ -6,7 +6,7 @@
 	import { handleRes, get } from '$lib/utils/api';
 
 	export const load: Load = async ({ params, fetch }) => {
-		const res = await get({ path: 'words?value=' + encodeURIComponent(params.word), fetch });
+		const res = await get({ path: 'words?term=' + encodeURIComponent(params.word), fetch });
 		const data = await handleRes(res, 'Words');
 		if (!res.ok) {
 			return {
@@ -15,7 +15,7 @@
 				error: data?.message || 'Could not load word definition',
 			};
 		}
-		const wordModel = new WordModel().deserialize(data as unknown as IWord);
+		const wordModel = new WordModel().deserialize(data.word as unknown as IWord);
 		return {
 			props: {
 				word: wordModel,
@@ -35,7 +35,7 @@
 
 	let metaData: Partial<IMetaTagProperties> = {
 		title: `VocOnSteroid : ${word?.word || 'Not found'}`,
-		description: ` Definitions : ${word.results.reduce((acc, cur) => {
+		description: ` Definitions : ${word.types.reduce((acc, cur) => {
 			acc += cur.type + ' : ';
 			acc += cur.definitions.reduce((acc, cur) => {
 				acc += cur.definition;

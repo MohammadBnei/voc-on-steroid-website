@@ -1,11 +1,11 @@
 export interface IWord {
 	word: string;
 	lang: string;
-	results: IResult[];
+	types: ITypes[];
 	etymologies: string[];
 }
 
-export interface IResult {
+export interface ITypes {
 	type: string;
 	definitions: IDefinition[];
 }

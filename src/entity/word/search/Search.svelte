@@ -4,10 +4,10 @@
 	import type { WordListModel } from '../word.model';
 	import SearchBar from './bar/SearchBar.svelte';
 
-	let results: WordListModel = [] as WordListModel;
+	let types: WordListModel = [] as WordListModel;
 
 	const handleType = async (input: string): Promise<void> => {
-		results = (await fetchResemblingWord(input)) as WordListModel;
+		types = (await fetchResemblingWord(input)) as WordListModel;
 	};
 	
 	const handleSearch = (word: string) => {
@@ -28,10 +28,10 @@
 		on:search="{(e) => handleSearch(e.detail.input)}"
 		listId="{listId}"
 	/>
-	{#if results.length !== 0}
+	{#if types.length !== 0}
 		<div class="fixed w-96">
 			<datalist id="{listId}" class="bg-white border border-gray-100 mt-2">
-				{#each results as r}
+				{#each types as r}
 					<option value="{r.key}" label="{r.key.normalize('NFD').replace(/[\u0300-\u036f]/g, '')}"> </option>
 				{/each}
 			</datalist>

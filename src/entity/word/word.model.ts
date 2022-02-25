@@ -1,10 +1,10 @@
-import type { IResult, IWord, IWordList } from './iword.interface';
+import type { ITypes, IWord, IWordList } from './iword.interface';
 import type { IDeserializable } from '$models/interfaces/ideserializable.interface';
 
 export class WordModel implements IDeserializable<IWord>, IWord {
 	public word: string;
 	public lang: string;
-	public results: IResult[];
+	public types: ITypes[];
 	public etymologies: string[];
 
 	deserialize(input: IWord): this {

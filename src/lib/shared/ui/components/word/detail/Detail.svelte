@@ -26,8 +26,8 @@
 		{/each}
 	</div>
 	<div class="definitions">
-		{#each word.results as r}
-			<Definitions results="{r}" />
+		{#each word.types as r}
+			<Definitions types="{r}" />
 		{/each}
 	</div>
 </div>
