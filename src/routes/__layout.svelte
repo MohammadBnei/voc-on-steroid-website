@@ -25,6 +25,7 @@
 	export let key: string = '/';
 
 	onMount(() => {
+		console.log({sess: $session})
 		if ($session.user) {
 			fetchUserWords();
 		}
