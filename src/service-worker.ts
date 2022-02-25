@@ -29,7 +29,8 @@ self.addEventListener('fetch', (event) => {
 	if (
 		request.method !== 'GET' ||
 		request.headers.has('range') ||
-		(request.cache === 'only-if-cached' && request.mode !== 'same-origin')
+		(request.cache === 'only-if-cached' && request.mode !== 'same-origin') ||
+		request.url.includes('refresh')
 	)
 		return;
 
