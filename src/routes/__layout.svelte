@@ -26,12 +26,6 @@
 
 	let h: number;
 
-	onMount(() => {
-		if ($session.user) {
-			fetchUserWords();
-		}
-	});
-
 	$: {
 		browser && headerHeight.update(() => h);
 	}

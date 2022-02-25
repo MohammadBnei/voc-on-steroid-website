@@ -29,8 +29,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	event.locals.fetch = loadedFetch({ cookies, token: jwt });
 
-
-
 	let response = await resolve(event);
 
 	if (response.status === 401 && refreshToken) {

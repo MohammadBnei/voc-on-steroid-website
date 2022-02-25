@@ -3,7 +3,7 @@
 
 <script lang="ts" context="module">
 	export const prerender = true;
-	
+
 	export async function load({ fetch, session }) {
 		try {
 			await fetch('/sitemap.xml');
@@ -21,6 +21,16 @@
 <script lang="ts">
 	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
 	import type { IMetaTagProperties } from '$lib/models';
+	import { onMount } from 'svelte';
+	import { fetchUserWords } from '$entity/assoc/services';
+
+	let user = null;
+
+	onMount(() => {
+		if (user) {
+			fetchUserWords();
+		}
+	});
 
 	const metaData: Partial<IMetaTagProperties> = {
 		title: 'Home | VocOnSteroid',
