@@ -23,3 +23,7 @@ export const post: RequestHandler = async ({ request, locals }) => {
 		body: { user },
 	};
 };
+
+export const get: RequestHandler = async () => {
+	return {};
+};

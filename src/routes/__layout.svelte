@@ -22,13 +22,15 @@
 	import AuthHeader from '$lib/shared/components/account/AuthHeader.svelte';
 	import { Spinner } from '$lib/shared/ui/components/spinner';
 	import { browser } from '$app/env';
+	import { get } from '$lib/utils/api';
 	export let key: string = '/';
 
 	onMount(() => {
-		console.log({sess: $session})
-		if ($session.user) {
-			fetchUserWords();
-		}
+		get({ path: 'login' }).then(() => {
+			if ($session.user) {
+				fetchUserWords();
+			}
+		});
 	});
 
 	let h: number;
