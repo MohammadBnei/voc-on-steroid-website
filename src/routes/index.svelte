@@ -21,16 +21,6 @@
 <script lang="ts">
 	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
 	import type { IMetaTagProperties } from '$lib/models';
-	import { onMount } from 'svelte';
-	import { fetchUserWords } from '$entity/assoc/services';
-
-	let user = null;
-
-	onMount(() => {
-		if (user) {
-			fetchUserWords();
-		}
-	});
 
 	const metaData: Partial<IMetaTagProperties> = {
 		title: 'Home | VocOnSteroid',

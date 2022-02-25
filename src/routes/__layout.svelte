@@ -24,6 +24,12 @@
 	import { browser } from '$app/env';
 	export let key: string = '/';
 
+	onMount(() => {
+		if ($session.user) {
+			fetchUserWords();
+		}
+	});
+
 	let h: number;
 
 	$: {
