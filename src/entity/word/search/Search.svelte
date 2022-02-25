@@ -9,7 +9,7 @@
 	const handleType = async (input: string): Promise<void> => {
 		types = (await fetchResemblingWord(input)) as WordListModel;
 	};
-	
+
 	const handleSearch = (word: string) => {
 		if (!word) {
 			return;

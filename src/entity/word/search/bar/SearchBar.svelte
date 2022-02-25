@@ -31,7 +31,6 @@
 			type="text"
 			class=" h-14 pl-10 rounded-lg  focus:shadow outline-none focus:outline-none border-1 border-red-500"
 			placeholder="Search for words..."
-			on:change="{search}"
 		/>
 		<button
 			class="h-14 w-14 ml-2 text-white rounded-lg bg-red-500 hover:bg-red-600 align-items:center"

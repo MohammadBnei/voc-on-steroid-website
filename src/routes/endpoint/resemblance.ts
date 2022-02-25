@@ -7,6 +7,6 @@ export const get: RequestHandler = async ({ url, locals }) => {
 
 	return {
 		status: res.status,
-		body: data.simpleWords,
+		body: data,
 	};
 };

@@ -23,6 +23,6 @@ export async function searchWord(word: string, exact = true): Promise<WordModel>
 	if (!res.ok) {
 		throw Error(data?.message);
 	}
-	const wordModel = new WordModel().deserialize(data as unknown as IWord);
+	const wordModel = new WordModel().deserialize(data.word as unknown as IWord);
 	return wordModel;
 }
