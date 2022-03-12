@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let value: string = '';
+	export let value = '';
 	export let display = '';
 	export let options: Record<string, string | boolean> = {};
 </script>

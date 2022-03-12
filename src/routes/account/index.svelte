@@ -4,7 +4,7 @@
 			return { redirect: '/', status: 302 };
 		}
 
-		return true
+		return true;
 	}
 </script>
 

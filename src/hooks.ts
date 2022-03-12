@@ -1,6 +1,6 @@
 import { loadedFetch } from '$lib/utils/api';
 import { getAuthCookies } from '$lib/utils/auth';
-import type { Handle, GetSession } from '@sveltejs/kit/types/hooks';
+import type { GetSession, Handle } from '@sveltejs/kit';
 import { parse } from 'cookie';
 
 const VITE_API_URL = import.meta.env.VITE_API_URL || process.env.VITE_API_URL;

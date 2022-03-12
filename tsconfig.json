@@ -26,6 +26,7 @@
 		"paths": {
 			"$app/*": [".svelte-kit/dev/runtime/app/*", ".svelte-kit/build/runtime/app/*"],
 			"$service-worker": [".svelte-kit/build/runtime/service-worker"],
+			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
 			"$core": ["src/lib/core/index.ts"],
 			"$core/*": ["src/lib/core/*"],
@@ -43,9 +44,10 @@
 			"$data/*": ["src/lib/data/*"],
 			"$entity": ["src/entity/index.ts"],
 			"$entity/*": ["src/entity/*"],
-			"$stores": ["src/stores.ts"]
+			"$stores": ["src/stores.ts"],
 		}
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte", "./jest-setup.ts"],
-	"exclude": ["node_modules/*", "dist/*"]
+	"exclude": ["node_modules/*", "dist/*"],
+	"extends": "./.svelte-kit/tsconfig.json"
 }

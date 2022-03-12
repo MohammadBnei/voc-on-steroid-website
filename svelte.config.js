@@ -46,7 +46,7 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [
 		sveltePreprocess({
-			postcss: true
+			postcss: true,
 		}),
 	],
 	kit: {
@@ -56,7 +56,6 @@ const config = {
 		amp: isAMP,
 
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#sveltekit-starter',
 
 		prerender: {
 			crawl: true,
@@ -85,9 +84,9 @@ const config = {
 				host: '0.0.0.0',
 				port: 3000,
 				hmr: {
-					clientPort: 8080
-				}
-			}
+					clientPort: 8080,
+				},
+			},
 		}),
 	},
 };
