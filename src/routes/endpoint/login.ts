@@ -10,7 +10,7 @@ export const post: RequestHandler = async ({ request, locals }) => {
 	if (!res.ok) {
 		return {
 			status: res.status,
-			body: data
+			body: data,
 		};
 	}
 
@@ -24,6 +24,8 @@ export const post: RequestHandler = async ({ request, locals }) => {
 	};
 };
 
-export const get: RequestHandler = async () => {
+export const get: RequestHandler = async ({ locals }) => {
+	await api.get({ path: locals.USER_API + 'refresh' });
+
 	return {};
 };

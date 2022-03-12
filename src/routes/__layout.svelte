@@ -40,7 +40,7 @@
 	}
 </script>
 
-˘<div class="flex justify-center flex-col md:flex-row items-center bg-slate-300" bind:clientHeight="{h}">
+<div class="flex justify-center flex-col md:flex-row items-center bg-slate-300" bind:clientHeight="{h}">
 	<Header title="Voc On Steroid" />
 	<div class="px-5">
 		<Search />
