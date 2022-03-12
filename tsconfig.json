@@ -44,10 +44,9 @@
 			"$data/*": ["src/lib/data/*"],
 			"$entity": ["src/entity/index.ts"],
 			"$entity/*": ["src/entity/*"],
-			"$stores": ["src/stores.ts"],
+			"$stores": ["src/stores.ts"]
 		}
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte", "./jest-setup.ts"],
-	"exclude": ["node_modules/*", "dist/*"],
-	"extends": "./.svelte-kit/tsconfig.json"
+	"exclude": ["node_modules/*", "dist/*"]
 }
