@@ -26,7 +26,7 @@ export const post: RequestHandler = async ({ request, locals }) => {
 
 export const get: RequestHandler = async ({ locals }) => {
 	const res = await locals.fetch.get({ path: locals.USER_API + 'user' });
-	const data = await api.handleRes(res, 'Login');
+	const { data } = await api.handleRes(res, 'Login');
 
 	return {
 		status: res.status,

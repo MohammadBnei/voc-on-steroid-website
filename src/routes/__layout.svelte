@@ -28,7 +28,7 @@
 	onMount(async () => {
 		try {
 			const res = await get({ path: 'login' });
-			const { data } = await handleRes(res);
+			const data = await handleRes(res);
 
 			if (data.user) {
 				session.update((s) => ({ ...s, user: data.user }));
