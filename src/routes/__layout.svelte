@@ -22,7 +22,7 @@
 	import AuthHeader from '$lib/shared/components/account/AuthHeader.svelte';
 	import { Spinner } from '$lib/shared/ui/components/spinner';
 	import { browser } from '$app/env';
-	import { get, handleRes } from '$lib/utils/api';
+	import { get } from '$lib/utils/api';
 	export let key = '/';
 
 	onMount(async () => {
