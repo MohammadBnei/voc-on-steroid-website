@@ -22,15 +22,21 @@
 	import AuthHeader from '$lib/shared/components/account/AuthHeader.svelte';
 	import { Spinner } from '$lib/shared/ui/components/spinner';
 	import { browser } from '$app/env';
-	import { get } from '$lib/utils/api';
+	import { get, handleRes } from '$lib/utils/api';
 	export let key = '/';
 
-	onMount(() => {
-		get({ path: 'login' }).then(() => {
-			if ($session.user) {
+	onMount(async () => {
+		try {
+			const res = await get({ path: 'login' });
+			const { data } = await handleRes(res);
+
+			if (data.user) {
+				session.update((s) => ({ ...s, user: data.user }));
 				fetchUserWords();
 			}
-		});
+		} catch (error) {
+			console.error(error);
+		}
 	});
 
 	let h: number;

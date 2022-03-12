@@ -23,7 +23,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	let setCookies: string[] = [];
 
-	if (!user && (jwt || refreshToken)) {
+	if ((!user || !jwt) && (jwt || refreshToken)) {
 		setCookies = await updateToken(event);
 	}
 
@@ -36,7 +36,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		response = await resolve(event);
 	}
 
-	setCookies.map(c => response.headers.append('set-cookie', c));
+	setCookies.map((c) => response.headers.append('set-cookie', c));
 
 	return response;
 };
@@ -48,7 +48,6 @@ const updateToken = async (event) => {
 	const cookies = event.request.headers.get('cookie');
 	const { jwt } = parse(cookies || '');
 
-
 	if (jwt) {
 		res = await loadedFetch({ token: jwt }).get({ path: USER_API + 'user' });
 	} else {
@@ -59,7 +58,7 @@ const updateToken = async (event) => {
 		const { data } = await res.json();
 		const { user, jwt } = data;
 		setCookies = getAuthCookies({
-			user: user
+			user: user,
 		});
 		event.locals.user = user;
 		event.locals.jwt = jwt;
