@@ -28,9 +28,9 @@
 	onMount(async () => {
 		try {
 			const res = await get({ path: 'login' });
-			const data = await handleRes(res);
 
-			if (data.user) {
+			if (res.ok) {
+				const data = await res.json();
 				session.update((s) => ({ ...s, user: data.user }));
 				fetchUserWords();
 			}
