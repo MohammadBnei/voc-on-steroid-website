@@ -36,6 +36,7 @@
 			}
 		} catch (error) {
 			console.error(error);
+			session.update((s) => ({ ...s, user: null }));
 		}
 	});
 

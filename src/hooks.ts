@@ -1,5 +1,5 @@
 import { loadedFetch } from '$lib/utils/api';
-import { getAuthCookies } from '$lib/utils/auth';
+import { deleteCookies, getAuthCookies } from '$lib/utils/auth';
 import type { GetSession, Handle } from '@sveltejs/kit';
 import { parse } from 'cookie';
 
@@ -64,6 +64,8 @@ const updateToken = async (event) => {
 		event.locals.jwt = jwt;
 		event.locals.fetch = loadedFetch({ token: jwt });
 		res.headers.raw()['set-cookie'] && setCookies.push(res.headers.raw()['set-cookie']);
+	} else {
+		setCookies = deleteCookies;
 	}
 
 	return setCookies.flat();
