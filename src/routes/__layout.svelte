@@ -33,9 +33,10 @@
 				const data = await res.json();
 				session.update((s) => ({ ...s, user: data.user }));
 				fetchUserWords();
+			} else {
+				throw new Error('Error refreshing token');
 			}
 		} catch (error) {
-			console.error(error);
 			session.update((s) => ({ ...s, user: null }));
 		}
 	});
