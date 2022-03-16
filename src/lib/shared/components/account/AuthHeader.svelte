@@ -7,7 +7,7 @@
 
 	const logout = async () => {
 		const res = await get({ path: 'logout' });
-
+		
 		if (res.ok) {
 			$session.user = null;
 			toast.push('Successfully logged out.');

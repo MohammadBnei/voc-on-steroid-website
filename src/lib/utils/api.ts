@@ -12,15 +12,17 @@ interface Opts {
 	token?: string;
 	cookies?: string;
 	endpointFetch?(info: RequestInfo, init?: RequestInit): Promise<Response>;
+	headers?: Record<string, string>;
 }
 
-async function send({ method, path, data, endpointFetch, token, cookies }: Opts): Promise<Response> {
+async function send({ method, path, data, endpointFetch, token, cookies, headers }: Opts): Promise<Response> {
 	isFetching.update(() => true);
 	const opts: RequestInit = { method, headers: {} };
 
+	opts.headers['Accept'] = 'application/json';
+
 	if (data) {
 		opts.headers['Content-Type'] = 'application/json';
-		opts.headers['Accept'] = 'application/json';
 		opts.body = JSON.stringify(data);
 	}
 
@@ -30,6 +32,12 @@ async function send({ method, path, data, endpointFetch, token, cookies }: Opts)
 
 	if (cookies) {
 		opts.headers['cookie'] = cookies;
+	}
+
+	if (headers) {
+		for (const [key, value] of Object.entries(headers)) {
+			opts.headers[key] = value;
+		}
 	}
 
 	const url = path.startsWith('http') ? path : `${base}/${path}`;
@@ -42,30 +50,29 @@ async function send({ method, path, data, endpointFetch, token, cookies }: Opts)
 interface Get {
 	path: string;
 	fetch?(info: RequestInfo, init?: RequestInit): Promise<Response>;
-	token?: string
-	cookies?: string
+	token?: string;
+	cookies?: string;
+	headers?: Record<string, string>;
 }
 
-
-export function get({ path, fetch, token, cookies }: Get): Promise<Response> {
-	return send({ method: 'GET', path, endpointFetch: fetch, token, cookies });
+export function get(opts: Get): Promise<Response> {
+	return send({ ...opts, method: 'GET', endpointFetch: fetch });
 }
-
 
 interface Post extends Get {
 	data: unknown;
 }
 
-export function del({ path, data, fetch, token, cookies }: Post): Promise<Response> {
-	return send({ method: 'DELETE', path, data, endpointFetch: fetch, token, cookies });
+export function del(opts: Post): Promise<Response> {
+	return send({ method: 'DELETE', ...opts, endpointFetch: fetch });
 }
 
-export function post({ path, data, fetch, token, cookies }: Post): Promise<Response> {
-	return send({ method: 'POST', path, data, endpointFetch: fetch, token, cookies });
+export function post(opts: Post): Promise<Response> {
+	return send({ method: 'POST', ...opts, endpointFetch: fetch });
 }
 
-export function put({ path, data, fetch, token, cookies }: Post): Promise<Response> {
-	return send({ method: 'PUT', path, data, endpointFetch: fetch, token, cookies });
+export function put(opts: Post): Promise<Response> {
+	return send({ method: 'PUT', ...opts, endpointFetch: fetch });
 }
 
 export async function handleRes(res: Response, loggerInstance?: string): Promise<Record<string, any> | null> {
@@ -75,6 +82,7 @@ export async function handleRes(res: Response, loggerInstance?: string): Promise
 		if (!res.ok) {
 			const errMsg = data?.message || 'Something went wrong';
 			browser && toast.push(errMsg, { dismissable: true });
+			console.error(errMsg);
 		}
 
 		return data;
@@ -92,8 +100,8 @@ export const handleResponseCookies = (res: Response, ...cookies) => {
 	if (setCookie && !!setCookie.length) {
 		return {
 			headers: {
-				'set-cookie': setCookie
-			}
+				'set-cookie': setCookie,
+			},
 		};
 	}
 
@@ -106,11 +114,11 @@ interface loadedFetchI {
 	data?: Record<string, any>;
 }
 
-export const loadedFetch = ({ cookies, token }: { cookies?: string, token?: string }) => ({
-	get: ({ path, fetch }: loadedFetchI) => get(({ path, fetch, token, cookies })),
-	del: ({ path, fetch, data }: loadedFetchI) => del(({ path, fetch, data, token, cookies })),
-	post: ({ path, fetch, data }: loadedFetchI) => post(({ path, fetch, data, token, cookies })),
-	put: ({ path, fetch, data }: loadedFetchI) => put(({ path, fetch, data, token, cookies }))
+export const loadedFetch = (opts: { cookies?: string; token?: string; headers?: Record<string, string> }) => ({
+	get: ({ path, fetch }: loadedFetchI) => get({ path, fetch, ...opts }),
+	del: ({ path, fetch, data }: loadedFetchI) => del({ path, fetch, data, ...opts }),
+	post: ({ path, fetch, data }: loadedFetchI) => post({ path, fetch, data, ...opts }),
+	put: ({ path, fetch, data }: loadedFetchI) => put({ path, fetch, data, ...opts }),
 });
 
 export const getBody = async (request: Request) => {

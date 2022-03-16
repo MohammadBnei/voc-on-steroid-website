@@ -3,7 +3,7 @@ import * as api from '$lib/utils/api';
 import { getAuthCookies } from '$lib/utils/auth';
 
 export const post: RequestHandler = async ({ request, locals }) => {
-	const res = await api.post({ path: locals.USER_API + 'login', data: await request.json() });
+	const res = await locals.fetch.post({ path: locals.USER_API + 'login', data: await request.json() });
 
 	const data = await api.handleRes(res, 'Auth');
 
@@ -21,15 +21,5 @@ export const post: RequestHandler = async ({ request, locals }) => {
 	return {
 		...api.handleResponseCookies(res, ...cookies),
 		body: { user },
-	};
-};
-
-export const get: RequestHandler = async ({ locals }) => {
-	const res = await locals.fetch.get({ path: locals.USER_API + 'user' });
-	const { data } = await api.handleRes(res, 'Login');
-
-	return {
-		status: res.status,
-		body: data,
 	};
 };

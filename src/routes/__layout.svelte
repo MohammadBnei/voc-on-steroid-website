@@ -27,7 +27,7 @@
 
 	onMount(async () => {
 		try {
-			const res = await get({ path: 'login' });
+			const res = await get({ path: 'refresh' });
 
 			if (res.ok) {
 				const data = await res.json();
