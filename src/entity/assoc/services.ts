@@ -4,7 +4,7 @@ import { toast } from '$lib/shared/ui/components/toast';
 
 export interface AssocWord {
 	id: string;
-	created: Date;
+	createdAt: Date;
 }
 
 export async function fetchUserWords(): Promise<AssocWord[]> {

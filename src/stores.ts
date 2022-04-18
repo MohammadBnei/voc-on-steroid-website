@@ -24,5 +24,7 @@ const createAssocStore = () => {
 	};
 };
 
+export const loginHistory = writable<string>(null);
+
 export const assocStore = createAssocStore();
 export const headerHeight = writable(0);

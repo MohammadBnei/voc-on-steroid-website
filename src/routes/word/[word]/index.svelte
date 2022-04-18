@@ -19,7 +19,6 @@
 		return {
 			props: {
 				word: wordModel,
-				maxage: 1200,
 			},
 		};
 	};
@@ -51,7 +50,7 @@
 		`,
 		url: `https://voconsteroid.com/word/${word.word}`,
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
-		keywords: [word?.word, 'Definition', 'Voc On Steroid', 'Definition'],
+		keywords: [word?.word, 'Definition', 'Voc On Steroid', word.lang === 'fr' ? 'French' : ''],
 		searchUrl: `https://voconsteroid.com/word/${word.word}`,
 		image: 'https://voconsteroid.com/voconsteroidLogo512.png',
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',

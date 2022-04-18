@@ -49,6 +49,7 @@ const updateToken = async (event) => {
 		const { user, jwt } = data;
 		setCookies = getAuthCookies({
 			user: user,
+			jwt
 		});
 		event.locals.user = user;
 		event.locals.jwt = jwt;
@@ -56,6 +57,7 @@ const updateToken = async (event) => {
 		res.headers.raw()['set-cookie'] && setCookies.push(res.headers.raw()['set-cookie']);
 	} else {
 		setCookies = deleteCookies;
+		event.locals.user = null;
 	}
 
 	return setCookies.flat();
