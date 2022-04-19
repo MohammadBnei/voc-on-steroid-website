@@ -3,8 +3,6 @@ import { browser, mode } from '$app/env';
 import { toast } from '$lib/shared/ui/components/toast';
 import { isFetching } from '$stores';
 
-const base = '/endpoint';
-
 interface Opts {
 	method: string;
 	data?: unknown;
@@ -15,7 +13,7 @@ interface Opts {
 	headers?: Record<string, string>;
 }
 
-async function send({ method, path, data, endpointFetch, token, cookies, headers }: Opts): Promise<Response> {
+async function send({ method, path: uri, data, endpointFetch, token, cookies, headers }: Opts): Promise<Response> {
 	isFetching.update(() => true);
 	const opts: RequestInit = { method, headers: {} };
 
@@ -40,7 +38,7 @@ async function send({ method, path, data, endpointFetch, token, cookies, headers
 		}
 	}
 
-	const url = path.startsWith('http') ? path : `${base}/${path}`;
+	const url = uri.startsWith('http') ? uri : `/endpoint/${uri}`;
 	const res = endpointFetch ? await endpointFetch(url, opts) : await fetch(url, opts);
 
 	isFetching.update(() => false);

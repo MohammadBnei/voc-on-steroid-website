@@ -2,9 +2,10 @@
 </style>
 
 <script lang="ts">
+	import type { ITypes } from '$lib/models';
 	import { ClickableText } from '$lib/shared/components/word';
 
-	export let types: import('src/entity/word/iword.interface').ITypes;
+	export let types: ITypes;
 </script>
 
 <div class="mt-8">
@@ -17,9 +18,7 @@
 		{#each types.definitions as { definition, examples }}
 			<div class="m-2">
 				<p class="font-medium"><ClickableText text="{definition}" /></p>
-				<p class="text-base font-extralight antialiased"
-					><ClickableText text="{examples.join('\n')}" /></p
-				>
+				<p class="text-base font-extralight antialiased"><ClickableText text="{examples.join('\n')}" /></p>
 			</div>
 		{/each}
 	</div>

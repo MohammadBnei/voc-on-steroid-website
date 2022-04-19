@@ -11,19 +11,11 @@
 
 	let notFound = false;
 
-	const handlePrefetch = () => {
-		prefetch(path).then((r) => {
-			if (r?.props?.page?.status === 404) {
-				notFound = true;
-			}
-		});
-	};
-
 	$: clickable = href && !notFound;
 </script>
 
 {#if clickable}
-	<a on:mouseenter="{handlePrefetch}" href="{path}" class="hover:underline">{text}</a>
+	<a sveltekit:prefetch href="{path}" class="hover:underline">{text}</a>
 {:else}
 	{text}
 {/if}

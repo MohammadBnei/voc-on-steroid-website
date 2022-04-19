@@ -5,10 +5,8 @@
 	import { WordModel } from '$lib/models/word.model';
 	import type { IMetaTagProperties, IWord } from '$lib/models';
 
-	export const prerender = true;
-
-	export const load: Load = async ({ params, fetch }) => {
-		const res = await get({ path: 'words?term=' + encodeURIComponent(params.word), fetch });
+	export const load: Load = async ({ params, fetch, url }) => {
+		const res = await get({ path: `${url.origin}/endpoint/words?term=${encodeURIComponent(params.word)}`, fetch });
 		const data = await handleRes(res, 'Words');
 		if (!res.ok) {
 			return {
