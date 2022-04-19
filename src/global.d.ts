@@ -16,8 +16,8 @@ declare namespace App {
 		WORD_API?: string;
 		ASSOC_API?: string;
 		user?: Record<string, string>;
-		jwt?: string;
-		fetch?: any;
+		refreshToken?: boolean;
+		fetch?: Record<unknown>;
 	}
 
 	interface Session {

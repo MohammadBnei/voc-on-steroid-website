@@ -19,7 +19,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const { user, jwt, refreshToken } = parse(cookies || '');
 
 	event.locals.user = user && JSON.parse(Buffer.from(user, 'base64').toString('utf-8'));
-	event.locals.jwt = jwt;
+	event.locals.refreshToken = !!refreshToken;
 
 	let setCookies: string[] = [];
 
@@ -49,7 +49,7 @@ const updateToken = async (event) => {
 		const { user, jwt } = data;
 		setCookies = getAuthCookies({
 			user: user,
-			jwt
+			jwt,
 		});
 		event.locals.user = user;
 		event.locals.jwt = jwt;

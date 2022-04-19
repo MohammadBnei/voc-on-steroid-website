@@ -25,13 +25,14 @@
 
 <script lang="ts">
 	import { dev } from '$app/env';
-	import Title from '$components/title/Title.svelte';
+	import Title from '$lib/shared/components/title/Title.svelte';
 
+	export let title: string;
 	export let status: string;
 	export let error: Error;
 </script>
 
-<Title title="{status} | Sveltekit" />
+<Title title="{title} | Sveltekit" />
 <div class="md:container md:mx-auto">
 	<div class="flex flex-col justify-center items-center">
 		<h1>
