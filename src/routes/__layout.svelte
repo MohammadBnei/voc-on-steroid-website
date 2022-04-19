@@ -61,7 +61,7 @@
 <PageTransition refresh="{key.split('/')[1]}">
 	<slot />
 </PageTransition>
-{#if $isFetching}
+{#if $isFetching.length}
 	<div class="fixed right-0 top-0">
 		<Spinner name="pulse" color="rgba(239, 68, 68)" />
 	</div>

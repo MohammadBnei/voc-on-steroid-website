@@ -3,7 +3,27 @@ import type { AssocWord } from '$lib/core/services/assoc.service';
 
 export const isDev = writable(process.env.NODE_ENV === 'development');
 
-export const isFetching = writable(false);
+const createIsFetching = () => {
+	const { subscribe, update } = writable<Array<string>>([]);
+
+	const addFetching = () => {
+		const id = Date.now().toString();
+
+		update((a) => [...a, id]);
+
+		return id;
+	};
+
+	const removeFetching = (id: string) => {
+		update((a) => a.filter((v) => v !== id));
+	};
+
+	return {
+		subscribe,
+		addFetching,
+		removeFetching,
+	};
+};
 
 export const currentWord = writable<string | null>(null);
 
@@ -26,5 +46,8 @@ const createAssocStore = () => {
 
 export const loginHistory = writable<string>(null);
 
-export const assocStore = createAssocStore();
 export const headerHeight = writable(0);
+
+export const assocStore = createAssocStore();
+
+export const isFetching = createIsFetching();

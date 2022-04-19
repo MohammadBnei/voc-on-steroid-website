@@ -14,7 +14,7 @@ interface Opts {
 }
 
 async function send({ method, path: uri, data, endpointFetch, token, cookies, headers }: Opts): Promise<Response> {
-	isFetching.update(() => true);
+	const fetchId = isFetching.addFetching();
 	const opts: RequestInit = { method, headers: {} };
 
 	opts.headers['Accept'] = 'application/json';
@@ -41,7 +41,7 @@ async function send({ method, path: uri, data, endpointFetch, token, cookies, he
 	const url = uri.startsWith('http') ? uri : `/endpoint/${uri}`;
 	const res = endpointFetch ? await endpointFetch(url, opts) : await fetch(url, opts);
 
-	isFetching.update(() => false);
+	isFetching.removeFetching(fetchId);
 	return res;
 }
 
