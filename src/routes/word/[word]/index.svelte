@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
-	import type { IWord } from '$entity/word/iword.interface';
-	import { WordModel } from '$entity/word';
 	import Detail from '$lib/shared/ui/components/word/detail/Detail.svelte';
 	import { handleRes, get } from '$lib/utils/api';
+	import { WordModel } from '$lib/models/word.model';
+	import type { IMetaTagProperties, IWord } from '$lib/models';
 
 	export const prerender = true;
 
@@ -28,7 +28,6 @@
 
 <script lang="ts">
 	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
-	import type { IMetaTagProperties } from '$lib/models';
 	import { afterUpdate, onDestroy } from 'svelte';
 	import { currentWord } from '$stores';
 

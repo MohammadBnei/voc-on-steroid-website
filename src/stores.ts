@@ -1,5 +1,5 @@
-import type { AssocWord } from '$lib/service/assoc';
 import { writable } from 'svelte/store';
+import type { AssocWord } from '$lib/core/services/assoc.service';
 
 export const isDev = writable(process.env.NODE_ENV === 'development');
 

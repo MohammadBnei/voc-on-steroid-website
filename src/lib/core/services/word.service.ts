@@ -1,6 +1,6 @@
-import { WordListModel, WordModel } from './word.model';
+import type { IWord, IWordList } from '$lib/models';
+import { WordListModel, WordModel } from '$lib/models/word.model';
 import { get, handleRes } from '$lib/utils/api';
-import type { IWord, IWordList } from './iword.interface';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function fetchResemblingWord(input: string): Promise<WordListModel | []> {

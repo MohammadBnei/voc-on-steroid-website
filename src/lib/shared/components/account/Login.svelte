@@ -9,7 +9,7 @@
 	import { session } from '$app/stores';
 	import { toast } from '$lib/shared/ui/components/toast';
 	import { loginHistory } from '$stores';
-	import { fetchUserWords } from '$lib/service/assoc';
+	import { fetchUserWords } from '$lib/core';
 
 	let identity = '',
 		password = '';

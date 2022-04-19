@@ -35,13 +35,13 @@
 <script lang="ts">
 	import { assocStore, currentWord, headerHeight } from '$stores';
 	import { session } from '$app/stores';
-	import AddRemoveButton from '$lib/component/assoc/AddRemoveButton.svelte';
 	import { AssocList } from '$lib/shared/components/assoc';
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
 	import PageTransition from '$lib/shared/components/transition/PageTransition.svelte';
 	import { slimscroll } from 'svelte-slimscroll';
-	import { addWord, removeWord } from '$lib/service/assoc';
-	
+	import { addWord, removeWord } from '$lib/core/services/assoc.service';
+	import AddRemoveButton from '$lib/component/assoc/AddRemoveButton.svelte';
+
 	let search = '';
 
 	let h: number;
@@ -51,7 +51,7 @@
 	$: filteredList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
 </script>
 
-<div class="word-layout">
+<div class:word-layout="{!!$session.user}">
 	<PageTransition refresh="{key.split('/').pop()}">
 		<div use:slimscroll="{{ height: `calc(100vh - ${$headerHeight}px` }}" class="word">
 			<slot />

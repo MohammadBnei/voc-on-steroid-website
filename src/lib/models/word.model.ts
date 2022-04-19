@@ -1,5 +1,5 @@
-import type { ITypes, IWord, IWordList } from './iword.interface';
 import type { IDeserializable } from '$models/interfaces/ideserializable.interface';
+import type { ITypes, IWord, IWordList } from './interfaces/iword.interface';
 
 export class WordModel implements IDeserializable<IWord>, IWord {
 	public word: string;

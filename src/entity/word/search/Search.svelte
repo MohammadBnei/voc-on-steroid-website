@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { fetchResemblingWord, searchWord } from '../services';
-	import type { WordListModel } from '../word.model';
-	import SearchBar from './bar/SearchBar.svelte';
+	import { fetchResemblingWord, searchWord } from '$lib/core';
+	import type { WordListModel } from '$lib/models/word.model';
+	import { SearchBar } from './bar';
 
 	let types: WordListModel = [] as WordListModel;
 

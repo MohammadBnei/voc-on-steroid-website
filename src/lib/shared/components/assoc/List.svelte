@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
-	import type { AssocWord } from '$lib/service/assoc';
+	import type { AssocWord } from '$lib/core';
 	import Assoc from '$lib/shared/ui/components/word/Assoc.svelte';
 
 	export let words: AssocWord[];

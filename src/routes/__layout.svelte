@@ -22,7 +22,8 @@
 	import { Spinner } from '$lib/shared/ui/components/spinner';
 	import { browser } from '$app/env';
 	import { get } from '$lib/utils/api';
-	import { fetchUserWords } from '$lib/service/assoc';
+	import { fetchUserWords } from '$lib/core';
+
 	export let key = '/';
 
 	onMount(async () => {
