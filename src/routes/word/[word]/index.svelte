@@ -5,6 +5,8 @@
 	import Detail from '$lib/shared/ui/components/word/detail/Detail.svelte';
 	import { handleRes, get } from '$lib/utils/api';
 
+	export const prerender = true;
+
 	export const load: Load = async ({ params, fetch }) => {
 		const res = await get({ path: 'words?term=' + encodeURIComponent(params.word), fetch });
 		const data = await handleRes(res, 'Words');

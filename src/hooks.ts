@@ -23,7 +23,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	let setCookies: string[] = [];
 
-	event.locals.fetch = loadedFetch({ cookies, token: jwt, headers: { 'X-Client-Ip': event.clientAddress } });
+	event.locals.fetch = loadedFetch({ cookies, token: jwt });
 
 	let response = await resolve(event);
 
