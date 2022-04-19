@@ -2,8 +2,7 @@
 	.word-layout {
 		display: grid;
 		grid-template-columns: 7fr minmax(240px, 1fr);
-		grid-template-areas: 
-		"word assoc";
+		grid-template-areas: 'word assoc';
 	}
 
 	.word {
@@ -36,11 +35,13 @@
 <script lang="ts">
 	import { assocStore, currentWord, headerHeight } from '$stores';
 	import { session } from '$app/stores';
-	import Actions from '$entity/assoc/Actions.svelte';
+	import AddRemoveButton from '$lib/component/assoc/AddRemoveButton.svelte';
 	import { AssocList } from '$lib/shared/components/assoc';
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
 	import PageTransition from '$lib/shared/components/transition/PageTransition.svelte';
 	import { slimscroll } from 'svelte-slimscroll';
+	import { addWord, removeWord } from '$lib/service/assoc';
+	
 	let search = '';
 
 	let h: number;
@@ -62,7 +63,11 @@
 				<div class="flex justify-evenly items-center p-2">
 					<p class="text-xl text-opacity-70 font-bold text-gray-700">Saved Words</p>
 					<div class="px-5">
-						<Actions word="{$currentWord}" />
+						<AddRemoveButton
+							buttonType="{$assocStore.some(({ id }) => id === $currentWord)}"
+							handleAddWord="{() => addWord($currentWord)}"
+							handleRemoveWord="{() => removeWord($currentWord)}"
+						/>
 					</div>
 				</div>
 				<Input options="{{ placeholder: 'Filter' }}" bind:value="{search}" />

@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-	import { fetchUserWords } from '$entity/assoc/services';
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ url }) => {
@@ -23,6 +22,7 @@
 	import { Spinner } from '$lib/shared/ui/components/spinner';
 	import { browser } from '$app/env';
 	import { get } from '$lib/utils/api';
+	import { fetchUserWords } from '$lib/service/assoc';
 	export let key = '/';
 
 	onMount(async () => {

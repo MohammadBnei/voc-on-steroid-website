@@ -20,7 +20,7 @@
 	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
 	import { assocStore } from '$stores';
 	import { onMount } from 'svelte';
-	import { fetchUserWords } from '$entity/assoc/services';
+	import { fetchUserWords } from '$lib/service/assoc';
 
 	onMount(fetchUserWords);
 

@@ -2,7 +2,6 @@
 	import Button from '$lib/shared/ui/components/button/Button.svelte';
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
 	import { handleRes, post } from '$lib/utils/api';
-	import { fetchUserWords } from '$entity/assoc/services';
 </script>
 
 <script lang="ts">
@@ -10,6 +9,7 @@
 	import { session } from '$app/stores';
 	import { toast } from '$lib/shared/ui/components/toast';
 	import { loginHistory } from '$stores';
+	import { fetchUserWords } from '$lib/service/assoc';
 
 	let identity = '',
 		password = '';
