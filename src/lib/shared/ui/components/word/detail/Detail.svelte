@@ -10,7 +10,7 @@
 </style>
 
 <script lang="ts">
-	import type { WordModel } from 'src/entity/word';
+	import type { WordModel } from '$lib/models/word.model';
 	import Definitions from './Definitions.svelte';
 
 	export let word: WordModel;

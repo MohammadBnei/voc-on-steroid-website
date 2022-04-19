@@ -12,7 +12,7 @@
 			return {
 				status: res.status,
 				redirect: '/',
-				error: data?.message || 'Could not load word definition',
+				error: `Unable to get definition for : ${params.word}`
 			};
 		}
 		const wordModel = new WordModel().deserialize(data.word as unknown as IWord);
