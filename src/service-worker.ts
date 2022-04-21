@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import { timestamp, build, files } from '$service-worker';
+import { version, build, files } from '$service-worker';
 
-const CACHED_ASSESTS = `cache-${timestamp}`;
+const CACHED_ASSESTS = `cache-${version}`;
 
 const TO_CACHE = build.concat(files);
 
@@ -15,7 +15,7 @@ self.addEventListener('activate', (event) => {
 	event.waitUntil(
 		caches.keys().then(async (keys) => {
 			for (const key of keys) {
-				if (!key.includes(timestamp)) caches.delete(key);
+				if (!key.includes(version)) caches.delete(key);
 			}
 			self.clients.claim();
 		}),
