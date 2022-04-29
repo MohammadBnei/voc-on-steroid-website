@@ -46,29 +46,31 @@
 	export let key = '';
 
 	$: filteredList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
+
+	let h: number;
 </script>
 
 <div class:word-layout="{!!$session.user}">
-	<PageTransition refresh="{key.split('/').pop()}">
-		<slot />
-	</PageTransition>
+	<div class="m-2" bind:clientHeight="{h}">
+		<PageTransition refresh="{key.split('/').pop()}">
+			<slot />
+		</PageTransition>
+	</div>
 	{#if $session.user}
-		<div class="assoc-layout assoc">
-			<div class="mx-2">
-				<div class="flex justify-evenly items-center p-2">
-					<p class="text-xl text-opacity-70 font-bold text-gray-700">Saved Words</p>
-					<div class="px-5">
-						<AddRemoveButton
-							buttonType="{$assocStore.some(({ id }) => id === $currentWord)}"
-							handleAddWord="{() => addWord($currentWord)}"
-							handleRemoveWord="{() => removeWord($currentWord)}"
-						/>
-					</div>
+		<div class="card bg-base-100 shadow-xl assoc m-2 max-h-[{h}px]">
+			<div class="card-body ">
+				<div class="flex justify-evenly items-center">
+					<p class="text-xl text-opacity-70 font-bold">Saved Words</p>
+					<AddRemoveButton
+						buttonType="{$assocStore.some(({ id }) => id === $currentWord)}"
+						handleAddWord="{() => addWord($currentWord)}"
+						handleRemoveWord="{() => removeWord($currentWord)}"
+					/>
 				</div>
 				<Input options="{{ placeholder: 'Filter' }}" bind:value="{search}" />
-			</div>
-			<div class="overflow-y-auto">
-				<AssocList words="{filteredList}" />
+				<div class="overflow-y-scroll mb-2">
+					<AssocList words="{filteredList}" />
+				</div>
 			</div>
 		</div>
 	{/if}

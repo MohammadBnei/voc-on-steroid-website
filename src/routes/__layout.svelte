@@ -11,16 +11,28 @@
 </script>
 
 <script lang="ts">
-	import { session } from '$app/stores';
+	import { page, session } from '$app/stores';
 	import Header from '$ui/components/header/Header.svelte';
 	import { onMount } from 'svelte';
 	import SvelteToast from '$lib/shared/ui/components/toast/SvelteToast.svelte';
-	import { isFetching } from '$stores';
+	import { isFetching, loginHistory } from '$stores';
 	import { Spinner } from '$lib/shared/ui/components/spinner';
 	import { get } from '$lib/utils/api';
 	import { fetchResemblingWord, fetchUserWords } from '$lib/core';
 	import { Search, AuthHeader, PageTransition } from '$lib/shared';
 	import { goto } from '$app/navigation';
+
+	const logout = () => {
+		get({ path: 'logout' });
+
+		$session.user = null;
+	};
+
+	const login = () => {
+		console.log({ page: $page });
+		$loginHistory = $page.url.pathname;
+		goto('/account');
+	};
 
 	export let key = '/';
 
@@ -42,23 +54,16 @@
 </script>
 
 <div class="flex justify-center flex-col md:flex-row items-center bg-slate-300">
-	<Header title="Voc On Steroid">
-		<span slot="header">
-			<div class="px-5">
-				<Search
-					getWords="{fetchResemblingWord}"
-					handleSearch="{(word) => word?.key && goto('/word/' + word.key)}"
-				/>
-			</div>
-			<div class="px-5">
-				<AuthHeader />
-			</div>
-		</span>
-		<span slot="content">
-			<PageTransition refresh="{key.split('/')[1]}">
-				<slot />
-			</PageTransition>
-		</span>
+	<Header title="Voc On Steroid" handleLogin="{login}" handleLogout="{logout}">
+		<div class="px-5" slot="search">
+			<Search
+				getWords="{fetchResemblingWord}"
+				handleSearch="{(word) => word?.key && goto('/word/' + word.key)}"
+			/>
+		</div>
+		<PageTransition refresh="{key.split('/')[1]}" slot="content">
+			<slot />
+		</PageTransition>
 	</Header>
 </div>
 {#if $isFetching.length}

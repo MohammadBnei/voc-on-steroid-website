@@ -18,7 +18,6 @@
 <div class="flex items-center gap-2">
 	<AutoComplete
 		searchFunction="{getWords}"
-		delay="200"
 		localFiltering="false"
 		labelFieldName="title"
 		valueFieldName="key"

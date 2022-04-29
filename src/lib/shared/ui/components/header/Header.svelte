@@ -3,6 +3,10 @@
 	import { navLinks } from '$lib/utils/config';
 
 	export let title = 'Voc On Steroid';
+
+	export let handleLogin: () => void;
+	export let handleLogout: () => void;
+	
 </script>
 
 <div class="drawer stop-scroll-side">
@@ -25,20 +29,25 @@
 					>
 				</label>
 			</div>
-			<div class="flex-1 px-2 mx-2">{title}</div>
+			<div class="flex-1 px-2 mx-2"><a href="/">{title}</a></div>
+			<slot name="search" />
 			<div class="flex-none hidden lg:block">
 				<ul class="menu menu-horizontal">
 					<!-- Navbar menu content here -->
 					{#each navLinks as { href, title, connected }}
-						{#if $session.user || !connected}
+						{#if $session.user || connected === undefined}
 							<li><a href="{href}">{title}</a></li>
 						{/if}
 					{/each}
+					{#if $session.user}
+						<li><button class="btn btn-active btn-secondary " on:click="{handleLogout}">Logout</button></li>
+					{:else}
+						<li><button class="btn btn-active btn-primary" on:click="{handleLogin}">Login</button></li>
+					{/if}
 				</ul>
 			</div>
-			<slot name="header" />
 		</div>
-		<slot name="content"/>
+		<slot name="content" />
 	</div>
 	<div class="drawer-side">
 		<label for="my-drawer-3" class="drawer-overlay"></label>

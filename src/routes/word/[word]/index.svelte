@@ -66,6 +66,4 @@
 
 <HeadTags metaData="{metaData}" />
 
-<div class="m-2">
-	<Detail word="{word}" />
-</div>
+<Detail word="{word}" />

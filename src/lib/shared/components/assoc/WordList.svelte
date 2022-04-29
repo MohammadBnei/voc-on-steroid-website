@@ -2,7 +2,6 @@
 	import { fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import type { AssocWord } from '$lib/core';
-	import Time from 'svelte-time';
 
 	export let words: AssocWord[];
 
@@ -16,9 +15,6 @@
 				<span class="text-lg font-semibold w-52">
 					{word.id}
 				</span>
-				<div class="text-sm italic">
-					<Time timestamp="{word.createdAt}" format="DD/MM/YYYY" />
-				</div>
 			</a>
 		</div>
 	</div>
