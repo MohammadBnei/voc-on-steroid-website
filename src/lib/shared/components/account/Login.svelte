@@ -25,7 +25,7 @@
 			toast.push('Successfully logged in.');
 			$session.user = data.user;
 			fetchUserWords();
-			goto($loginHistory || '/');
+			goto($loginHistory?.startsWith('/word/') ? $loginHistory : '/');
 			$loginHistory = null;
 		}
 	};
