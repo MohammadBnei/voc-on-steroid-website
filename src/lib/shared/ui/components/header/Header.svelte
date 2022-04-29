@@ -8,7 +8,7 @@
 
 	let drawerToggle = false;
 
-	const toggleDrawer = () => (drawerToggle = !drawerToggle);
+	const closeDrawer = () => (drawerToggle = false);
 </script>
 
 <div class="drawer stop-scroll-side">
@@ -35,7 +35,7 @@
 			<slot name="search" />
 			<div class="flex-none hidden lg:block">
 				<ul class="menu menu-horizontal">
-					<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" on:clicked="{toggleDrawer}" />
+					<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" on:clicked="{closeDrawer}" />
 				</ul>
 			</div>
 		</div>
@@ -44,7 +44,7 @@
 	<div class="drawer-side">
 		<label for="my-drawer-3" class="drawer-overlay"></label>
 		<ul class="menu p-4 overflow-y-auto w-52 bg-base-100">
-			<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" on:clicked="{toggleDrawer}" />
+			<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" on:clicked="{closeDrawer}" />
 		</ul>
 	</div>
 </div>

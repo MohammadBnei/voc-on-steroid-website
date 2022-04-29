@@ -22,8 +22,8 @@
 	import { Search, PageTransition } from '$lib/shared';
 	import { goto } from '$app/navigation';
 
-	const logout = () => {
-		get({ path: 'logout' });
+	const logout = async () => {
+		await get({ path: 'logout' });
 
 		$session.user = null;
 	};
