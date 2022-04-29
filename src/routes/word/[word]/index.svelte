@@ -6,13 +6,13 @@
 	import type { IMetaTagProperties, IWord } from '$lib/models';
 
 	export const load: Load = async ({ params, fetch, url }) => {
-		const res = await get({ path: `${url.origin}/endpoint/words?term=${encodeURIComponent(params.word)}`, fetch });
+		const res = await get({ path: `${url.origin}/endpoint/words?term=${params.word}`, fetch });
 		const data = await handleRes(res, 'Words');
 		if (!res.ok) {
 			return {
 				status: res.status,
 				redirect: '/',
-				error: `Unable to get definition for : ${params.word}`
+				error: `Unable to get definition for : ${params.word}`,
 			};
 		}
 		const wordModel = new WordModel().deserialize(data.word as unknown as IWord);
@@ -66,4 +66,6 @@
 
 <HeadTags metaData="{metaData}" />
 
-<Detail word="{word}" />
+<div class="m-2">
+	<Detail word="{word}" />
+</div>

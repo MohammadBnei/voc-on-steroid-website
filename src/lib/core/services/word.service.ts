@@ -3,13 +3,13 @@ import { WordListModel, WordModel } from '$lib/models/word.model';
 import { get, handleRes } from '$lib/utils/api';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function fetchResemblingWord(input: string): Promise<WordListModel | []> {
+export async function fetchResemblingWord(input: string): Promise<WordListModel> {
 	let url = 'resemblance';
 	url += `?term=${input.toLocaleLowerCase()}`;
 	const res = await get({ path: url });
 	const data = (await handleRes(res, 'Words')) as unknown as [IWordList];
 	if (!res.ok) {
-		return [];
+		return [] as WordListModel;
 	}
 	const resemblingWords = new WordListModel().deserialize(data);
 	return resemblingWords;

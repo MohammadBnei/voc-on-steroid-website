@@ -12,5 +12,8 @@ module.exports = {
 			listStylePosition: ['hover', 'focus'],
 		},
 	},
-	plugins: [],
+	plugins: [require('daisyui')],
+	daisyui: {
+		themes: ['light', 'dark'],
+	},
 };

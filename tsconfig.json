@@ -42,8 +42,6 @@
 			"$models/*": ["src/lib/models/*"],
 			"$data": ["src/lib/data/index.ts"],
 			"$data/*": ["src/lib/data/*"],
-			"$entity": ["src/entity/index.ts"],
-			"$entity/*": ["src/entity/*"],
 			"$stores": ["src/stores.ts"]
 		}
 	},

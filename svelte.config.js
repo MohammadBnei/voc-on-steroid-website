@@ -84,7 +84,7 @@ const config = {
 				host: '0.0.0.0',
 				port: 3000,
 				hmr: {
-					clientPort: 8080,
+					// clientPort: 8080,
 				},
 			},
 		}),
