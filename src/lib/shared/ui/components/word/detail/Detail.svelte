@@ -43,7 +43,7 @@
 							`${ti}:${i}`,
 						)
 							? ''
-							: 'w-1/4'} mb-2 ml-1"
+							: 'w-1/3'} mb-2 ml-1"
 						class:collapse-open="{openList.includes(`${ti}:${i}`)}"
 						class:collapse-close="{!openList.includes(`${ti}:${i}`)}"
 						on:click="{() => toggleCollapse(`${ti}:${i}`)}"
