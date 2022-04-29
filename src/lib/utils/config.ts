@@ -1,12 +1,12 @@
 export const navLinks = [
 	{
 		href: '/account/profile',
-		title: 'Account',
+		title: 'Account 🚧',
 		connected: true,
 	},
 	{
 		href: '/assoc',
-		title: 'Your Words',
+		title: 'Your Words 🚧',
 		connected: true,
 	},
 	{
