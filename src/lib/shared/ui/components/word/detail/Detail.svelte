@@ -45,23 +45,29 @@
 			{/each}
 		</div>
 		{#each word.types as r, ti}
+			{#if ti > 0}
+				<div class="divider"></div>
+			{/if}
 			<div class="text-2xl font-medium">
 				{r.type}
 			</div>
 			<div class="ml-4">
-				{#each r.definitions as { definition, examples }, i (`${ti}:${i}`)}
+				{#each r.definitions as { definition, examples }, di}
+					{#if di > 0}
+						<div class="divider"></div>
+					{/if}
 					<p class="font-medium mb-1"><ClickableText text="{definition}" /></p>
 					{#if examples.length}
 						<div
 							tabindex="0"
 							class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box cursor-pointer {openList.includes(
-								`${ti}:${i}`,
+								`${ti}:${di}`,
 							)
 								? ''
 								: 'w-min'} mb-2 ml-1"
-							class:collapse-open="{openList.includes(`${ti}:${i}`)}"
-							class:collapse-close="{!openList.includes(`${ti}:${i}`)}"
-							on:click="{() => toggleCollapse(`${ti}:${i}`)}"
+							class:collapse-open="{openList.includes(`${ti}:${di}`)}"
+							class:collapse-close="{!openList.includes(`${ti}:${di}`)}"
+							on:click="{() => toggleCollapse(`${ti}:${di}`)}"
 						>
 							<div class="collapse-title" transition:fade
 								><svg
@@ -81,9 +87,14 @@
 							>
 							<div tabindex="0" class="collapse-content">
 								<div class="m-2">
-									<p class="text-base font-extralight antialiased"
-										><ClickableText text="{examples.join('\n')}" /></p
-									>
+									{#each examples as example, ei}
+										{#if ei > 0}
+											<div class="divider"></div>
+										{/if}
+										<p class="text-base font-extralight antialiased"
+											><ClickableText text="{example}" /></p
+										>
+									{/each}
 								</div>
 							</div>
 						</div>
