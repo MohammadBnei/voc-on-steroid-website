@@ -11,7 +11,7 @@
 </script>
 
 <script lang="ts">
-	import { page, session } from '$app/stores';
+	import { session } from '$app/stores';
 	import Header from '$ui/components/header/Header.svelte';
 	import { onMount } from 'svelte';
 	import SvelteToast from '$lib/shared/ui/components/toast/SvelteToast.svelte';
@@ -19,7 +19,7 @@
 	import { Spinner } from '$lib/shared/ui/components/spinner';
 	import { get } from '$lib/utils/api';
 	import { fetchResemblingWord, fetchUserWords } from '$lib/core';
-	import { Search, AuthHeader, PageTransition } from '$lib/shared';
+	import { Search, PageTransition } from '$lib/shared';
 	import { goto } from '$app/navigation';
 
 	const logout = () => {
@@ -29,8 +29,7 @@
 	};
 
 	const login = () => {
-		console.log({ page: $page });
-		$loginHistory = $page.url.pathname;
+		$loginHistory = key;
 		goto('/account');
 	};
 
