@@ -2,6 +2,7 @@ import { LoggerUtils } from '$lib/utils';
 import { browser, mode } from '$app/env';
 import { toast } from '$lib/shared/ui/components/toast';
 import { isFetching } from '$stores';
+import { fetchOptions } from './config';
 
 interface Opts {
 	method: string;
@@ -13,10 +14,11 @@ interface Opts {
 	headers?: Record<string, string>;
 }
 
+const { endpointUri, timeout } = fetchOptions;
+
 async function send({ method, path: uri, data, endpointFetch, token, cookies, headers }: Opts): Promise<Response> {
 	const fetchId = isFetching.addFetching();
 	const opts: RequestInit = { method, headers: {} };
-
 	opts.headers['Accept'] = 'application/json';
 
 	if (data) {
@@ -38,11 +40,28 @@ async function send({ method, path: uri, data, endpointFetch, token, cookies, he
 		}
 	}
 
-	const url = uri.startsWith('http') ? uri : `/endpoint/${uri}`;
-	const res = endpointFetch ? await endpointFetch(url, opts) : await fetch(url, opts);
+	let id;
+	if (browser) {
+		const abortController = new AbortController();
+		id = setTimeout(() => {
+			abortController.abort();
+			toast.push('Something is wrong with the server, try again later', { dismissable: true });
+		}, timeout);
+		opts.signal = abortController.signal;
+	}
 
-	isFetching.removeFetching(fetchId);
-	return res;
+	const url = uri.startsWith('http') ? uri : `${endpointUri}${uri}`;
+	const res = endpointFetch ? endpointFetch(url, opts) : fetch(url, opts);
+
+	try {
+		await res;
+		return res;
+	} catch (error) {
+		return Response.error();
+	} finally {
+		id && clearTimeout(id);
+		isFetching.removeFetching(fetchId);
+	}
 }
 
 interface Get {

@@ -1,3 +1,8 @@
+interface FetchOptions {
+	timeout: number;
+	endpointUri: string;
+}
+
 export const navLinks = [
 	{
 		href: '/account/profile',
@@ -14,3 +19,8 @@ export const navLinks = [
 		title: 'About',
 	},
 ];
+
+export const fetchOptions: FetchOptions = {
+	timeout: 2000,
+	endpointUri: '/endpoint/',
+};

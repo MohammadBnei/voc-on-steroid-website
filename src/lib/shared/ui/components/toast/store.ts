@@ -6,8 +6,14 @@ const createToast = () => {
 	let count = 0;
 	let defaults: SvelteToastOptions = {};
 	const push = (msg, opts: SvelteToastOptions = {}) => {
-		const entry = { id: ++count, msg: msg, ...defaults, ...opts, theme: { ...defaults.theme, ...opts.theme } };
-		update((n) => (entry.reversed ? [...n, entry] : [entry, ...n]));
+		const entry = { id: ++count, msg, ...defaults, ...opts, theme: { ...defaults.theme, ...opts.theme } };
+		update((n) => {
+			if (n.some(({ msg: _msg }) => _msg === msg)) return n;
+
+			return entry.reversed ? [...n, entry] : [entry, ...n];
+		});
+
+		setTimeout(() => pop(entry.id), entry.duration);
 		return count;
 	};
 	const pop = (id) => {

@@ -12,7 +12,7 @@
 			title: metaData.title,
 			description: metaData.description,
 			url: metaData.url,
-			locale: 'en_US',
+			locale: 'fr_FR',
 			...metaData.openGraph,
 		},
 		twitter: {

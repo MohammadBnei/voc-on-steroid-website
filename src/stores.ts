@@ -8,9 +8,7 @@ const createIsFetching = () => {
 
 	const addFetching = () => {
 		const id = Date.now().toString();
-
 		update((a) => [...a, id]);
-
 		return id;
 	};
 
