@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { session } from '$app/stores';
-	import { navLinks } from '$lib/utils/config';
+	import Nav from './Nav.svelte';
 
 	export let title = 'Voc On Steroid';
 
 	export let handleLogin: () => void;
 	export let handleLogout: () => void;
-	
 </script>
 
 <div class="drawer stop-scroll-side">
@@ -33,17 +31,7 @@
 			<slot name="search" />
 			<div class="flex-none hidden lg:block">
 				<ul class="menu menu-horizontal">
-					<!-- Navbar menu content here -->
-					{#each navLinks as { href, title, connected }}
-						{#if $session.user || connected === undefined}
-							<li><a href="{href}">{title}</a></li>
-						{/if}
-					{/each}
-					{#if $session.user}
-						<li><button class="btn btn-active btn-secondary " on:click="{handleLogout}">Logout</button></li>
-					{:else}
-						<li><button class="btn btn-active btn-primary" on:click="{handleLogin}">Login</button></li>
-					{/if}
+					<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" />
 				</ul>
 			</div>
 		</div>
@@ -52,11 +40,7 @@
 	<div class="drawer-side">
 		<label for="my-drawer-3" class="drawer-overlay"></label>
 		<ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
-			{#each navLinks as { href, title, connected }}
-				{#if $session.user || !connected}
-					<li><a href="{href}">{title}</a></li>
-				{/if}
-			{/each}
+			<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" />
 		</ul>
 	</div>
 </div>
