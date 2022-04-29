@@ -5,4 +5,4 @@ export { SEO } from './seo';
 export { PageTransition } from './transition';
 export { AddRemoveButton, AssocList } from './assoc';
 export { ClickableText, ClickableWord, Search } from './word';
-export { AuthHeader, Login, Profile, Register } from './account';
+export { Login, Profile, Register } from './account';

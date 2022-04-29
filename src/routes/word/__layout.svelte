@@ -1,8 +1,10 @@
 <style lang="postcss">
-	.word-layout {
-		display: grid;
-		grid-template-columns: 7fr minmax(240px, 1fr);
-		grid-template-areas: 'word assoc';
+	@media (min-width: 1024px) {
+		.word-layout {
+			display: grid;
+			grid-template-columns: 7fr minmax(240px, 1fr);
+			grid-template-areas: 'word assoc';
+		}
 	}
 
 	.word {
@@ -33,13 +35,11 @@
 </script>
 
 <script lang="ts">
-	import { assocStore, currentWord } from '$stores';
+	import { assocStore } from '$stores';
 	import { session } from '$app/stores';
 	import { AssocList } from '$lib/shared/components/assoc';
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
 	import PageTransition from '$lib/shared/components/transition/PageTransition.svelte';
-	import { addWord, removeWord } from '$lib/core/services/assoc.service';
-	import AddRemoveButton from '$lib/shared/components/assoc/AddRemoveButton.svelte';
 
 	let search = '';
 
@@ -50,7 +50,7 @@
 	let h: number;
 </script>
 
-<div class:word-layout="{!!$session.user}">
+<div class:word-layout="{$session.user}">
 	<div class="m-2" bind:clientHeight="{h}">
 		<PageTransition refresh="{key.split('/').pop()}">
 			<slot />
@@ -59,14 +59,8 @@
 	{#if $session.user}
 		<div class="card bg-base-100 shadow-xl assoc m-2 max-h-[{h}px]">
 			<div class="card-body ">
-				<div class="flex justify-evenly items-center">
-					<p class="text-xl text-opacity-70 font-bold">Saved Words</p>
-					<AddRemoveButton
-						buttonType="{$assocStore.some(({ id }) => id === $currentWord)}"
-						handleAddWord="{() => addWord($currentWord)}"
-						handleRemoveWord="{() => removeWord($currentWord)}"
-					/>
-				</div>
+				<p class="text-xl text-opacity-70 font-bold grow-0">Saved Words</p>
+
 				<Input options="{{ placeholder: 'Filter' }}" bind:value="{search}" />
 				<div class="overflow-y-scroll mb-2">
 					<AssocList words="{filteredList}" />

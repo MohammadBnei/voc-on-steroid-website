@@ -25,8 +25,9 @@
 		onChange="{handleSearch}"
 		bind:highlightedItem
 		html5autocomplete
-		inputClassName="input input-md"
+		inputClassName="input input-sm"
 		placeholder="Search..."
+		className="!h-min"
 	/>
 
 	<button class="btn btn-ghost btn-circle" on:click="{() => handleSearch(word)}">

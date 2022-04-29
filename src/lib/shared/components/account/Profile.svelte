@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { session } from '$app/stores';
-	import Time from 'svelte-time';
 	import Button from '$lib/shared/ui/components/button/Button.svelte';
 
 	export let user;
@@ -40,7 +39,7 @@
 			</div>
 			<div class="grid grid-cols-2">
 				<div class="px-4 py-2 font-semibold">Created At</div>
-				<div class="px-4 py-2"><Time timestamp="{user.created}" format="dddd @ h:mm A · MMMM D, YYYY" /></div>
+				<div class="px-4 py-2">{user.created}</div>
 			</div>
 		</div>
 	</div>

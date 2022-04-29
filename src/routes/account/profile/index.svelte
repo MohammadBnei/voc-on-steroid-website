@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
 	import { LoggerUtils } from '$lib/utils';
-	import * as api from '$lib/utils/api';
 
 	export async function load({ session }) {
 		if (!session.user) {
