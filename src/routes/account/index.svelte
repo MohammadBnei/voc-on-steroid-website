@@ -1,10 +1,10 @@
 <script lang="ts" context="module">
-	export async function load({ fetch, session }) {
+	export async function load({ session }) {
 		if (session.user) {
 			return { redirect: '/', status: 302 };
 		}
 
-		return true;
+		return {};
 	}
 </script>
 
