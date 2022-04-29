@@ -27,7 +27,7 @@
 		html5autocomplete
 		inputClassName="input input-sm"
 		placeholder="Search..."
-		className="!h-min"
+		className="!h-min max-h-8"
 	/>
 
 	<button class="btn btn-ghost btn-circle" on:click="{() => handleSearch(word)}">
