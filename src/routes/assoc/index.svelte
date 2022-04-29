@@ -1,3 +1,10 @@
+<style>
+	.layout {
+		display: grid;
+		grid-template-columns: 0.2fr auto;
+	}
+</style>
+
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
 
@@ -38,14 +45,16 @@
 		searchUrl: `https://voconsteroid.com/assoc`,
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',
 	};
+
+	let h: number;
 </script>
 
 <HeadTags metaData="{metaData}" />
 
-<div class="flex flex-auto justify-center">
-	<Input display="Filter" options="{{ placeholder: '...' }}" bind:value="{search}" />
+<div class="flex flex-auto justify-center items-center" bind:clientHeight="{h}">
+	<Input options="{{ placeholder: '...' }}" bind:value="{search}" />
 	<div class="w-52 text-center self-center">{filteredList.length}</div>
 </div>
-<div class="mx-96 flex flex-wrap gap-5">
+<div class="layout mx-3">
 	<AssocList words="{filteredList}" />
 </div>

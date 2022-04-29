@@ -2,7 +2,6 @@
 	import { fade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import type { AssocWord } from '$lib/core';
-	import Assoc from '$lib/shared/ui/components/word/Assoc.svelte';
 
 	export let words: AssocWord[];
 
@@ -11,7 +10,13 @@
 
 {#each sortedWords as word (word.id)}
 	<div in:fade animate:flip>
-		<Assoc {...word} />
+		<div class="mx-1 p-2 rounded-lg hover:bg-gray-100 align-items:center text-center">
+			<a href="{'/word/' + word.id}" sveltekit:prefetch>
+				<span class="text-lg font-semibold w-52">
+					{word.id}
+				</span>
+			</a>
+		</div>
 	</div>
 {:else}
 	<div> No word yet. Go search for some </div>
