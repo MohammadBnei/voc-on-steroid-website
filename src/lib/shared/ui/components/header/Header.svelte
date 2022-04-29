@@ -5,10 +5,14 @@
 
 	export let handleLogin: () => void;
 	export let handleLogout: () => void;
+
+	let drawerToggle = false;
+
+	const toggleDrawer = () => (drawerToggle = !drawerToggle);
 </script>
 
 <div class="drawer stop-scroll-side">
-	<input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+	<input id="my-drawer-3" type="checkbox" class="drawer-toggle" bind:checked="{drawerToggle}" />
 	<div class="drawer-content flex flex-col">
 		<!-- Navbar -->
 		<div class="w-full navbar bg-base-300">
@@ -31,7 +35,7 @@
 			<slot name="search" />
 			<div class="flex-none hidden lg:block">
 				<ul class="menu menu-horizontal">
-					<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" />
+					<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" on:clicked="{toggleDrawer}" />
 				</ul>
 			</div>
 		</div>
@@ -40,7 +44,7 @@
 	<div class="drawer-side">
 		<label for="my-drawer-3" class="drawer-overlay"></label>
 		<ul class="menu p-4 overflow-y-auto w-52 bg-base-100">
-			<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" />
+			<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" on:clicked="{toggleDrawer}" />
 		</ul>
 	</div>
 </div>
