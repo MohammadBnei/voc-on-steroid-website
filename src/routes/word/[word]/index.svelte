@@ -66,6 +66,4 @@
 </script>
 
 <HeadTags metaData="{metaData}" />
-<div transition:blur>
-	<Detail word="{word}" />
-</div>
+<Detail word="{word}" />
