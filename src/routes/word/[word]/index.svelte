@@ -28,6 +28,7 @@
 	import { HeadTags } from '$lib/shared';
 	import { afterUpdate, onDestroy } from 'svelte';
 	import { currentWord } from '$stores';
+	import { fade } from 'svelte/transition';
 
 	export let word: WordModel;
 
@@ -65,4 +66,6 @@
 </script>
 
 <HeadTags metaData="{metaData}" />
-<Detail word="{word}" />
+<div transition:fade>
+	<Detail word="{word}" />
+</div>
