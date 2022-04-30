@@ -51,7 +51,7 @@
 					>
 				</label>
 			</div>
-			<div class="flex-1 px-2 mx-2 hidden lg:block"><a href="/" sveltekit:prefetch>{title}</a></div>
+			<div class="flex-1 px-2 mx-2 hidden lg:block"><a href="/" sveltekit:prefetch on:click="{closeDrawer}">{title}</a></div>
 			<label class="swap swap-rotate hidden lg:inline-grid">
 				<input type="checkbox" checked="{currentTheme === 'garden'}" on:change="{switchTheme}" />
 				<span class="swap-on ">🌞</span>
@@ -69,7 +69,7 @@
 	<div class="drawer-side">
 		<label for="my-drawer-3" class="drawer-overlay"></label>
 		<ul class="menu p-4 overflow-y-auto w-52 bg-base-100">
-			<li><a href="/" sveltekit:prefetch>{title}</a></li>
+			<li><a href="/" sveltekit:prefetch on:click="{closeDrawer}">{title}</a></li>
 			<label class="swap swap-rotate">
 				<input type="checkbox" checked="{currentTheme === 'garden'}" on:change="{switchTheme}" />
 				<span class="swap-on">🌞</span>

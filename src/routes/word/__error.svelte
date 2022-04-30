@@ -17,7 +17,6 @@
 	export const load: Load = ({ error, status, params }) => {
 		return {
 			props: {
-				title: `${status}: ${error.message}`,
 				status,
 				error,
 				word: params.word,
@@ -30,7 +29,6 @@
 	import Title from '$lib/shared/components/title/Title.svelte';
 	import { goto, afterNavigate } from '$app/navigation';
 
-	export let title: string;
 	export let word: string;
 	export let error: Error;
 
@@ -40,7 +38,7 @@
 	});
 </script>
 
-<Title title="{title}" />
+<Title title="Error" />
 <div class="hero min-h-screen bg-base-200">
 	<div class="hero-content flex-col lg:flex-row">
 		<img src="/404.jpeg" class="max-w-xs lg:max-w-sm rounded-lg shadow-2xl " alt="404"/>
