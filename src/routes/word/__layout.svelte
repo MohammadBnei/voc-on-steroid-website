@@ -34,7 +34,7 @@
 			</PageTransition>
 		</div>
 		{#if $session.user}
-			<div class="card bg-base-100 shadow-xl assoc m-2 max-h-screen grow lg:w-80 flex-none">
+			<div class="card bg-base-100 shadow-xl assoc m-2 max-h-screen lg:w-80 flex-none">
 				<div class="card-body ">
 					<p class="text-xl text-opacity-70 font-bold grow-0">Saved Words</p>
 
