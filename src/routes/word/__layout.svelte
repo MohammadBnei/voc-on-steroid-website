@@ -51,7 +51,7 @@
 </script>
 
 <div class:word-layout="{$session.user}">
-	<div class="m-2" bind:clientHeight="{h}">
+	<div bind:clientHeight="{h}">
 		<PageTransition refresh="{key.split('/').pop()}">
 			<slot />
 		</PageTransition>
