@@ -26,10 +26,10 @@
 				>
 				<p class="mb-5">The front end part is written in Svelte, utilizing svelte kit for SSR.</p>
 				<p class="mb-5"
-					>I used <a href="https://nestjs.com">NestJS</a> for the word api and the word manager api.</p
+					>I used <a class="link link-primary" href="https://nestjs.com">NestJS</a> for the word api and the word manager api.</p
 				>
 				<p class="mb-5">The gateway and the user api are written in golang.</p>
-				<p class="mb-5">Feel free to visit my <a href="https://bnei.dev">portfolio</a> for more informations.</p
+				<p class="mb-5">Feel free to visit my <a class="link link-primary" href="https://bnei.dev">portfolio</a> for more informations.</p
 				>
 			</div>
 		</div>
