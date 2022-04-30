@@ -14,7 +14,7 @@
 
 <HeadTags metaData="{metaData}" />
 
-<div class="hero min-h-screen bg-base-200" style="background-image: url(/books2.jpeg">
+<div class="hero min-h-screen bg-base-200" style="background-image: url(/books2.jpg)">
 	<div class="hero-overlay bg-opacity-80"></div>
 	<div class="hero-content text-center text-neutral-content">
 		<div class="max-w-xl">

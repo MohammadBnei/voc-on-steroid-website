@@ -28,7 +28,7 @@
 <Title title="Error" />
 <div class="hero min-h-screen bg-base-200">
 	<div class="hero-content flex-col lg:flex-row">
-		<img src="/404.jpeg" class="max-w-xs lg:max-w-sm rounded-lg shadow-2xl " alt="404" />
+		<img src="/404.jpg" class="max-w-xs lg:max-w-sm rounded-lg shadow-2xl " alt="404" />
 		<div class="flex flex-col items-center lg:block">
 			<h1 class="text-5xl font-bold">{word}</h1>
 			<p class="py-6">{error.message}</p>
