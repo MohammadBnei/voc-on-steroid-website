@@ -1,16 +1,3 @@
-<style lang="scss">
-	h1 {
-		font-size: 2.8em;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-</style>
-
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
 
@@ -41,8 +28,8 @@
 <Title title="Error" />
 <div class="hero min-h-screen bg-base-200">
 	<div class="hero-content flex-col lg:flex-row">
-		<img src="/404.jpeg" class="max-w-xs lg:max-w-sm rounded-lg shadow-2xl " alt="404"/>
-		<div>
+		<img src="/404.jpeg" class="max-w-xs lg:max-w-sm rounded-lg shadow-2xl " alt="404" />
+		<div class="flex flex-col items-center lg:block">
 			<h1 class="text-5xl font-bold">{word}</h1>
 			<p class="py-6">{error.message}</p>
 			<button class="btn btn-primary" on:click="{() => goto(previousPage || '/')}">Get back</button>
