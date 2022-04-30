@@ -16,7 +16,6 @@
 	import { onMount } from 'svelte';
 	import SvelteToast from '$lib/shared/ui/components/toast/SvelteToast.svelte';
 	import { isFetching, loginHistory } from '$stores';
-	import { Spinner } from '$lib/shared/ui/components/spinner';
 	import { get } from '$lib/utils/api';
 	import { fetchResemblingWord, fetchUserWords } from '$lib/core';
 	import { Search, PageTransition } from '$lib/shared';

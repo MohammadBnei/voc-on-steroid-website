@@ -18,8 +18,8 @@
 
 <div class="card bg-base-100 shadow-xl">
 	<div class="card-body">
-		<div class="flex lg:justify-between flex-wrap justify-center">
-			<h2 class="card-title text-5xl capitalize mb-2">{word.word}</h2>
+		<div class="flex lg:justify-between lg:flex-row flex-col place-items-center">
+			<h2 class="card-title text-2xl lg:text-5xl capitalize mb-2">{word.word}</h2>
 			{#if $session.user}
 				<AddRemoveButton
 					savedWord="{$assocStore.some(({ id }) => id === word.word)}"
@@ -37,7 +37,7 @@
 			{#if ti > 0}
 				<div class="divider"></div>
 			{/if}
-			<div class="text-2xl font-medium">
+			<div class="text-xl lg:text-2xl font-medium">
 				{r.type}
 			</div>
 			<div class="ml-4">
@@ -45,7 +45,7 @@
 					{#if di > 0}
 						<div class="divider"></div>
 					{/if}
-					<p class="font-medium mb-1"><ClickableText text="{definition}" /></p>
+					<p class="mb-1"><ClickableText text="{definition}" /></p>
 					{#if examples.length}
 						<div
 							tabindex="0"
