@@ -31,7 +31,7 @@
 					>
 				</label>
 			</div>
-			<div class="flex-1 px-2 mx-2 hidden lg:block"><a href="/">{title}</a></div>
+			<div class="flex-1 px-2 mx-2 hidden lg:block"><a href="/" sveltekit:prefetch>{title}</a></div>
 			<slot name="search" />
 			<div class="flex-none hidden lg:block">
 				<ul class="menu menu-horizontal">
@@ -44,7 +44,7 @@
 	<div class="drawer-side">
 		<label for="my-drawer-3" class="drawer-overlay"></label>
 		<ul class="menu p-4 overflow-y-auto w-52 bg-base-100">
-			<li><a href="/">{title}</a></li>
+			<li><a href="/" sveltekit:prefetch>{title}</a></li>
 			<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" on:clicked="{closeDrawer}" />
 		</ul>
 	</div>

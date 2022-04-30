@@ -16,7 +16,7 @@
 
 {#each navLinks as { href, title, connected }}
 	{#if $session.user || !connected}
-		<li><a href="{href}" on:click="{() => dispatch('clicked')}">{title}</a></li>
+		<li><a href="{href}" on:click="{() => dispatch('clicked')}" sveltekit:prefetch>{title}</a></li>
 	{/if}
 {/each}
 {#if $session.user}
