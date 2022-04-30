@@ -38,11 +38,11 @@
 <HeadTags metaData="{metaData}" />
 
 <div class="hero min-h-screen bg-base-200" style="background-image: url(/books-background.jpeg">
-	<div class="hero-overlay bg-opacity-60"></div>
+	<div class="hero-overlay bg-opacity-80"></div>
 	<div class="hero-content text-center text-neutral-content">
-		<div class="max-w-xl">
+		<div class="max-w-7xl">
 			<h1 class="text-5xl font-bold mb-5">Welcome to Voc on Steroid Dictionary !</h1>
-			<p class="py-6 mb-5">You can search for word definition, but if you log in there's more...</p>
+			<p class="py-6 mb-5 text-xl">You can search for word definition, but if you log in there's more...</p>
 			<div class="flex justify-center">
 				<Search />
 			</div>
