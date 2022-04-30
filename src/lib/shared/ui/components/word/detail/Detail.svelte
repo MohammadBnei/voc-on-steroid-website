@@ -18,7 +18,7 @@
 
 <div class="card bg-base-100 shadow-xl">
 	<div class="card-body">
-		<div class="flex justify-between">
+		<div class="flex lg:justify-between flex-wrap justify-center">
 			<h2 class="card-title text-5xl capitalize mb-2">{word.word}</h2>
 			{#if $session.user}
 				<AddRemoveButton
