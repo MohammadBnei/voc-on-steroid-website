@@ -15,17 +15,24 @@
 	import { session } from '$app/stores';
 	import { AssocList } from '$lib/shared/components/assoc';
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
+	import { browser } from '$app/env';
 
 	let search = '';
+
+	export let key: string;
+	let lastKey: string = null;
+
+	$: if (browser && lastKey && key !== lastKey) {
+		document.getElementById('word-data').scrollIntoView();
+		lastKey = key;
+	}
 
 	// export let key: string;
 
 	$: filteredList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
-
-	let h: number;
 </script>
 
-<div class="hero min-h-screen bg-base-200 place-items-start">
+<div class="hero min-h-screen bg-base-200 place-items-start" id="word-data">
 	<div class="hero-content max-w-full w-full flex-col lg:flex-row items-center lg:items-start justify-between">
 		<div class="lg:m-2 grow">
 			<slot />
