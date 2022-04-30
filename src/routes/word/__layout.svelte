@@ -1,27 +1,3 @@
-<style lang="postcss">
-	@media (min-width: 1024px) {
-		.word-layout {
-			display: grid;
-			grid-template-columns: 7fr minmax(240px, 1fr);
-			grid-template-areas: 'word assoc';
-		}
-	}
-
-	.word {
-		grid-area: word;
-	}
-
-	.assoc {
-		grid-area: assoc;
-	}
-
-	.assoc-layout {
-		display: grid;
-		grid-template-rows: min-content auto min-content;
-		overflow-y: auto;
-	}
-</style>
-
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
 
@@ -50,22 +26,24 @@
 	let h: number;
 </script>
 
-<div class:word-layout="{$session.user}">
-	<div bind:clientHeight="{h}">
-		<PageTransition refresh="{key.split('/').pop()}">
-			<slot />
-		</PageTransition>
-	</div>
-	{#if $session.user}
-		<div class="card bg-base-100 shadow-xl assoc m-2 max-h-[{h}px]">
-			<div class="card-body ">
-				<p class="text-xl text-opacity-70 font-bold grow-0">Saved Words</p>
+<div class="hero min-h-screen bg-base-200 place-items-start">
+	<div class="hero-content max-w-full w-full flex-col lg:flex-row items-center lg:items-start justify-between">
+		<div class="m-2 grow">
+			<PageTransition refresh="{key.split('/').pop()}">
+				<slot />
+			</PageTransition>
+		</div>
+		{#if $session.user}
+			<div class="card bg-base-100 shadow-xl assoc m-2 max-h-screen grow lg:w-80 flex-none">
+				<div class="card-body ">
+					<p class="text-xl text-opacity-70 font-bold grow-0">Saved Words</p>
 
-				<Input options="{{ placeholder: 'Filter' }}" bind:value="{search}" />
-				<div class="overflow-y-scroll mb-2">
-					<AssocList words="{filteredList}" />
+					<Input options="{{ placeholder: 'Filter' }}" bind:value="{search}" />
+					<div class="overflow-y-scroll mb-2">
+						<AssocList words="{filteredList}" />
+					</div>
 				</div>
 			</div>
-		</div>
-	{/if}
+		{/if}
+	</div>
 </div>

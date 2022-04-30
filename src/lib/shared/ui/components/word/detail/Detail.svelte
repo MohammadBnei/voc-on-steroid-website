@@ -1,14 +1,3 @@
-<style lang="postcss" type="text/postcss">
-	.container {
-		display: flex;
-		flex-direction: column;
-		justify-items: center;
-		> div {
-			margin: 1em;
-		}
-	}
-</style>
-
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { session } from '$app/stores';

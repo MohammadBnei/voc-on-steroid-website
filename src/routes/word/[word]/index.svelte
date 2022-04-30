@@ -65,5 +65,4 @@
 </script>
 
 <HeadTags metaData="{metaData}" />
-
 <Detail word="{word}" />
