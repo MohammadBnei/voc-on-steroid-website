@@ -24,7 +24,7 @@
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
 	import { AssocList } from '$lib/shared/components/assoc';
 	import type { IMetaTagProperties } from '$lib/models';
-	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
+	import { HeadTags } from '$lib/shared';
 	import { assocStore } from '$stores';
 	import { onMount } from 'svelte';
 	import { fetchUserWords } from '$lib/core';

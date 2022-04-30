@@ -40,7 +40,7 @@
 	});
 </script>
 
-<Title title="{title} | Voc On Steroid" />
+<Title title="{title}" />
 <div class="hero min-h-screen bg-base-200">
 	<div class="hero-content flex-col lg:flex-row">
 		<img src="/404.jpeg" class="max-w-sm rounded-lg shadow-2xl" alt="404"/>

@@ -1,10 +1,9 @@
 <script lang="ts">
-	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
+	import { HeadTags } from '$lib/shared';
 	import type { IMetaTagProperties } from '$lib/models';
 
 	const metaData: Partial<IMetaTagProperties> = {
-		title: 'About | Sveltekit',
-		description: 'About page of Voc On Steroid project',
+		title: 'About',
 		url: 'https://voconsteroid.com/about',
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
 		keywords: ['sveltekit', 'Voc On Steroid', 'about'],

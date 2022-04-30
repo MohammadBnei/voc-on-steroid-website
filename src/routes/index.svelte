@@ -19,14 +19,12 @@
 </script>
 
 <script lang="ts">
-	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
+	import { HeadTags } from '$lib/shared';
 	import type { IMetaTagProperties } from '$lib/models';
 	import Search from '$lib/shared/components/word/Search.svelte';
 
 	const metaData: Partial<IMetaTagProperties> = {
-		title: 'Home | VocOnSteroid',
-		description:
-			'Voc On Steroid project created with sveltekit, typescript, tailwindcss. The project has the structure set up for the scaleable project. (sveltekit, typescript, tailwindcss, postcss, husky, Storybook).',
+		title: 'Home',
 		url: 'https://voconsteroid.com',
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
 		keywords: ['sveltekit', 'Voc On Steroid', 'Voc On Steroid home'],

@@ -25,14 +25,14 @@
 </script>
 
 <script lang="ts">
-	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
+	import { HeadTags } from '$lib/shared';
 	import { afterUpdate, onDestroy } from 'svelte';
 	import { currentWord } from '$stores';
 
 	export let word: WordModel;
 
 	let metaData: Partial<IMetaTagProperties> = {
-		title: `VocOnSteroid : ${word?.word || 'Not found'}`,
+		title: `${word?.word}`,
 		description: ` Definitions : ${word.types.reduce((acc, cur) => {
 			acc += cur.type + ' : ';
 			acc += cur.definitions.reduce((acc, cur) => {
