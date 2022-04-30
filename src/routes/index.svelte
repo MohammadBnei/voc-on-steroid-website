@@ -21,6 +21,7 @@
 <script lang="ts">
 	import HeadTags from '$shared/components/head-tags/HeadTags.svelte';
 	import type { IMetaTagProperties } from '$lib/models';
+	import Search from '$lib/shared/components/word/Search.svelte';
 
 	const metaData: Partial<IMetaTagProperties> = {
 		title: 'Home | VocOnSteroid',
@@ -36,9 +37,15 @@
 
 <HeadTags metaData="{metaData}" />
 
-<section class="text-gray-600">
-	<div class="container mx-auto px-5 py-24 text-center">
-		<h1>Welcome to Voc on Steroid Dictionary !</h1>
-		<p>You can search for word definition, but if you log in there's more...</p>
+<div class="hero min-h-screen bg-base-200" style="background-image: url(/books-background.jpeg">
+	<div class="hero-overlay bg-opacity-60"></div>
+	<div class="hero-content text-center text-neutral-content">
+		<div class="max-w-xl">
+			<h1 class="text-5xl font-bold mb-5">Welcome to Voc on Steroid Dictionary !</h1>
+			<p class="py-6 mb-5">You can search for word definition, but if you log in there's more...</p>
+			<div class="flex justify-center">
+				<Search />
+			</div>
+		</div>
 	</div>
-</section>
+</div>

@@ -24,7 +24,6 @@
 		if (res.ok) {
 			toast.push('Successfully logged in.');
 			$session.user = data.user;
-			fetchUserWords();
 			goto($loginHistory?.startsWith('/word/') ? $loginHistory : '/');
 			$loginHistory = null;
 		}
@@ -32,15 +31,29 @@
 </script>
 
 <form on:submit|preventDefault="{handleLogin}">
-	<div class="flex flex-col items-center justify-center min-h-screen w-full px-4 py-8">
-		<div class="rounded-md bg-white w-full max-w-sm sm:max-w-md border border-gray-500 shadow-md px-4 py-6 sm:p-8">
-			<div class="text-sm sm:text-base text-gray-600 my-4">Log In</div>
-			<Input display="Username / Email" bind:value="{identity}" options="{{ required: 'true' }}" />
-			<Input display="Password" bind:value="{password}" options="{{ type: 'password', required: 'true' }}" />
-
-			<div class="flex w-full mt-6 justify-center items-center gap-3">
-				<Button text="Login" type="submit" />
-			</div>
-		</div>
+	<div class="form-control">
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label class="label">
+			<span class="label-text">Username / Email</span>
+		</label>
+		<input type="text" placeholder="email" class="input input-bordered" bind:value="{identity}" />
+	</div>
+	<div class="form-control">
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label class="label">
+			<span class="label-text">Password</span>
+		</label>
+		<input type="password" placeholder="password" class="input input-bordered" bind:value="{password}" />
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label class="label">
+			<a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+		</label>
+	</div>
+	<div class="form-control mt-6">
+		<button class="btn btn-primary" type="submit">Login</button>
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label class="label">
+			<a href="#register" class="label-text-alt link link-hover">Sign up</a>
+		</label>
 	</div>
 </form>

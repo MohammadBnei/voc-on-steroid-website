@@ -1,13 +1,16 @@
 <script lang="ts">
-	import { prefetch } from '$app/navigation';
+	import { goto, prefetch } from '$app/navigation';
+	import { fetchResemblingWord } from '$lib/core';
 
 	import type { IWordList } from '$lib/models';
 	import type { WordListModel } from '$lib/models/word.model';
 
 	import AutoComplete from 'simple-svelte-autocomplete';
 
-	export let getWords: (keyword: string) => Promise<WordListModel>;
-	export let handleSearch: (word: Partial<IWordList>) => void;
+	export let getWords: (keyword: string) => Promise<WordListModel> = fetchResemblingWord;
+	export let handleSearch: (word: Partial<IWordList>) => void = (word) => word?.key && goto('/word/' + word.key);
+
+	export let fullwidth = false;
 
 	const handleCreate = (keyword: string) => {
 		handleSearch({ key: keyword });
@@ -29,9 +32,9 @@
 		onChange="{handleSearch}"
 		bind:highlightedItem
 		html5autocomplete
-		inputClassName="input input-sm"
+		inputClassName="input"
 		placeholder="Search..."
-		className="!h-min max-h-8"
+		className="!h-min max-h-8 {fullwidth ? 'grow' : ''}"
 		create
 		onCreate="{handleCreate}"
 	/>
