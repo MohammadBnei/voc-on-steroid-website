@@ -28,7 +28,7 @@
 
 <div class="hero min-h-screen bg-base-200 place-items-start">
 	<div class="hero-content max-w-full w-full flex-col lg:flex-row items-center lg:items-start justify-between">
-		<div class="m-2 grow">
+		<div class="lg:m-2 grow">
 			<PageTransition refresh="{key.split('/').pop()}">
 				<slot />
 			</PageTransition>
