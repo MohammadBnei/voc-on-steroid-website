@@ -12,24 +12,26 @@
 </style>
 
 <script lang="ts" context="module">
-	export function load({ error, status }) {
+	import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = ({ error, status, params }) => {
 		return {
 			props: {
 				title: `${status}: ${error.message}`,
 				status,
 				error,
+				word: params.word,
 			},
 		};
-	}
+	};
 </script>
 
 <script lang="ts">
-	import { dev } from '$app/env';
 	import Title from '$lib/shared/components/title/Title.svelte';
 	import { goto, afterNavigate } from '$app/navigation';
-	import Button from '$lib/shared/ui/components/button/Button.svelte';
 
 	export let title: string;
+	export let word: string;
 	export let error: Error;
 
 	let previousPage: string;
@@ -38,15 +40,14 @@
 	});
 </script>
 
-<Title title="{title} | Sveltekit" />
-<div class="md:container md:mx-auto">
-	<div class="flex flex-col justify-center items-center">
-		<h1>
-			{error.message}
-		</h1>
-		<Button on:click="{() => goto(previousPage || '/')}" text="Go back"/>
-		{#if dev && error.stack}
-			<pre> {error.message} </pre>
-		{/if}
+<Title title="{title} | Voc On Steroid" />
+<div class="hero min-h-screen bg-base-200">
+	<div class="hero-content flex-col lg:flex-row">
+		<img src="/404.jpeg" class="max-w-sm rounded-lg shadow-2xl" alt="404"/>
+		<div>
+			<h1 class="text-5xl font-bold">{word}</h1>
+			<p class="py-6">{error.message}</p>
+			<button class="btn btn-primary" on:click="{() => goto(previousPage || '/')}">Get back</button>
+		</div>
 	</div>
 </div>

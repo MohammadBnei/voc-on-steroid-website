@@ -7,7 +7,11 @@
 	import AutoComplete from 'simple-svelte-autocomplete';
 
 	export let getWords: (keyword: string) => Promise<WordListModel>;
-	export let handleSearch: (word: IWordList) => void;
+	export let handleSearch: (word: Partial<IWordList>) => void;
+
+	const handleCreate = (keyword: string) => {
+		handleSearch({ key: keyword });
+	};
 
 	let word: IWordList;
 	let highlightedItem: IWordList;
@@ -28,6 +32,8 @@
 		inputClassName="input input-sm"
 		placeholder="Search..."
 		className="!h-min max-h-8"
+		create
+		onCreate="{handleCreate}"
 	/>
 
 	<button class="btn btn-ghost btn-circle" on:click="{() => handleSearch(word)}">

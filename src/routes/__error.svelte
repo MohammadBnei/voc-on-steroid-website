@@ -32,17 +32,16 @@
 	export let error: Error;
 </script>
 
-<Title title="{title} | Sveltekit" />
-<div class="md:container md:mx-auto">
-	<div class="flex flex-col justify-center items-center">
-		<h1>
-			{status}
-		</h1>
-		<p>
-			{error.name}
-		</p>
-		{#if dev && error.stack}
-			<pre> {error.message} </pre>
-		{/if}
+<Title title="{title} | Voc On Steroid" />
+<div class="hero min-h-screen bg-base-200">
+	<div class="hero-content flex-col lg:flex-row">
+		<img src="/404.jpeg" class="max-w-sm rounded-lg shadow-2xl" alt="404" />
+		<div>
+			<h1 class="text-5xl font-bold">{status}</h1>
+			<p class="py-6">{error.name}</p>
+			{#if dev && error.stack}
+				<pre> {error.message} </pre>
+			{/if}
+		</div>
 	</div>
 </div>

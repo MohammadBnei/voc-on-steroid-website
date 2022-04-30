@@ -57,7 +57,11 @@ async function send({ method, path: uri, data, endpointFetch, token, cookies, he
 		await res;
 		return res;
 	} catch (error) {
-		return Response.error();
+		return new Response(error,
+			{
+				status: 500,
+			},
+		);
 	} finally {
 		id && clearTimeout(id);
 		isFetching.removeFetching(fetchId);
