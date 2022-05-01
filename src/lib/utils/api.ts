@@ -107,7 +107,10 @@ export async function handleRes(res: Response, loggerInstance?: string): Promise
 		const data = await res.json();
 
 		if (!res.ok) {
-			const errMsg = data?.message || 'Something went wrong';
+			let errMsg: string = data?.message || 'Something went wrong';
+			if (errMsg.startsWith('rpc error')) {
+				errMsg = errMsg.split(' = ').pop();
+			}
 			browser && toast.push(errMsg, { dismissable: true });
 			// eslint-disable-next-line no-console
 			console.error(errMsg);

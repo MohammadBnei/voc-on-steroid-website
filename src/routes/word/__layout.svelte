@@ -3,7 +3,6 @@
 	import { session } from '$app/stores';
 	import { AssocList } from '$lib/shared/components/assoc';
 	import Input from '$lib/shared/ui/components/input/Input.svelte';
-	import { browser } from '$app/env';
 
 	let search = '';
 

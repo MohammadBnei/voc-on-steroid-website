@@ -1,3 +1,3 @@
 export * from './word.service';
-export * from './assoc.service';
+export * from './assoc';
 export * from './category';

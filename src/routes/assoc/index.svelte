@@ -19,7 +19,7 @@
 	import { HeadTags } from '$lib/shared';
 	import { assocStore, categoryStore } from '$stores';
 	import { onMount } from 'svelte';
-	import { fetchUserWords, getWord } from '$lib/core';
+	import { getWord } from '$lib/core';
 	import { Detail } from '$lib/shared/ui/components/word/detail';
 	import type { WordModel } from '$lib/models/word.model';
 	import CategoryModal from '$lib/shared/components/assoc/CategoryModal.svelte';
@@ -27,7 +27,26 @@
 	import CategoryList from '$lib/shared/components/assoc/CategoryList.svelte';
 	import type { AssocWord, Category } from '$lib/models/interfaces/assoc';
 
-	onMount(fetchUserWords);
+	onMount(() => {
+		const localAssoc = localStorage.getItem('assoc');
+		if (localAssoc) {
+			assocStore.setList(JSON.parse(localAssoc));
+		}
+
+		const unAssoc = assocStore.subscribe((a) => localStorage.setItem('assoc', JSON.stringify(a)));
+
+		const localCategory = localStorage.getItem('category');
+		if (localCategory) {
+			categoryStore.setList(JSON.parse(localCategory));
+		}
+
+		const unCategory = categoryStore.subscribe((c) => localStorage.setItem('category', JSON.stringify(c)));
+
+		return () => {
+			unAssoc();
+			unCategory();
+		};
+	});
 
 	let search = '';
 	let selectedWord: AssocWord = null;
