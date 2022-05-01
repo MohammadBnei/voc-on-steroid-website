@@ -1,7 +1,7 @@
 {
     "headers": [
           {
-        "source": "/endpoint/words(*)",
+        "source": "/endpoint/words?term=(*)",
         "headers": [
           {
             "key": "Cache-Control",
