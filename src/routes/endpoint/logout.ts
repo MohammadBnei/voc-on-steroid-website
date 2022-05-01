@@ -9,5 +9,6 @@ export const get: RequestHandler = async ({ locals }) => {
 		headers: {
 			'set-cookie': deleteCookies,
 		},
+		maxage: 0,
 	};
 };
