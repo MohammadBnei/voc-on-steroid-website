@@ -26,7 +26,6 @@
 	import { createCateory, removeCateory } from '$lib/core/services/category';
 	import CategoryList from '$lib/shared/components/assoc/CategoryList.svelte';
 	import type { AssocWord, Category } from '$lib/models/interfaces/assoc';
-	import { sineIn } from 'svelte/easing';
 
 	onMount(() => {
 		const localAssoc = localStorage.getItem('assoc');

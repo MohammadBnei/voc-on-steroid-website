@@ -19,7 +19,7 @@
 
 	$: sortedWords = words.sort((a, b) => a?.id?.localeCompare(b.id));
 
-	onMount(() => fetchUserWords());
+	onMount(fetchUserWords);
 </script>
 
 {#each sortedWords as word (word)}
