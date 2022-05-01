@@ -87,7 +87,7 @@
 	<div
 		class="hero-content text-center flex-col lg:flex-row lg:flex-wrap lg:justify-around lg:max-w-screen-xl lg:w-screen"
 	>
-		<div class="flex gap-1">
+		<div class="flex gap-1 flex-col lg:flex-row">
 			<div class="card bg-base-100 shadow-xl max-h-screen w-80">
 				<div class="card-body items-center overflow-auto">
 					<h2 class="card-title">Mots sauvegardés</h2>
