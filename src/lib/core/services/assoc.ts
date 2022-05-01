@@ -3,13 +3,18 @@ import { assocStore, categoryStore } from '$stores';
 import { toast } from '$lib/shared/ui/components/toast';
 import type { AssocWord } from '$lib/models/interfaces/assoc';
 
+export const addAssocHelper = (words: AssocWord[], word: string) => {
+	const newA = words?.find(({ id }) => id === word);
+
+	newA && assocStore.addWord(newA);
+};
+
 export async function fetchUserWords(): Promise<AssocWord[]> {
 	const res = await api.get({ path: 'assoc/' });
 	const data = await api.handleRes(res);
 
 	data.words && assocStore.setList(data.words);
 	data.categories && categoryStore.setList(data.categories);
-
 
 	return data.words;
 }
@@ -18,7 +23,7 @@ export async function addWord(word: string): Promise<null | Response> {
 	const res = await api.put({ path: 'assoc', data: { word } });
 	const data = await api.handleRes(res);
 	if (res.ok) {
-		assocStore.setList(data.words);
+		addAssocHelper(data.words, word);
 		toast.push(`Successfully added ${word}`);
 		return null;
 	}

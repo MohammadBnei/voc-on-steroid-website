@@ -6,7 +6,7 @@
 	import type { IMetaTagProperties, IWord } from '$lib/models';
 
 	export const load: Load = async ({ params, fetch, url }) => {
-		const res = await get({ path: `${url.origin}/endpoint/words?term=${params.word}`, fetch });
+		const res = await get({ path: `${url.origin}/endpoint/word/${params.word}`, fetch });
 		const data = await handleRes(res, 'Words');
 		if (!res.ok) {
 			return {

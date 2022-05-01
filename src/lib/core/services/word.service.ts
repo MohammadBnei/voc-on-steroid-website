@@ -16,9 +16,7 @@ export async function fetchResemblingWord(input: string): Promise<WordListModel>
 }
 
 export async function getWord(word: string): Promise<WordModel> {
-	let url = 'words';
-	url += `?term=${word}`;
-	const res = await get({ path: url });
+	const res = await get({ path: `word/${word}` });
 	const data = await handleRes(res, 'Words');
 	if (!res.ok) {
 		throw Error(data?.message);

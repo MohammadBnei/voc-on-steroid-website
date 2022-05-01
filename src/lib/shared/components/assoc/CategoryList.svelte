@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Category } from '$lib/models/interfaces/assoc';
-	import { blur, fly } from 'svelte/transition';
+	import { blur } from 'svelte/transition';
 
 	export let categories: Category[];
 	export let deleteMode: boolean;
@@ -18,7 +18,7 @@
 			class="modal-button btn {selectionList.some(({ name }) => name === category.name)
 				? 'btn-primary'
 				: 'btn-ghost'}"
-			transition:fly="{{ y: -100, duration: 200 }}"
+			transition:blur
 			on:click="{() => handleClick(category)}"
 		>
 			{category.name}

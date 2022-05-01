@@ -104,7 +104,7 @@
 
 <HeadTags metaData="{metaData}" />
 
-<div class="hero min-h-screen bg-base-200">
+<div class="hero min-h-screen bg-base-200 place-items-start">
 	<div
 		class="hero-content text-center flex-col lg:flex-row lg:justify-around lg:max-w-screen-xl lg:w-screen items-start"
 	>

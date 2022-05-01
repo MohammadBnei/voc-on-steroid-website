@@ -30,7 +30,7 @@ self.addEventListener('fetch', (event) => {
 		request.method !== 'GET' ||
 		request.headers.has('range') ||
 		(request.cache === 'only-if-cached' && request.mode !== 'same-origin') ||
-		!request.url.includes('endpoint/words')
+		!request.url.includes('endpoint/word')
 	)
 		return;
 

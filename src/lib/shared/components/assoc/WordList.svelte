@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto, prefetch } from '$app/navigation';
-	import { fly } from 'svelte/transition';
+	import { blur } from 'svelte/transition';
 	import type { WordModel } from '$lib/models';
 	import type { AssocWord } from '$lib/models/interfaces/assoc';
 	import { onMount } from 'svelte';
@@ -27,7 +27,7 @@
 		class="btn {currentWord?.word === word.id ? 'btn-primary' : 'btn-ghost'}"
 		on:click="{() => handleClick(word)}"
 		on:mouseenter="{() => onHover(word)}"
-		transition:fly="{{y:-100, duration:200}}"
+		transition:blur
 	>
 		{word.id}
 	</button>
