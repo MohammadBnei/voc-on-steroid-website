@@ -21,7 +21,7 @@
 </script>
 
 <div class="hero min-h-screen bg-base-200 justify-center items-start">
-	<div class="hero-content text-center">
+	<div class="hero-content flex-col lg:flex-row-reverse">
 		<Profile user="{user}" />
 	</div>
 </div>
