@@ -51,7 +51,7 @@
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
 		keywords: ['definition ' + word?.word, 'Voc On Steroid', word.lang === 'fr' ? 'French' : ''],
 		searchUrl: `https://voconsteroid.com/word/${word.word}`,
-		image: 'https://voconsteroid.com/voconsteroidLogo512.png',
+		image: 'https://voconsteroid.com/voconsteroidLogo96.png',
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',
 	};
 
