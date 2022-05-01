@@ -7,9 +7,9 @@
 	"start_url": "/",
 	"shortcuts": [
 		{
-			"name": "My words",
-			"short_name": "Personnal",
-			"description": "View your saved words",
+			"name": "Vos mots",
+			"short_name": "Liste personnelle",
+			"description": "Liste personnelle, assignation de catégorie",
 			"url": "/assoc",
 			"icons": [
 				{

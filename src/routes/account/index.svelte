@@ -15,11 +15,11 @@
 	import { Login, Register } from '$lib/shared/components/account';
 
 	const metaData: Partial<IMetaTagProperties> = {
-		title: 'Login | Register',
-		description: 'You can register or login to start expanding your vocabulary',
+		title: 'Connexion | Créer un compte',
+		description: "Connectez vous afin d'étendre votre vocabulaire",
 		url: 'https://voconsteroid.com/account',
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
-		keywords: ['Voc On Steroid', 'Voc On Steroid home'],
+		keywords: ['Voc On Steroid', 'Connexion'],
 		searchUrl: 'https://voconsteroid.com',
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',
 	};

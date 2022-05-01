@@ -3,7 +3,7 @@
 	import SEO from '../seo/SEO.svelte';
 
 	const description =
-		'Voc On Steroid. Your personnal dictionnary.';
+		'Voc On Steroid. Votre dictionnaire personnel.';
 
 	/**
 	 * @type {IMetaTagProperties}

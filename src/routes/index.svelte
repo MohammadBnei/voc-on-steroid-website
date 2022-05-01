@@ -24,10 +24,10 @@
 	import Search from '$lib/shared/components/word/Search.svelte';
 
 	const metaData: Partial<IMetaTagProperties> = {
-		title: 'Home',
+		title: 'Accueil',
 		url: 'https://voconsteroid.com',
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
-		keywords: ['sveltekit', 'Voc On Steroid', 'Voc On Steroid home'],
+		keywords: ['Voc On Steroid', 'Voc On Steroid Accueil'],
 		searchUrl: 'https://voconsteroid.com',
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',
 	};

@@ -3,10 +3,10 @@
 	import type { IMetaTagProperties } from '$lib/models';
 
 	const metaData: Partial<IMetaTagProperties> = {
-		title: 'About',
+		title: 'À propos',
 		url: 'https://voconsteroid.com/about',
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
-		keywords: ['sveltekit', 'Voc On Steroid', 'about'],
+		keywords: ['Voc On Steroid', 'À propos'],
 		searchUrl: 'https://voconsteroid.com/about',
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',
 	};
@@ -18,7 +18,7 @@
 	<div class="hero-overlay bg-opacity-80"></div>
 	<div class="hero-content text-center text-neutral-content">
 		<div class="max-w-xl">
-			<h1 class="text-5xl font-bold mb-5">About</h1>
+			<h1 class="text-5xl font-bold mb-5">À propos</h1>
 			<div class="text-xl">
 				<p class="py-6 mb-5"
 					>This was a school project which objective was to create an online french dictionnary. It uses

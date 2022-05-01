@@ -35,10 +35,10 @@
 	let selectedCategories: Category[] = [];
 
 	let metaData: Partial<IMetaTagProperties> = {
-		title: `Your Words`,
+		title: `Vos mots`,
 		url: `https://voconsteroid.com/assoc`,
 		logoUrl: 'https://voconsteroid.com/favicon.ico',
-		keywords: ['sveltekit', 'Voc On Steroid', 'Voc On Steroid words'],
+		keywords: ['Voc On Steroid'],
 		searchUrl: `https://voconsteroid.com/assoc`,
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',
 	};
