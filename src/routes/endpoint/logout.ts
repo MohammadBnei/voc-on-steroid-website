@@ -2,7 +2,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 import { deleteCookies } from '$lib/utils/auth';
 
 export const put: RequestHandler = async ({ locals }) => {
-	locals.fetch.get({ path: locals.USER_API + 'logout' });
+	await locals.fetch.get({ path: locals.USER_API + 'logout' });
 
 	return {
 		status: 200,
