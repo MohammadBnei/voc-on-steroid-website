@@ -1,25 +1,22 @@
 import * as api from '$lib/utils/api';
-import { assocStore } from '$stores';
+import { assocStore, categoryStore } from '$stores';
 import { toast } from '$lib/shared/ui/components/toast';
-
-export interface AssocWord {
-	id: string;
-	createdAt: Date;
-}
+import type { AssocWord } from '$lib/models/interfaces/assoc';
 
 export async function fetchUserWords(): Promise<AssocWord[]> {
 	const res = await api.get({ path: 'assoc/' });
 	const data = await api.handleRes(res);
-	if (data.words) {
-		assocStore.setList(data.words);
-	}
+
+	data.words && assocStore.setList(data.words);
+	data.categories && categoryStore.setList(data.categories);
+
 
 	return data.words;
 }
 
 export async function addWord(word: string): Promise<null | Response> {
 	const res = await api.put({ path: 'assoc', data: { word } });
-	const data = (await api.handleRes(res));
+	const data = await api.handleRes(res);
 	if (res.ok) {
 		assocStore.setList(data.words);
 		toast.push(`Successfully added ${word}`);

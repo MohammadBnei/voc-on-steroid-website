@@ -21,6 +21,6 @@ export const navLinks = [
 ];
 
 export const fetchOptions: FetchOptions = {
-	timeout: 5000,
+	timeout: 10000,
 	endpointUri: '/endpoint/',
 };

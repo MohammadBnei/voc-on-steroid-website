@@ -65,7 +65,7 @@
 	</Header>
 </div>
 {#if $isFetching.length}
-	<div class="fixed top-0 w-screen">
+	<div class="fixed bottom-0 w-screen">
 		<progress class="progress w-full progress-primary"></progress>
 	</div>
 {/if}

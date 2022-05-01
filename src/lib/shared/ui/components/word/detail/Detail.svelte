@@ -6,6 +6,8 @@
 	import type { WordModel } from '$lib/models/word.model';
 	import { AddRemoveButton, ClickableText } from '$lib/shared/components';
 	import { assocStore } from '$stores';
+	import AssignCategory from '$lib/shared/components/assoc/AssignCategory.svelte';
+	import { assignCategory, unassignCategory } from '$lib/core/services/category';
 
 	let openList: Array<string> = [];
 
@@ -17,15 +19,24 @@
 </script>
 
 <div class="card bg-base-100 shadow-xl">
-	<div class="card-body">
+	<div class="card-body text-left">
 		<div class="flex lg:justify-between lg:flex-row flex-col place-items-center">
 			<h2 class="card-title text-2xl lg:text-5xl capitalize mb-2">{word.word}</h2>
 			{#if $session.user}
-				<AddRemoveButton
-					savedWord="{$assocStore.some(({ id }) => id === word.word)}"
-					handleAddWord="{() => addWord(word.word)}"
-					handleRemoveWord="{() => removeWord(word.word)}"
-				/>
+				<div class="flex">
+					{#if $assocStore.some(({ id }) => id === word.word)}
+						<AssignCategory
+							word="{word}"
+							assignCategory="{assignCategory}"
+							unassignCategory="{unassignCategory}"
+						/>
+					{/if}
+					<AddRemoveButton
+						savedWord="{$assocStore.some(({ id }) => id === word.word)}"
+						handleAddWord="{() => addWord(word.word)}"
+						handleRemoveWord="{() => removeWord(word.word)}"
+					/>
+				</div>
 			{/if}
 		</div>
 		<div class="mb-2">

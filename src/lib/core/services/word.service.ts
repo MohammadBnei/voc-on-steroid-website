@@ -15,9 +15,9 @@ export async function fetchResemblingWord(input: string): Promise<WordListModel>
 	return resemblingWords;
 }
 
-export async function searchWord(word: string, exact = true): Promise<WordModel> {
+export async function getWord(word: string): Promise<WordModel> {
 	let url = 'words';
-	url += `?term=${word}${exact ? '' : '&exact=false'}`;
+	url += `?term=${word}`;
 	const res = await get({ path: url });
 	const data = await handleRes(res, 'Words');
 	if (!res.ok) {
@@ -26,3 +26,5 @@ export async function searchWord(word: string, exact = true): Promise<WordModel>
 	const wordModel = new WordModel().deserialize(data.word as unknown as IWord);
 	return wordModel;
 }
+
+

@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
 import type { AssocWord } from '$lib/core/services/assoc.service';
+import type { Category } from '$lib/models/interfaces/assoc';
 
 export const isDev = writable(process.env.NODE_ENV === 'development');
 
@@ -42,10 +43,25 @@ const createAssocStore = () => {
 	};
 };
 
+const createCategoryStore = () => {
+	const { subscribe, update, set } = writable<Category[]>([]);
+
+	const updateList = (c: Category[]) => update((list) => [...c, ...list]);
+	const addCategory = (c: Category) => update((list) => [c, ...list]);
+	const removeCategory = (c: string) => update((list) => list.filter((v) => v.name !== c));
+	const setList = (c: Category[]) => set([...c]);
+
+	return {
+		subscribe,
+		updateList,
+		addCategory,
+		removeCategory,
+		setList,
+	};
+};
+
 export const loginHistory = writable<string>(null);
-
 export const headerHeight = writable(0);
-
 export const assocStore = createAssocStore();
-
+export const categoryStore = createCategoryStore();
 export const isFetching = createIsFetching();

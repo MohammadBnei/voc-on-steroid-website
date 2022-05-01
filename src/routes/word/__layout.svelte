@@ -43,7 +43,7 @@
 					<p class="text-xl text-opacity-70 font-bold grow-0">Saved Words</p>
 
 					<Input options="{{ placeholder: 'Filter' }}" bind:value="{search}" />
-					<div class="overflow-y-scroll mb-2">
+					<div class="overflow-y-scroll mb-2 flex flex-col">
 						<AssocList words="{filteredList}" />
 					</div>
 				</div>
