@@ -52,6 +52,8 @@
 	let selectedWord: AssocWord = null;
 	let currentWord: WordModel = null;
 	let selectedCategories: Category[] = [];
+	let detailElem: HTMLElement;
+	let pageElem: HTMLElement;
 
 	let metaData: Partial<IMetaTagProperties> = {
 		title: `Vos mots`,
@@ -63,9 +65,17 @@
 	};
 
 	$: if (selectedWord) {
-		getWord(selectedWord.id).then((r) => (currentWord = r));
+		getWord(selectedWord.id).then((r) => {
+			currentWord = r;
+		});
 	} else {
 		currentWord = null;
+	}
+
+	$: if (detailElem && currentWord) {
+		pageElem.scrollIntoView({
+			behavior: 'smooth',
+		});
 	}
 
 	const handleClick = (w: AssocWord) => {
@@ -104,7 +114,7 @@
 
 <HeadTags metaData="{metaData}" />
 
-<div class="hero min-h-screen bg-base-200 place-items-start">
+<div class="hero min-h-screen bg-base-200 place-items-start" bind:this="{pageElem}">
 	<div
 		class="hero-content text-center flex-col-reverse lg:flex-row lg:justify-around lg:max-w-screen-xl lg:w-screen items-start"
 	>
@@ -145,7 +155,7 @@
 			</div>
 		</div>
 		{#if currentWord}
-			<div class="w-80 lg:w-full">
+			<div class="w-80 lg:w-full" bind:this="{detailElem}">
 				<Detail word="{currentWord}" />
 			</div>
 		{/if}
