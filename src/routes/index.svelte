@@ -35,7 +35,7 @@
 
 <div class="hero min-h-screen bg-base-200" style="background-image: url(/books-background.jpg)">
 	<div class="hero-overlay bg-opacity-80"></div>
-	<div class="hero-content text-center backdrop-filter backdrop-blur-sm rounded-lg">
+	<div class="hero-content text-center backdrop-filter backdrop-blur-sm rounded-2xl">
 		<div class="max-w-7xl">
 			<h1 class="text-5xl font-bold mb-5">Bienvenue sur le dictionnaire personnel Voc On Steroid !</h1>
 			<p class="py-6 mb-5 text-xl"

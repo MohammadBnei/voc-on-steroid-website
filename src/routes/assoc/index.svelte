@@ -65,6 +65,8 @@
 		}
 	};
 
+	let deleteMode: any = false;
+
 	// helpers
 	$: mapSCat = selectedCategories.map(({ name }) => name);
 	$: mapSCatStore = $categoryStore.map(({ name }) => name);
@@ -102,13 +104,22 @@
 			<div class="card bg-base-100 shadow-xl max-h-screen">
 				<div class="card-body items-center grow-0">
 					<h2 class="card-title">Catégories 📚</h2>
-					<CategoryModal handleCreate="{createCateory}" />
+					<div class="flex">
+						<CategoryModal handleCreate="{createCateory}" />
+						<div class="tooltip" data-tip="Supprimer des catégories">
+							<button
+								class="btn {deleteMode ? 'btn-primary' : 'btn-ghost'} btn-circle"
+								on:click="{() => (deleteMode ^= 1)}">🗑</button
+							>
+						</div>
+					</div>
 					<div class="flex flex-col h-full overflow-auto grow-0">
 						<CategoryList
 							categories="{$categoryStore}"
 							handleDelete="{removeCateory}"
 							handleClick="{filterCategory}"
 							selectionList="{selectedCategories}"
+							deleteMode="{deleteMode}"
 						/>
 					</div>
 				</div>
