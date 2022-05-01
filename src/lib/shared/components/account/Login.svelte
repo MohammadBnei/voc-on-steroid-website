@@ -7,23 +7,21 @@
 	import { session } from '$app/stores';
 	import { toast } from '$lib/shared/ui/components/toast';
 	import { loginHistory } from '$stores';
+	import { login } from '$lib/core/services/user';
 
 	let identity = '',
 		password = '';
 
-	const handleLogin = async () => {
+	const handleLogin = () => {
 		if (!identity || !password) {
 			toast.push('You have to type your email/username AND password');
 			return;
 		}
-		const res = await post({ path: 'login', data: { identity, password } });
-		const data = await handleRes(res);
-		if (res.ok) {
-			toast.push('Successfully logged in.');
-			$session.user = data.user;
+		login(identity, password).then(() => {
 			goto($loginHistory?.startsWith('/word/') ? $loginHistory : '/');
 			$loginHistory = null;
-		}
+			toast.push('Successfully logged in.');
+		});
 	};
 </script>
 

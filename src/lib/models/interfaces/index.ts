@@ -7,3 +7,4 @@ export * from './imeta-tag-properties.interface';
 export * from './iopen-graph-meta-tag-properties.interface';
 export * from './itwitter-meta-tag-properties.interface';
 export * from './iword.interface';
+export * from './user';

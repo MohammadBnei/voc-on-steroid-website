@@ -3,7 +3,7 @@ import * as api from '$lib/utils/api';
 import { getAuthCookies } from '$lib/utils/auth';
 
 export const post: RequestHandler = async ({ request, locals }) => {
-	const res = await locals.fetch.post({ path: locals.USER_API + 'login', data: await request.json() });
+	const res = await locals.fetch.post({ path: locals.USER_API + 'login', data: await api.getBody(request) });
 
 	const data = await api.handleRes(res, 'Auth');
 

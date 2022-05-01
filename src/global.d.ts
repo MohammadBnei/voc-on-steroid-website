@@ -15,12 +15,12 @@ declare namespace App {
 		USER_API?: string;
 		WORD_API?: string;
 		ASSOC_API?: string;
-		user?: Record<string, string>;
+		user?: Record<string, string | Date>;
 		refreshToken?: boolean;
 		fetch?: Record<unknown>;
 	}
 
 	interface Session {
-		user?: Record<string, string>;
+		user?: UserModel;
 	}
 }

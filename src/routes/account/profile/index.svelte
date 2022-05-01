@@ -1,6 +1,4 @@
 <script lang="ts" context="module">
-	import { LoggerUtils } from '$lib/utils';
-
 	export async function load({ session }) {
 		if (!session.user) {
 			return {
@@ -9,24 +7,21 @@
 			};
 		}
 
-		try {
-			return {
-				props: { user: session.user },
-			};
-		} catch (error) {
-			LoggerUtils.getInstance('Profile').error(error);
-			return {
-				status: '500',
-				error,
-			};
-		}
+		return {
+			props: { user: session.user },
+		};
 	}
 </script>
 
 <script lang="ts">
+	import type { User } from '$lib/models';
 	import { Profile } from '$lib/shared/components/account';
 
-	export let user;
+	export let user: User;
 </script>
 
-<Profile user="{user}" />
+<div class="hero min-h-screen bg-base-200 justify-center items-start">
+	<div class="hero-content text-center">
+		<Profile user="{user}" />
+	</div>
+</div>

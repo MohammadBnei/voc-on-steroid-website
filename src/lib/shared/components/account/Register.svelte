@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 
 	import { session } from '$app/stores';
+import { register } from '$lib/core/services/user';
 	import { toast } from '$lib/shared/ui/components/toast';
 	import { handleRes, post } from '$lib/utils/api';
 	import { loginHistory } from '$stores';
@@ -23,16 +24,11 @@
 			toast.push('You have to put all informations');
 			return;
 		}
-		const res = await post({ path: 'register', data: userInfos });
-		const data = await handleRes(res);
-		if (res.ok) {
-			toast.push('Successfully logged in.');
-			$session.user = data.user;
+		register(userInfos).then(() => {
 			goto($loginHistory?.startsWith('/word/') ? $loginHistory : '/');
 			$loginHistory = null;
-		}
-		handleRes(res, 'Auth');
-		res.ok && toast.push('Successfully registered. You can now log in.');
+			toast.push('Successfully logged in.');
+		});
 	};
 </script>
 

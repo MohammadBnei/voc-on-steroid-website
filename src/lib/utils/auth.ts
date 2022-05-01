@@ -1,5 +1,6 @@
 import * as cookie from 'cookie';
 import { Buffer } from 'buffer';
+import { User, UserModel } from '$lib/models';
 
 export interface AuthData {
 	user?: User;
@@ -7,48 +8,36 @@ export interface AuthData {
 	refreshToken?: string;
 }
 
-interface User {
-	id: string;
-	firstName: string;
-	lastName: string;
-	email: string;
-	role: string;
-	created: Date;
-	isVerified: boolean;
-	jwtToken?: string;
-	refreshToken?: string;
-}
-
 export const getAuthCookies = (authResponse: AuthData): string[] => {
 	const jwt = authResponse.jwt
 		? cookie.serialize('jwt', authResponse.jwt, {
-			httpOnly: true,
-			path: '/',
-			expires: new Date(Date.now() + 5 * 60 * 1000),
-		})
+				httpOnly: true,
+				path: '/',
+				expires: new Date(Date.now() + 5 * 60 * 1000),
+		  })
 		: '';
 
 	const refreshToken = authResponse.refreshToken
 		? cookie.serialize('refreshToken', authResponse.refreshToken, {
-			httpOnly: true,
-			path: '/',
-			expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-		})
+				httpOnly: true,
+				path: '/',
+				expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+		  })
 		: '';
 
 	const user = authResponse.user
-		? cookie.serialize('user', Buffer.from(JSON.stringify(authResponse.user)).toString('base64'), {
-			httpOnly: true,
-			path: '/',
-			expires: new Date(Date.now() + 5 * 60 * 1000),
-		})
+		? cookie.serialize(
+				'user',
+				Buffer.from(JSON.stringify(new UserModel().deserialize(authResponse.user))).toString('base64'),
+				{
+					httpOnly: true,
+					path: '/',
+					expires: new Date(Date.now() + 5 * 60 * 1000),
+				},
+		  )
 		: '';
 
-	return [
-		jwt,
-		refreshToken,
-		user,
-	].filter(c => c !== '');
+	return [jwt, refreshToken, user].filter((c) => c !== '');
 };
 
 export const deleteCookies = [
