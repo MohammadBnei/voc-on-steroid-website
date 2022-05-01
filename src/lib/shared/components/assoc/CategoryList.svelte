@@ -40,5 +40,5 @@
 		</label>
 	</div>
 {:else}
-	<div> No category yet. Go search for some </div>
+	<div> Aucune catégorie </div>
 {/each}

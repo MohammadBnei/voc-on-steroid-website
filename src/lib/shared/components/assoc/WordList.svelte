@@ -26,5 +26,5 @@
 		{word.id}
 	</button>
 {:else}
-	<div> No word yet. Go search for some </div>
+	<div> Aucun mot pour l'instant </div>
 {/each}
