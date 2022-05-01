@@ -19,11 +19,11 @@
 	if (browser)
 		currentTheme =
 			localStorage.getItem('theme') ??
-			(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'forest' : 'garden');
+			(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'coffee' : 'garden');
 
 	const switchTheme = () => {
 		if (currentTheme === 'garden') {
-			currentTheme = 'forest';
+			currentTheme = 'coffee';
 		} else {
 			currentTheme = 'garden';
 		}
