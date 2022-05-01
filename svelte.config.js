@@ -57,12 +57,6 @@ const config = {
 
 		// hydrate the <div id="svelte"> element in src/app.html
 
-		prerender: {
-			crawl: true,
-			enabled: true,
-			// force: true,
-			entries: ['*'],
-		},
 		vite: () => ({
 			ssr: {
 				noExternal: [...Object.keys(pkg.dependencies || {})],

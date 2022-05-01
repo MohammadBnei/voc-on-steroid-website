@@ -3,6 +3,7 @@ import { browser, mode } from '$app/env';
 import { toast } from '$lib/shared/ui/components/toast';
 import { isFetching } from '$stores';
 import { fetchOptions } from './config';
+import { deleteCookies } from './auth';
 
 interface Opts {
 	method: string;
@@ -54,14 +55,19 @@ async function send({ method, path: uri, data, endpointFetch, token, cookies, he
 	const res = endpointFetch ? endpointFetch(url, opts) : fetch(url, opts);
 
 	try {
-		await res;
+		if ((await res).status === 401) {
+			await put({ data: {}, path: 'logout' });
+			const unauthorizedResponse = new Response('Disconnected', {
+				status: 401,
+			});
+			deleteCookies.map((c) => unauthorizedResponse.headers.append('set-cookie', c));
+			return unauthorizedResponse;
+		}
 		return res;
 	} catch (error) {
-		return new Response(error,
-			{
-				status: 500,
-			},
-		);
+		return new Response(error, {
+			status: 500,
+		});
 	} finally {
 		id && clearTimeout(id);
 		isFetching.removeFetching(fetchId);
