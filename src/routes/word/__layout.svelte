@@ -1,15 +1,3 @@
-<script lang="ts" context="module">
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async ({ url }) => {
-		return {
-			props: {
-				key: url.pathname,
-			},
-		};
-	};
-</script>
-
 <script lang="ts">
 	import { assocStore } from '$stores';
 	import { session } from '$app/stores';
@@ -18,16 +6,6 @@
 	import { browser } from '$app/env';
 
 	let search = '';
-
-	export let key: string;
-	let lastKey: string = null;
-
-	$: if (browser && lastKey && key !== lastKey) {
-		document.getElementById('word-data').scrollIntoView();
-		lastKey = key;
-	}
-
-	// export let key: string;
 
 	$: filteredList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
 </script>
