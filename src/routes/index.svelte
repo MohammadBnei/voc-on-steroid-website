@@ -2,8 +2,6 @@
 </style>
 
 <script lang="ts" context="module">
-	export const prerender = true;
-
 	export async function load({ fetch, session }) {
 		try {
 			await fetch('/sitemap.xml');

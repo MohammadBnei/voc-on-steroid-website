@@ -3,9 +3,11 @@
 	import { blur } from 'svelte/transition';
 	import type { WordModel } from '$lib/models';
 	import type { AssocWord } from '$lib/models/interfaces/assoc';
+	import { onMount } from 'svelte';
+	import { fetchUserWords } from '$lib/core';
 
 	export let words: AssocWord[];
-	export let currentWord: WordModel;
+	export let currentWord: WordModel = null;
 
 	export let handleClick: (word: AssocWord) => void = (word: AssocWord) => {
 		goto('/word/' + word.id);
@@ -16,6 +18,8 @@
 	};
 
 	$: sortedWords = words.sort((a, b) => a?.id?.localeCompare(b.id));
+
+	onMount(() => fetchUserWords());
 </script>
 
 {#each sortedWords as word (word.id)}
