@@ -31,7 +31,7 @@ const createAssocStore = () => {
 
 	const addWord = (word: AssocWord) => update((list) => [word, ...list]);
 	const removeWord = (word: string) => update((list) => list.filter((v) => v.id !== word));
-	const setList = (words: AssocWord[]) => set([...words]);
+	const setList = (words: AssocWord[]) => set(words);
 
 	return {
 		subscribe,
@@ -46,7 +46,7 @@ const createCategoryStore = () => {
 
 	const addCategory = (c: Category) => update((list) => [c, ...list]);
 	const removeCategory = (c: string) => update((list) => list.filter((v) => v.name !== c));
-	const setList = (c: Category[]) => set([...c]);
+	const setList = (c: Category[]) => set(c);
 
 	return {
 		subscribe,
