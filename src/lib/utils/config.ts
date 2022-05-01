@@ -6,17 +6,17 @@ interface FetchOptions {
 export const navLinks = [
 	{
 		href: '/account/profile',
-		title: 'Account 🚧',
+		title: 'Profil 🚧',
 		connected: true,
 	},
 	{
 		href: '/assoc',
-		title: 'Your Words',
+		title: 'Liste personnelle',
 		connected: true,
 	},
 	{
 		href: '/about',
-		title: 'About',
+		title: 'À propos',
 	},
 ];
 

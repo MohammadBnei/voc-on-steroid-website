@@ -49,7 +49,7 @@
 	{/each}
 	<div class="dropdown dropdown-end">
 		<!-- svelte-ignore a11y-label-has-associated-control -->
-		<label tabindex="0" class="btn btn-ghost m-1">
+		<label tabindex="0" class="btn btn-ghost m-1 btn-circle">
 			<div class="tooltip tooltip-left font-normal capitalize" data-tip="Assigner une catégorie">
 				<span class="text-2xl">📚</span>
 			</div>

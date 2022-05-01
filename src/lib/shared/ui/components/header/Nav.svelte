@@ -20,7 +20,7 @@
 	{/if}
 {/each}
 {#if $session.user}
-	<li><button class="btn btn-secondary " on:click="{handleClick(false)}">Logout</button></li>
+	<li><button class="btn btn-accent " on:click="{handleClick(false)}">Déconnexion</button></li>
 {:else}
-	<li><button class="btn btn-primary" on:click="{handleClick(true)}">Login</button></li>
+	<li><button class="btn btn-primary" on:click="{handleClick(true)}">Connexion</button></li>
 {/if}

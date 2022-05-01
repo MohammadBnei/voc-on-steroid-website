@@ -33,7 +33,7 @@
 		bind:highlightedItem
 		html5autocomplete
 		inputClassName="input"
-		placeholder="Search..."
+		placeholder="Rechercher..."
 		className="!h-min max-h-8 {fullwidth ? 'grow' : ''}"
 		create
 		onCreate="{handleCreate}"

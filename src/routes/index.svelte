@@ -39,8 +39,11 @@
 	<div class="hero-overlay bg-opacity-80"></div>
 	<div class="hero-content text-center text-neutral-content">
 		<div class="max-w-7xl">
-			<h1 class="text-5xl font-bold mb-5">Welcome to Voc on Steroid Dictionary !</h1>
-			<p class="py-6 mb-5 text-xl">You can search for word definition, but if you log in there's more...</p>
+			<h1 class="text-5xl font-bold mb-5">Bienvenue sur le dictionnaire personnel Voc On Steroid !</h1>
+			<p class="py-6 mb-5 text-xl"
+				>Vous pouvez chercher des définitions, mais si vous vous connectez vous découvrirez d'autres
+				possibilités...</p
+			>
 			<div class="flex justify-center text-zinc-900">
 				<Search />
 			</div>
