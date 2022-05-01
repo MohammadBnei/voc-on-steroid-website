@@ -54,7 +54,6 @@ const updateToken = async (event) => {
 		event.locals.user = user;
 		event.locals.jwt = jwt;
 		event.locals.fetch = loadedFetch({ token: jwt });
-		res.headers.raw()['set-cookie'] && setCookies.push(res.headers.raw()['set-cookie']);
 	} else {
 		setCookies = deleteCookies;
 		event.locals.user = null;
