@@ -96,7 +96,7 @@
 					<div class="h-12">
 						<input class="input" placeholder="Filtrer..." type="text" bind:value="{search}" />
 					</div>
-					<div class="flex flex-col h-full overflow-auto grow-0">
+					<div class="flex flex-col h-full overflow-y-auto grow-0 scrollbar-thin">
 						<AssocList words="{cFilteredList}" handleClick="{handleClick}" currentWord="{currentWord}" />
 					</div>
 				</div>
@@ -113,7 +113,7 @@
 							>
 						</div>
 					</div>
-					<div class="flex flex-col h-full overflow-auto grow-0">
+					<div class="flex flex-col h-full overflow-y-scroll grow-0 scrollbar-thin">
 						<CategoryList
 							categories="{$categoryStore}"
 							handleDelete="{removeCateory}"

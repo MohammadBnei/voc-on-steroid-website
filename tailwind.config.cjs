@@ -11,8 +11,9 @@ module.exports = {
 			listStyleType: ['hover', 'focus'],
 			listStylePosition: ['hover', 'focus'],
 		},
+		scrollbar: ['rounded', 'dark'],
 	},
-	plugins: [require('daisyui')],
+	plugins: [require('daisyui'), require('tailwind-scrollbar')],
 	daisyui: {
 		themes: ['garden', 'coffee'],
 		darkTheme: 'coffee',
