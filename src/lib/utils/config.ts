@@ -11,7 +11,7 @@ export const navLinks = [
 	},
 	{
 		href: '/assoc',
-		title: 'Your Words 🚧',
+		title: 'Your Words',
 		connected: true,
 	},
 	{

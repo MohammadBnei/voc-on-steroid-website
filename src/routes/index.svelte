@@ -41,7 +41,7 @@
 		<div class="max-w-7xl">
 			<h1 class="text-5xl font-bold mb-5">Welcome to Voc on Steroid Dictionary !</h1>
 			<p class="py-6 mb-5 text-xl">You can search for word definition, but if you log in there's more...</p>
-			<div class="flex justify-center">
+			<div class="flex justify-center text-zinc-900">
 				<Search />
 			</div>
 		</div>

@@ -51,11 +51,18 @@
 					>
 				</label>
 			</div>
-			<div class="flex-1 px-2 mx-2 hidden lg:block"><a href="/" sveltekit:prefetch on:click="{closeDrawer}">{title}</a></div>
+			<div class="flex-1 px-2 mx-2 hidden lg:block"
+				><a href="/" sveltekit:prefetch on:click="{closeDrawer}">{title}</a></div
+			>
 			<label class="swap swap-rotate hidden lg:inline-grid">
 				<input type="checkbox" checked="{currentTheme === 'garden'}" on:change="{switchTheme}" />
-				<span class="swap-on ">🌞</span>
-				<span class="swap-off ">🌚</span>
+
+				<div class="tooltip tooltip-bottom swap-on" data-tip="Changer le theme (→ sombre)">
+					<span class="text-2xl">🌞</span>
+				</div>
+				<div class="tooltip tooltip-bottom swap-off" data-tip="Changer le theme (→ clair)">
+					<span class="text-2xl">🌚</span>
+				</div>
 			</label>
 			<slot name="search" />
 			<div class="flex-none hidden lg:block">
@@ -72,8 +79,8 @@
 			<li><a href="/" sveltekit:prefetch on:click="{closeDrawer}">{title}</a></li>
 			<label class="swap swap-rotate">
 				<input type="checkbox" checked="{currentTheme === 'garden'}" on:change="{switchTheme}" />
-				<span class="swap-on">🌞</span>
-				<span class="swap-off">🌚</span>
+				<span class="swap-on text-2xl">🌞</span>
+				<span class="swap-off text-2xl">🌚</span>
 			</label>
 			<Nav handleLogin="{handleLogin}" handleLogout="{handleLogout}" on:clicked="{closeDrawer}" />
 		</ul>

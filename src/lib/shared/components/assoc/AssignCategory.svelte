@@ -22,13 +22,15 @@
 
 <div class="flex place-items-center">
 	{#each wordCatList as wCat, i}
-		<label
-			for="{wCat.name + i}"
-			class="badge badge-lg uppercase gap-2 modal-button hover:badge-warning p-3 cursor-pointer mr-2"
-			transition:blur
-		>
-			{wCat.name}
-		</label>
+		<div class="tooltip tooltip-left capitalize" data-tip="Supprimer">
+			<label
+				for="{wCat.name + i}"
+				class="badge badge-lg uppercase gap-2 modal-button hover:badge-warning p-3 cursor-pointer mr-2"
+				transition:blur
+			>
+				{wCat.name}
+			</label>
+		</div>
 
 		<input type="checkbox" id="{wCat.name + i}" class="modal-toggle" />
 		<label for="{wCat.name + i}" class="modal modal-bottom sm:modal-middle">
@@ -47,7 +49,11 @@
 	{/each}
 	<div class="dropdown dropdown-end">
 		<!-- svelte-ignore a11y-label-has-associated-control -->
-		<label tabindex="0" class="btn btn-ghost m-1"><span class="text-2xl">📚</span></label>
+		<label tabindex="0" class="btn btn-ghost m-1">
+			<div class="tooltip tooltip-left font-normal capitalize" data-tip="Assigner une catégorie">
+				<span class="text-2xl">📚</span>
+			</div>
+		</label>
 		<ul tabindex="0" class="dropdown-content menu p-4 shadow bg-base-100 rounded-box">
 			{#each filteredList as cat}
 				<!-- svelte-ignore a11y-missing-attribute -->

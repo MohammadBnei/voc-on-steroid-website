@@ -19,7 +19,7 @@
 	};
 </script>
 
-<label for="{id}" class="btn btn-ghost modal-button w-min"> 🆕 </label>
+<label for="{id}" class="btn btn-ghost modal-button w-min"> <span class="text-2xl">🆕</span></label>
 
 <input type="checkbox" id="{id}" class="modal-toggle" />
 <label for="{id}" class="modal modal-bottom sm:modal-middle">
