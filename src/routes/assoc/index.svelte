@@ -95,7 +95,7 @@
 						<input class="input" placeholder="Filtrer..." type="text" bind:value="{search}" />
 					</div>
 					<div class="flex flex-col h-full overflow-auto grow-0">
-						<AssocList words="{cFilteredList}" handleClick="{handleClick}" />
+						<AssocList words="{cFilteredList}" handleClick="{handleClick}" currentWord="{currentWord}" />
 					</div>
 				</div>
 			</div>
