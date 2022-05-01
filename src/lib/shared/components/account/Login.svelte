@@ -1,6 +1,4 @@
 <script lang="ts" context="module">
-	import Button from '$lib/shared/ui/components/button/Button.svelte';
-	import Input from '$lib/shared/ui/components/input/Input.svelte';
 	import { handleRes, post } from '$lib/utils/api';
 </script>
 
@@ -44,9 +42,9 @@
 		</label>
 		<input type="password" placeholder="password" class="input input-bordered" bind:value="{password}" />
 		<!-- svelte-ignore a11y-label-has-associated-control -->
-		<label class="label">
+		<!-- <label class="label">
 			<a href="#" class="label-text-alt link link-hover">Forgot password?</a>
-		</label>
+		</label> -->
 	</div>
 	<div class="form-control mt-6">
 		<button class="btn btn-primary" type="submit">Login</button>

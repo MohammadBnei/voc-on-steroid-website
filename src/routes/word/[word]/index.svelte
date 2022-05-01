@@ -28,7 +28,6 @@
 	import { HeadTags } from '$lib/shared';
 	import { afterUpdate, onDestroy } from 'svelte';
 	import { currentWord } from '$stores';
-	import { blur } from 'svelte/transition';
 
 	export let word: WordModel;
 

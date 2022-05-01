@@ -1,6 +1,5 @@
 import * as cookie from 'cookie';
 import { Buffer } from 'buffer';
-import { handleRes, handleResponseCookies } from './api';
 
 export interface AuthData {
 	user?: User;
@@ -18,14 +17,6 @@ interface User {
 	isVerified: boolean;
 	jwtToken?: string;
 	refreshToken?: string;
-}
-
-interface AuthResponse {
-	status?: number;
-	headers?: {
-		'set-cookie': string[];
-	};
-	body?: Record<string, any>;
 }
 
 export const getAuthCookies = (authResponse: AuthData): string[] => {

@@ -103,6 +103,7 @@ export async function handleRes(res: Response, loggerInstance?: string): Promise
 		if (!res.ok) {
 			const errMsg = data?.message || 'Something went wrong';
 			browser && toast.push(errMsg, { dismissable: true });
+			// eslint-disable-next-line no-console
 			console.error(errMsg);
 		}
 

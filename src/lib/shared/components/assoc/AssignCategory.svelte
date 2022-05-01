@@ -1,9 +1,8 @@
 <script lang="ts">
 	import type { WordModel } from '$lib/models';
-	import type { Category, AssocWord } from '$lib/models/interfaces/assoc';
+	import type { Category } from '$lib/models/interfaces/assoc';
 	import { assocStore, categoryStore } from '$stores';
 	import { blur } from 'svelte/transition';
-	import CategoryModal from './CategoryModal.svelte';
 
 	export let word: WordModel;
 	export let assignCategory: (word: WordModel, category: Category) => void;

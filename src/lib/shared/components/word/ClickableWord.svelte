@@ -3,8 +3,6 @@
 </script>
 
 <script lang="ts">
-	import { prefetch } from '$app/navigation';
-
 	export let text: string;
 	export let href: string;
 	$: path = `/word/${href}`;
