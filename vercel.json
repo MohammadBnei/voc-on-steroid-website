@@ -1,7 +1,7 @@
 {
     "headers": [
           {
-        "source": "/endpoint/word/",
+        "source": "/endpoint/word/*",
         "headers": [
           {
             "key": "Cache-Control",
