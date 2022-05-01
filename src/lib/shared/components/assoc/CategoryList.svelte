@@ -28,7 +28,7 @@
 
 			<input type="checkbox" id="{category.name}" class="modal-toggle" />
 			<label for="{category.name}" class="modal modal-bottom sm:modal-middle">
-				<div class="modal-box relative">
+				<div class="modal-box relative pt-12">
 					<label for="{category.name}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 					<h3 class="text-lg"
 						>Voulez-vous supprimer la catégorie <span class="font-semibold">{category.name}</span> ?</h3
