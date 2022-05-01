@@ -12,7 +12,7 @@
 	$: sortedCategories = categories.sort((a, b) => a?.name?.localeCompare(b.name));
 </script>
 
-{#each sortedCategories as category (category)}
+{#each sortedCategories as category (category.name)}
 	<div class="flex justify-between">
 		<button
 			class="modal-button btn {selectionList.some(({ name }) => name === category.name)

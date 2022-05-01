@@ -22,7 +22,7 @@
 	onMount(fetchUserWords);
 </script>
 
-{#each sortedWords as word (word)}
+{#each sortedWords as word (word.id)}
 	<button
 		class="btn {currentWord?.word === word.id ? 'btn-primary' : 'btn-ghost'}"
 		on:click="{() => handleClick(word)}"
