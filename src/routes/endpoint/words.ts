@@ -7,6 +7,9 @@ export const get: RequestHandler = async ({ url, locals }) => {
 	return {
 		status: res.status,
 		body: data,
-		maxage: 60 * 10
+		headers: {
+			'cache-control': 's-maxage=1, stale-while-revalidate=59',
+		},
+		maxage: 60 * 10,
 	};
 };
