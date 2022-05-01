@@ -106,7 +106,7 @@
 
 <div class="hero min-h-screen bg-base-200 place-items-start">
 	<div
-		class="hero-content text-center flex-col lg:flex-row lg:justify-around lg:max-w-screen-xl lg:w-screen items-start"
+		class="hero-content text-center flex-col-reverse lg:flex-row lg:justify-around lg:max-w-screen-xl lg:w-screen items-start"
 	>
 		<div class="flex gap-1 flex-col lg:flex-row transition-height duration-500 ease-in-out">
 			<div class="card bg-base-100 shadow-xl max-h-screen w-80">
@@ -145,7 +145,9 @@
 			</div>
 		</div>
 		{#if currentWord}
-			<Detail word="{currentWord}" />
+			<div class="w-80 lg:w-full">
+				<Detail word="{currentWord}" />
+			</div>
 		{/if}
 	</div>
 </div>

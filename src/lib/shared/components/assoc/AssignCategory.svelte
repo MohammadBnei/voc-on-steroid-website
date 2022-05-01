@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { WordModel } from '$lib/models';
-	import type { Category } from '$lib/models/interfaces/assoc';
+	import type { AssocWord, Category } from '$lib/models/interfaces/assoc';
 	import { assocStore, categoryStore } from '$stores';
 	import { blur } from 'svelte/transition';
 
@@ -8,7 +8,7 @@
 	export let assignCategory: (word: WordModel, category: Category) => void;
 	export let unassignCategory: (word: WordModel, category: Category) => void;
 
-	$: selectedAssoc = $assocStore.find(({ id }) => id === word.word) || {};
+	$: selectedAssoc = $assocStore.find(({ id }) => id === word.word) || ({} as AssocWord);
 
 	const handleClick = (category: Category) => {
 		selectedAssoc.categories?.includes(category.name)
