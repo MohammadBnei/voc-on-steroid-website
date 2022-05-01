@@ -16,13 +16,13 @@
 	import { onMount } from 'svelte';
 	import SvelteToast from '$lib/shared/ui/components/toast/SvelteToast.svelte';
 	import { isFetching, loginHistory } from '$stores';
-	import { get } from '$lib/utils/api';
+	import { put, get } from '$lib/utils/api';
 	import { fetchResemblingWord, fetchUserWords } from '$lib/core';
 	import { Search, PageTransition } from '$lib/shared';
 	import { goto } from '$app/navigation';
 
 	const logout = async () => {
-		await get({ path: 'logout' });
+		await put({ path: 'logout', data: {} });
 
 		$session.user = null;
 	};
