@@ -26,6 +26,7 @@
 	import { createCateory, removeCateory } from '$lib/core/services/category';
 	import CategoryList from '$lib/shared/components/assoc/CategoryList.svelte';
 	import type { AssocWord, Category } from '$lib/models/interfaces/assoc';
+	import { sineIn } from 'svelte/easing';
 
 	onMount(() => {
 		const localAssoc = localStorage.getItem('assoc');
@@ -106,9 +107,9 @@
 
 <div class="hero min-h-screen bg-base-200">
 	<div
-		class="hero-content text-center flex-col lg:flex-row lg:flex-wrap lg:justify-around lg:max-w-screen-xl lg:w-screen"
+		class="hero-content text-center flex-col lg:flex-row lg:justify-around lg:max-w-screen-xl lg:w-screen items-start"
 	>
-		<div class="flex gap-1 flex-col lg:flex-row">
+		<div class="flex gap-1 flex-col lg:flex-row transition-height duration-500 ease-in-out">
 			<div class="card bg-base-100 shadow-xl max-h-screen w-80">
 				<div class="card-body items-center overflow-auto">
 					<h2 class="card-title">Mots sauvegardés</h2>

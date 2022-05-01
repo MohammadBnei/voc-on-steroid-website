@@ -4,7 +4,11 @@ module.exports = {
 	mode: 'jit',
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
-		extend: {},
+		extend: {
+			transitionProperty: {
+				height: 'height',
+			},
+		},
 	},
 	variants: {
 		extend: {

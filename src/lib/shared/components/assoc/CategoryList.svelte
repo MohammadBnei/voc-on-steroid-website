@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Category } from '$lib/models/interfaces/assoc';
-	import { blur } from 'svelte/transition';
+	import { blur, fly } from 'svelte/transition';
 
 	export let categories: Category[];
 	export let deleteMode: boolean;
@@ -12,13 +12,13 @@
 	$: sortedCategories = categories.sort((a, b) => a?.name?.localeCompare(b.name));
 </script>
 
-{#each sortedCategories as category (category.name)}
+{#each sortedCategories as category (category)}
 	<div class="flex justify-between">
 		<button
 			class="modal-button btn {selectionList.some(({ name }) => name === category.name)
 				? 'btn-primary'
 				: 'btn-ghost'}"
-			transition:blur
+			transition:fly="{{ y: -100, duration: 200 }}"
 			on:click="{() => handleClick(category)}"
 		>
 			{category.name}

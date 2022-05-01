@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto, prefetch } from '$app/navigation';
-	import { blur } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import type { WordModel } from '$lib/models';
 	import type { AssocWord } from '$lib/models/interfaces/assoc';
 	import { onMount } from 'svelte';
@@ -22,12 +22,12 @@
 	onMount(() => fetchUserWords());
 </script>
 
-{#each sortedWords as word (word.id)}
+{#each sortedWords as word (word)}
 	<button
 		class="btn {currentWord?.word === word.id ? 'btn-primary' : 'btn-ghost'}"
 		on:click="{() => handleClick(word)}"
 		on:mouseenter="{() => onHover(word)}"
-		transition:blur
+		transition:fly="{{y:-100, duration:200}}"
 	>
 		{word.id}
 	</button>
