@@ -32,9 +32,9 @@
 		onChange="{handleSearch}"
 		bind:highlightedItem
 		html5autocomplete
-		inputClassName="input"
+		inputClassName="input !px-4 !py-4"
 		placeholder="Rechercher..."
-		className="!h-min max-h-8 {fullwidth ? 'grow' : ''}"
+		className="!h-min {fullwidth ? 'grow' : ''}"
 		create
 		onCreate="{handleCreate}"
 	/>
