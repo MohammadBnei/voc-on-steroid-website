@@ -5,13 +5,23 @@
 	export let categories: Category[];
 
 	export let handleDelete: (cat: Category) => void;
+	export let handleClick: (cat: Category) => void;;
+	export let selectionList: Category[] = [];
 
 	$: sortedCategories = categories.sort((a, b) => a?.name?.localeCompare(b.name));
 </script>
 
 {#each sortedCategories as category (category.name)}
 	<div class="flex justify-between">
-		<button class="btn btn-ghost modal-button" transition:blur> {category.name} </button>
+		<button
+			class="modal-button btn {selectionList.some(({ name }) => name === category.name)
+				? 'btn-primary'
+				: 'btn-ghost'}"
+			transition:blur
+			on:click="{() => handleClick(category)}"
+		>
+			{category.name}
+		</button>
 		<label for="{category.name}" class="btn btn-ghost modal-button" transition:blur> 🗑 </label>
 
 		<input type="checkbox" id="{category.name}" class="modal-toggle" />

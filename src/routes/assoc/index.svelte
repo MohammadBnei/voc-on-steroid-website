@@ -25,13 +25,14 @@
 	import CategoryModal from '$lib/shared/components/assoc/CategoryModal.svelte';
 	import { createCateory, removeCateory } from '$lib/core/services/category';
 	import CategoryList from '$lib/shared/components/assoc/CategoryList.svelte';
-	import type { AssocWord } from '$lib/models/interfaces/assoc';
+	import type { AssocWord, Category } from '$lib/models/interfaces/assoc';
 
 	onMount(fetchUserWords);
 
 	let search = '';
-
-	$: filteredWordList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
+	let selectedWord: AssocWord = null;
+	let currentWord: WordModel = null;
+	let selectedCategories: Category[] = [];
 
 	let metaData: Partial<IMetaTagProperties> = {
 		title: `Your Words`,
@@ -41,9 +42,6 @@
 		searchUrl: `https://voconsteroid.com/assoc`,
 		sitemapUrl: 'https://voconsteroid.com/sitemap.xml',
 	};
-
-	let selectedWord: AssocWord = null;
-	let currentWord: WordModel = null;
 
 	$: if (selectedWord) {
 		getWord(selectedWord.id).then((r) => (currentWord = r));
@@ -58,6 +56,29 @@
 			selectedWord = w;
 		}
 	};
+
+	const filterCategory = (cat: Category) => {
+		if (selectedCategories.some(({ name }) => name === cat.name)) {
+			selectedCategories = selectedCategories.filter(({ name }) => name !== cat.name);
+		} else {
+			selectedCategories = [...selectedCategories, cat];
+		}
+	};
+
+	// helpers
+	$: mapSCat = selectedCategories.map(({ name }) => name);
+	$: mapSCatStore = $categoryStore.map(({ name }) => name);
+
+	// Handle removal of a category
+	$: selectedCategories = selectedCategories.filter(({ name }) => mapSCatStore.includes(name));
+
+	// Filter word list on search input
+	$: filteredWordList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
+
+	// Filter word list on category
+	$: cFilteredList = selectedCategories.length
+		? filteredWordList.filter(({ categories }) => categories?.some((name) => mapSCat.includes(name)))
+		: filteredWordList;
 </script>
 
 <HeadTags metaData="{metaData}" />
@@ -74,7 +95,7 @@
 						<input class="input" placeholder="Filtrer..." type="text" bind:value="{search}" />
 					</div>
 					<div class="flex flex-col h-full overflow-auto grow-0">
-						<AssocList words="{filteredWordList}" handleClick="{handleClick}" />
+						<AssocList words="{cFilteredList}" handleClick="{handleClick}" />
 					</div>
 				</div>
 			</div>
@@ -83,7 +104,12 @@
 					<h2 class="card-title">Catégories 📚</h2>
 					<CategoryModal handleCreate="{createCateory}" />
 					<div class="flex flex-col h-full overflow-auto grow-0">
-						<CategoryList categories="{$categoryStore}" handleDelete="{removeCateory}" />
+						<CategoryList
+							categories="{$categoryStore}"
+							handleDelete="{removeCateory}"
+							handleClick="{filterCategory}"
+							selectionList="{selectedCategories}"
+						/>
 					</div>
 				</div>
 			</div>
