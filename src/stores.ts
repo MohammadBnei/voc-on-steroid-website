@@ -44,14 +44,12 @@ const createAssocStore = () => {
 const createCategoryStore = () => {
 	const { subscribe, update, set } = writable<Category[]>([]);
 
-	const updateList = (c: Category[]) => update((list) => [...c, ...list]);
 	const addCategory = (c: Category) => update((list) => [c, ...list]);
 	const removeCategory = (c: string) => update((list) => list.filter((v) => v.name !== c));
 	const setList = (c: Category[]) => set([...c]);
 
 	return {
 		subscribe,
-		updateList,
 		addCategory,
 		removeCategory,
 		setList,
