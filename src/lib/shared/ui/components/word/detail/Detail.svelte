@@ -8,6 +8,7 @@
 	import { assocStore } from '$stores';
 	import AssignCategory from '$lib/shared/components/assoc/AssignCategory.svelte';
 	import { assignCategory, unassignCategory } from '$lib/core/services/category';
+	import { afterNavigate } from '$app/navigation';
 
 	let openList: Array<string> = [];
 
@@ -16,6 +17,8 @@
 	};
 
 	export let word: WordModel;
+
+	afterNavigate(() => (openList = []));
 </script>
 
 <div class="card bg-base-100 shadow-xl">
