@@ -1,33 +1,56 @@
 <script lang="ts">
-	import type { AssocWord } from '$lib/models/interfaces/assoc';
+	import type { AssocWord, Category } from '$lib/models/interfaces/assoc';
 	import { assocStore, categoryStore } from '$stores';
-	import { blur } from 'svelte/transition';
 	import { assignCategory } from '$lib/core/services/category';
 	import type { WordModel } from '$lib/models';
+	import { onMount } from 'svelte';
+	import CategoryBadge from './CategoryBadge.svelte';
 
 	export let word: AssocWord | WordModel;
+	let id: string;
+	export let showCurrentCat = true;
 
-	$: wordId = word?.id || word?.word;
+	onMount(() => (id = Date.now().toString()));
+
+	$: wordId = (<AssocWord>word).id || (<WordModel>word).word;
 
 	$: selectedAssoc = $assocStore.find(({ id }) => id === wordId) || ({} as AssocWord);
 
 	$: filteredList = $categoryStore.filter(({ name }) => !selectedAssoc.categories?.includes(name));
 
+	const handleUnassign = (cat: Category) => (e: Event) => {
+		e.preventDefault();
+		assignCategory(wordId, cat);
+	};
 </script>
 
-<div class="dropdown dropdown-end">
-	<!-- svelte-ignore a11y-label-has-associated-control -->
-	<label tabindex="0" class="btn btn-ghost m-1 btn-circle" transition:blur>
-		<div class="tooltip tooltip-left font-normal capitalize" data-tip="Assigner une catégorie">
-			<span class="text-2xl">📚</span>
-		</div>
-	</label>
-	<ul tabindex="0" class="dropdown-content menu p-4 shadow bg-base-100 rounded-box">
+<label for="{id}" class="btn btn-ghost btn-circle modal-button">
+	<div class="tooltip tooltip-left font-normal capitalize" data-tip="Assigner une catégorie">
+		<span class="">📚</span>
+	</div>
+</label>
+
+<input type="checkbox" id="{id}" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+	<div class="modal-box relative">
+		<label for="{id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+		<h3 class="text-lg">Catégories présentes : </h3>
+		<CategoryBadge word="{word}" />
+		<div class="divider"></div>
 		{#each filteredList as cat}
-			<!-- svelte-ignore a11y-missing-attribute -->
-			<li on:click="{() => assignCategory(wordId, cat)}"><a>{cat.name}</a></li>
+			<div class="tooltip font-normal capitalize" data-tip="Assigner">
+				<div
+					class="badge badge-lg badge-outline uppercase gap-2 p-3 cursor-pointer mr-2"
+					on:click="{() => assignCategory(wordId, cat)}"
+				>
+					{cat.name}
+				</div>
+			</div>
 		{:else}
-			<li>Aucune catégorie.</li>
+			<p class="py-4">Aucune catégorie à attribuer</p>
 		{/each}
-	</ul>
+		<div class="modal-action">
+			<label for="{id}" class="btn btn-secondary">Ok</label>
+		</div>
+	</div>
 </div>

@@ -15,7 +15,7 @@
 <div class="grid grid-cols-[auto_1fr]">
 	{#each sortedCategories as category (category.name)}
 		<button
-			class="modal-button btn {selectionList.some(({ name }) => name === category.name)
+			class="modal-button btn w-fit {selectionList.some(({ name }) => name === category.name)
 				? 'btn-primary'
 				: 'btn-ghost'}"
 			transition:blur

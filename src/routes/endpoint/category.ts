@@ -1,7 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import * as api from '$lib/utils/api';
 
-const getCatUrl = (locals: App.Locals): string => `${locals.ASSOC_API}/category`;
+const getCatUrl = (locals: App.Locals): string => `${locals.ASSOC_API}category`;
 
 export const put: RequestHandler = async ({ request, locals }) => {
 	const res = await locals.fetch.put({ path: getCatUrl(locals), data: await api.getBody(request) });

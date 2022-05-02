@@ -5,7 +5,7 @@
 	import type { AssocWord } from '$lib/models/interfaces/assoc';
 	import { onMount } from 'svelte';
 	import { fetchUserWords, removeWord } from '$lib/core';
-import AssignCategory from './AssignCategory.svelte';
+	import AssignCategory from './AssignCategory.svelte';
 
 	export let words: AssocWord[];
 	export let currentWord: WordModel = null;
@@ -36,22 +36,16 @@ import AssignCategory from './AssignCategory.svelte';
 		>
 			{word.id}
 		</button>
-		{#if deleteMode}
-			 <label
-				 for="{word.id}"
-				 class="btn btn-circle btn-ghost modal-button"
-				 transition:blur="{{ duration: deleteMode ? 300 : 0 }}"
-			 >
-				 ❌
-			 </label>
-		{:else}
-			 <AssignCategory
-			 	word={word}
-			 />
-		{/if}
+		<div class="transition">
+			{#if deleteMode}
+				<label for="{word.id}" class="btn btn-circle btn-ghost modal-button"> ❌ </label>
+			{:else}
+				<AssignCategory word="{word}" />
+			{/if}
+		</div>
 
 		<input type="checkbox" id="{word.id}" class="modal-toggle" />
-		<label for="{word.id}" class="modal modal-bottom sm:modal-middle">
+		<label for="{word.id}" class="modal modal-bottom sm:modal-middle z-10">
 			<div class="modal-box relative pt-12">
 				<label for="{word.id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 				<h3 class="text-lg mb-8">Voulez-vous retirer le mot <span class="font-semibold">{word.id}</span> ?</h3>

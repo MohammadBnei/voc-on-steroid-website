@@ -14,7 +14,6 @@
 </script>
 
 <script lang="ts">
-	import { AssocList } from '$lib/shared/components/assoc';
 	import type { IMetaTagProperties } from '$lib/models';
 	import { HeadTags } from '$lib/shared';
 	import { assocStore, categoryStore } from '$stores';
@@ -22,10 +21,9 @@
 	import { getWord } from '$lib/core';
 	import { Detail } from '$lib/shared/ui/components/word/detail';
 	import type { WordModel } from '$lib/models/word.model';
-	import CategoryModal from '$lib/shared/components/assoc/CategoryModal.svelte';
-	import { createCateory, removeCateory } from '$lib/core/services/category';
-	import CategoryList from '$lib/shared/components/assoc/CategoryList.svelte';
 	import type { AssocWord, Category } from '$lib/models/interfaces/assoc';
+	import AssocComponent from '$lib/shared/components/assoc/AssocComponent.svelte';
+	import CategoryComponent from '$lib/shared/components/assoc/CategoryComponent.svelte';
 
 	onMount(() => {
 		const localAssoc = localStorage.getItem('assoc');
@@ -48,12 +46,9 @@
 		};
 	});
 
-	let search = '';
 	let selectedWord: AssocWord = null;
 	let currentWord: WordModel = null;
 	let selectedCategories: Category[] = [];
-	let deleteModeAssoc: any = false;
-	let deleteModeCat: any = false;
 	let detailElem: HTMLElement;
 	let pageElem: HTMLElement;
 
@@ -87,29 +82,6 @@
 			selectedWord = w;
 		}
 	};
-
-	const filterCategory = (cat: Category) => {
-		if (selectedCategories.some(({ name }) => name === cat.name)) {
-			selectedCategories = selectedCategories.filter(({ name }) => name !== cat.name);
-		} else {
-			selectedCategories = [...selectedCategories, cat];
-		}
-	};
-
-	// helpers
-	$: mapSCat = selectedCategories.map(({ name }) => name);
-	$: mapSCatStore = $categoryStore.map(({ name }) => name);
-
-	// Handle removal of a category
-	$: selectedCategories = selectedCategories.filter(({ name }) => mapSCatStore.includes(name));
-
-	// Filter word list on search input
-	$: filteredWordList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
-
-	// Filter word list on category
-	$: cFilteredList = selectedCategories.length
-		? filteredWordList.filter(({ categories }) => categories?.some((name) => mapSCat.includes(name)))
-		: filteredWordList;
 </script>
 
 <HeadTags metaData="{metaData}" />
@@ -118,56 +90,36 @@
 	<div
 		class="hero-content text-center flex-col-reverse lg:flex-row lg:justify-around lg:max-w-screen-xl lg:w-screen items-start"
 	>
-		<div class="flex gap-2 flex-col lg:flex-row transition-height duration-500 ease-in-out">
+		<div class="flex gap-2 w-full flex-col lg:flex-row transition-height duration-500 ease-in-out">
 			<div class="card bg-base-100 shadow-xl max-h-screen lg:w-72">
 				<div class="card-body items-center overflow-auto grow">
-					<h2 class="card-title ">Mots sauvegardés</h2>
-					<div class="h-12 flex">
-						<input class="input w-36" placeholder="Filtrer..." type="text" bind:value="{search}" />
-						<div class="tooltip tooltip-left" data-tip="Supprimer des Mots">
-							<button
-								class="btn {deleteModeAssoc ? 'btn-primary' : 'btn-ghost'} btn-circle"
-								on:click="{() => (deleteModeAssoc ^= 1)}">🗑</button
-							>
-						</div>
-					</div>
-					<div class="flex flex-col h-full overflow-y-auto grow-0 scrollbar-thin">
-						<AssocList
-							words="{cFilteredList}"
-							handleClick="{handleClick}"
-							currentWord="{currentWord}"
-							deleteMode="{deleteModeAssoc}"
-						/>
-					</div>
+					<AssocComponent
+						handleSelect="{handleClick}"
+						currentWord="{currentWord}"
+						selectedCategories="{selectedCategories}"
+					/>
 				</div>
 			</div>
 			<div class="card bg-base-100 shadow-xl max-h-screen">
 				<div class="card-body items-center grow-0">
-					<h2 class="card-title">Catégories 📚</h2>
-					<div class="flex">
-						<CategoryModal handleCreate="{createCateory}" />
-						<div class="tooltip" data-tip="Supprimer des catégories">
-							<button
-								class="btn {deleteModeCat ? 'btn-primary' : 'btn-ghost'} btn-circle"
-								on:click="{() => (deleteModeCat ^= 1)}">🗑</button
-							>
-						</div>
-					</div>
-					<div class="flex flex-col h-full overflow-y-scroll grow-0 scrollbar-thin">
-						<CategoryList
-							categories="{$categoryStore}"
-							handleDelete="{removeCateory}"
-							handleClick="{filterCategory}"
-							selectionList="{selectedCategories}"
-							deleteMode="{deleteModeCat}"
-						/>
-					</div>
+					<CategoryComponent on:selection="{(event) => (selectedCategories = event.detail)}" />
 				</div>
 			</div>
 		</div>
 		{#if currentWord}
 			<div class="w-80 lg:w-full" bind:this="{detailElem}">
 				<Detail word="{currentWord}" />
+			</div>
+		{:else}
+			<div class="w-80 lg:w-full">
+				<div class="card bg-base-100 shadow-xl">
+					<div class="card-body">
+						<div class="flex justify-center lg:flex-row flex-wrap flex-col">
+							<h2 class="card-title text-2xl lg:text-5xl capitalize mb-2">Aucune sélection</h2>
+							<div class="mb-2"> Cliquez sur un mot de votre liste pour l'afficher ici </div>
+						</div>
+					</div>
+				</div>
 			</div>
 		{/if}
 	</div>

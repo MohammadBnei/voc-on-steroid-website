@@ -13,8 +13,8 @@ export async function fetchUserWords(): Promise<AssocWord[]> {
 	const res = await api.get({ path: 'assoc/' });
 	const data = await api.handleRes(res);
 
-	data.words && assocStore.setList(data.words);
-	data.categories && categoryStore.setList(data.categories);
+	assocStore.setList(data.words);
+	categoryStore.setList(data.categories);
 
 	return data.words;
 }
