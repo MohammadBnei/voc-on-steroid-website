@@ -1,10 +1,5 @@
-<script lang="ts" context="module">
-	import { handleRes, post } from '$lib/utils/api';
-</script>
-
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { session } from '$app/stores';
 	import { toast } from '$lib/shared/ui/components/toast';
 	import { loginHistory } from '$stores';
 	import { login } from '$lib/core/services/user';
