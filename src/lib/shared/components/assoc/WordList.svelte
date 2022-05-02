@@ -46,7 +46,7 @@ import AssignCategory from './AssignCategory.svelte';
 			 </label>
 		{:else}
 			 <AssignCategory
-			 	word={currentWord}
+			 	word={word}
 			 />
 		{/if}
 

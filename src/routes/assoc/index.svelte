@@ -114,13 +114,13 @@
 
 <HeadTags metaData="{metaData}" />
 
-<div class="hero min-h-screen bg-base-200 place-items-start" bind:this="{pageElem}">
+<div class="hero min-h-screen bg-base-200 lg:place-items-start" bind:this="{pageElem}">
 	<div
 		class="hero-content text-center flex-col-reverse lg:flex-row lg:justify-around lg:max-w-screen-xl lg:w-screen items-start"
 	>
-		<div class="flex lg:gap-2 flex-col lg:flex-row transition-height duration-500 ease-in-out">
+		<div class="flex gap-2 flex-col lg:flex-row transition-height duration-500 ease-in-out">
 			<div class="card bg-base-100 shadow-xl max-h-screen lg:w-72">
-				<div class="card-body items-center overflow-auto">
+				<div class="card-body items-center overflow-auto grow">
 					<h2 class="card-title ">Mots sauvegardés</h2>
 					<div class="h-12 flex">
 						<input class="input w-36" placeholder="Filtrer..." type="text" bind:value="{search}" />

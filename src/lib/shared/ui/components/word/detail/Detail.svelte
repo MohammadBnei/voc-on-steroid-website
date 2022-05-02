@@ -7,9 +7,8 @@
 	import { AddRemoveButton, ClickableText } from '$lib/shared/components';
 	import { assocStore } from '$stores';
 	import AssignCategory from '$lib/shared/components/assoc/AssignCategory.svelte';
-	import { assignCategory, unassignCategory } from '$lib/core/services/category';
 	import { afterNavigate } from '$app/navigation';
-import CategoryBadge from '$lib/shared/components/assoc/CategoryBadge.svelte';
+	import CategoryBadge from '$lib/shared/components/assoc/CategoryBadge.svelte';
 
 	let openList: Array<string> = [];
 
@@ -30,13 +29,8 @@ import CategoryBadge from '$lib/shared/components/assoc/CategoryBadge.svelte';
 				<div class="flex">
 					{#if $assocStore.some(({ id }) => id === word.word)}
 						<div class="flex place-items-center">
-							<CategoryBadge
-								word="{word}"
-								unassignCategory="{unassignCategory}"
-							/>
-							<AssignCategory
-								word="{word}"
-							/>
+							<CategoryBadge word="{word}" />
+							<AssignCategory word="{word}" />
 						</div>
 					{/if}
 					<AddRemoveButton
