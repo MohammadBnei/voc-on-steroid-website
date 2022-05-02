@@ -6,12 +6,12 @@
 
 	export let word: AssocWord | WordModel;
 
-	$: wordId = word?.id || word?.word;
+	$: wordId = (<AssocWord>word)?.id || (<WordModel>word)?.word;
 
 	const id = crypto.randomUUID();
-	$: selectedAssoc = $assocStore.find(({ id }) => id === wordId) || ({} as AssocWord);
+	$: selected = $assocStore.find(({ id }) => id === wordId) || ({} as AssocWord);
 
-	$: wordCatList = $categoryStore.filter(({ name }) => selectedAssoc.categories?.includes(name));
+	$: wordCatList = $categoryStore.filter(({ name }) => selected.categories?.includes(name));
 </script>
 
 {#each wordCatList as wCat, i}

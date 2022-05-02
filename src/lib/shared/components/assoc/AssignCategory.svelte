@@ -8,25 +8,19 @@
 
 	export let word: AssocWord | WordModel;
 	let id: string;
-	export let showCurrentCat = true;
 
 	onMount(() => (id = Date.now().toString()));
 
 	$: wordId = (<AssocWord>word).id || (<WordModel>word).word;
 
-	$: selectedAssoc = $assocStore.find(({ id }) => id === wordId) || ({} as AssocWord);
+	$: selected = $assocStore.find(({ id }) => id === wordId) || ({} as AssocWord);
 
-	$: filteredList = $categoryStore.filter(({ name }) => !selectedAssoc.categories?.includes(name));
-
-	const handleUnassign = (cat: Category) => (e: Event) => {
-		e.preventDefault();
-		assignCategory(wordId, cat);
-	};
+	$: filteredList = $categoryStore.filter(({ name }) => !selected.categories?.includes(name));
 </script>
 
 <label for="{id}" class="btn btn-ghost btn-circle modal-button">
 	<div class="tooltip tooltip-left font-normal capitalize" data-tip="Assigner une catégorie">
-		<span class="">📚</span>
+		<span >📚</span>
 	</div>
 </label>
 

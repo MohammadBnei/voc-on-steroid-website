@@ -4,9 +4,7 @@ import { get, handleRes } from '$lib/utils/api';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function fetchResemblingWord(input: string): Promise<WordListModel> {
-	let url = 'resemblance';
-	url += `?term=${input.toLocaleLowerCase()}`;
-	const res = await get({ path: url });
+	const res = await get({ path: 'resemblance/' + encodeURI(input) });
 	const data = (await handleRes(res, 'Words')) as unknown as [IWordList];
 	if (!res.ok) {
 		return [] as WordListModel;
@@ -24,5 +22,3 @@ export async function getWord(word: string): Promise<WordModel> {
 	const wordModel = new WordModel().deserialize(data.word as unknown as IWord);
 	return wordModel;
 }
-
-
