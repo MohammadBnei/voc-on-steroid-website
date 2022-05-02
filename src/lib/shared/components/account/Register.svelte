@@ -1,10 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-
-	import { session } from '$app/stores';
-import { register } from '$lib/core/services/user';
+	import { register } from '$lib/core/services/user';
 	import { toast } from '$lib/shared/ui/components/toast';
-	import { handleRes, post } from '$lib/utils/api';
 	import { loginHistory } from '$stores';
 
 	let username = '',
@@ -21,14 +18,16 @@ import { register } from '$lib/core/services/user';
 
 	const handleRegister = async () => {
 		if (Object.values(userInfos).some((v) => !v)) {
-			toast.push('You have to put all informations');
+			toast.push('Vous devez entrer toutes les infromations');
 			return;
 		}
-		register(userInfos).then(() => {
-			goto($loginHistory?.startsWith('/word/') ? $loginHistory : '/');
-			$loginHistory = null;
-			toast.push('Successfully logged in.');
-		});
+		register(userInfos)
+			.then(() => {
+				goto($loginHistory?.startsWith('/word/') ? $loginHistory : '/');
+				$loginHistory = null;
+				toast.push('Inscription réussie !');
+			})
+			.catch();
 	};
 </script>
 

@@ -8,6 +8,8 @@ export async function login(identity: string, password: string): Promise<void> {
 	if (res.ok) {
 		const user = new UserModel().deserialize(data.user);
 		session.update((s) => ({ ...s, user }));
+	} else {
+		throw new Error(data?.message || "Quelque chose s'est mal passé");
 	}
 }
 
@@ -17,5 +19,7 @@ export async function register(newUser: { username: string; password: string; em
 	if (res.ok) {
 		const user = new UserModel().deserialize(data.user);
 		session.update((s) => ({ ...s, user }));
+	} else {
+		throw new Error(data?.message || "Quelque chose s'est mal passé");
 	}
 }

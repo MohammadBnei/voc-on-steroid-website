@@ -22,7 +22,7 @@
 	$: highlightedItem && prefetch('/word/' + highlightedItem.key);
 </script>
 
-<div class="flex items-center gap-2">
+<div class="flex items-center gap-2 max-h-8 z-10">
 	<AutoComplete
 		searchFunction="{getWords}"
 		localFiltering="false"
@@ -32,9 +32,9 @@
 		onChange="{handleSearch}"
 		bind:highlightedItem
 		html5autocomplete
-		inputClassName="input !px-4 !py-4"
+		inputClassName="input !px-3 !py-3"
 		placeholder="Rechercher..."
-		className="!h-min {fullwidth ? 'grow' : ''}"
+		className="!h-min max-h-12{fullwidth ? 'grow' : ''}"
 		create
 		onCreate="{handleCreate}"
 	/>

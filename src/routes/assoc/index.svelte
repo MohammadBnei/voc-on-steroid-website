@@ -52,6 +52,8 @@
 	let selectedWord: AssocWord = null;
 	let currentWord: WordModel = null;
 	let selectedCategories: Category[] = [];
+	let deleteModeAssoc: any = false;
+	let deleteModeCat: any = false;
 	let detailElem: HTMLElement;
 	let pageElem: HTMLElement;
 
@@ -94,8 +96,6 @@
 		}
 	};
 
-	let deleteMode: any = false;
-
 	// helpers
 	$: mapSCat = selectedCategories.map(({ name }) => name);
 	$: mapSCatStore = $categoryStore.map(({ name }) => name);
@@ -118,15 +118,26 @@
 	<div
 		class="hero-content text-center flex-col-reverse lg:flex-row lg:justify-around lg:max-w-screen-xl lg:w-screen items-start"
 	>
-		<div class="flex gap-1 flex-col lg:flex-row transition-height duration-500 ease-in-out">
-			<div class="card bg-base-100 shadow-xl max-h-screen w-80">
+		<div class="flex lg:gap-2 flex-col lg:flex-row transition-height duration-500 ease-in-out">
+			<div class="card bg-base-100 shadow-xl max-h-screen lg:w-72">
 				<div class="card-body items-center overflow-auto">
-					<h2 class="card-title">Mots sauvegardés</h2>
-					<div class="h-12">
-						<input class="input" placeholder="Filtrer..." type="text" bind:value="{search}" />
+					<h2 class="card-title ">Mots sauvegardés</h2>
+					<div class="h-12 flex">
+						<input class="input w-36" placeholder="Filtrer..." type="text" bind:value="{search}" />
+						<div class="tooltip tooltip-left" data-tip="Supprimer des Mots">
+							<button
+								class="btn {deleteModeAssoc ? 'btn-primary' : 'btn-ghost'} btn-circle"
+								on:click="{() => (deleteModeAssoc ^= 1)}">🗑</button
+							>
+						</div>
 					</div>
 					<div class="flex flex-col h-full overflow-y-auto grow-0 scrollbar-thin">
-						<AssocList words="{cFilteredList}" handleClick="{handleClick}" currentWord="{currentWord}" />
+						<AssocList
+							words="{cFilteredList}"
+							handleClick="{handleClick}"
+							currentWord="{currentWord}"
+							deleteMode="{deleteModeAssoc}"
+						/>
 					</div>
 				</div>
 			</div>
@@ -137,8 +148,8 @@
 						<CategoryModal handleCreate="{createCateory}" />
 						<div class="tooltip" data-tip="Supprimer des catégories">
 							<button
-								class="btn {deleteMode ? 'btn-primary' : 'btn-ghost'} btn-circle"
-								on:click="{() => (deleteMode ^= 1)}">🗑</button
+								class="btn {deleteModeCat ? 'btn-primary' : 'btn-ghost'} btn-circle"
+								on:click="{() => (deleteModeCat ^= 1)}">🗑</button
 							>
 						</div>
 					</div>
@@ -148,7 +159,7 @@
 							handleDelete="{removeCateory}"
 							handleClick="{filterCategory}"
 							selectionList="{selectedCategories}"
-							deleteMode="{deleteMode}"
+							deleteMode="{deleteModeCat}"
 						/>
 					</div>
 				</div>

@@ -9,6 +9,7 @@
 	import AssignCategory from '$lib/shared/components/assoc/AssignCategory.svelte';
 	import { assignCategory, unassignCategory } from '$lib/core/services/category';
 	import { afterNavigate } from '$app/navigation';
+import CategoryBadge from '$lib/shared/components/assoc/CategoryBadge.svelte';
 
 	let openList: Array<string> = [];
 
@@ -23,16 +24,20 @@
 
 <div class="card bg-base-100 shadow-xl">
 	<div class="card-body text-left">
-		<div class="flex lg:justify-between lg:flex-row flex-col place-items-center">
+		<div class="flex lg:justify-between lg:flex-row flex-wrap flex-col place-items-center">
 			<h2 class="card-title text-2xl lg:text-5xl capitalize mb-2">{word.word}</h2>
 			{#if $session.user}
 				<div class="flex">
 					{#if $assocStore.some(({ id }) => id === word.word)}
-						<AssignCategory
-							word="{word}"
-							assignCategory="{assignCategory}"
-							unassignCategory="{unassignCategory}"
-						/>
+						<div class="flex place-items-center">
+							<CategoryBadge
+								word="{word}"
+								unassignCategory="{unassignCategory}"
+							/>
+							<AssignCategory
+								word="{word}"
+							/>
+						</div>
 					{/if}
 					<AddRemoveButton
 						savedWord="{$assocStore.some(({ id }) => id === word.word)}"

@@ -14,14 +14,16 @@
 
 	const handleLogin = () => {
 		if (!identity || !password) {
-			toast.push('You have to type your email/username AND password');
+			toast.push('Vous devez entrer les deux infromations.');
 			return;
 		}
-		login(identity, password).then(() => {
-			goto($loginHistory?.startsWith('/word/') ? $loginHistory : '/');
-			$loginHistory = null;
-			toast.push('Successfully logged in.');
-		});
+		login(identity, password)
+			.then(() => {
+				goto($loginHistory?.startsWith('/word/') ? $loginHistory : '/');
+				$loginHistory = null;
+				toast.push('Connexion réussie !');
+			})
+			.catch();
 	};
 </script>
 
