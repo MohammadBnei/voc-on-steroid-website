@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { assocStore, categoryStore } from '$stores';
+	import { categoryStore } from '$stores';
 	import { createEventDispatcher, onMount } from 'svelte';
-	import CategoryModal from '$lib/shared/components/assoc/CreateCategoryModal.svelte';
+	import CreateCategoryModal from '$lib/shared/components/assoc/CreateCategoryModal.svelte';
 	import { createCateory, removeCateory } from '$lib/core/services/category';
 	import CategoryList from '$lib/shared/components/assoc/CategoryList.svelte';
 	import type { Category } from '$lib/models/interfaces/assoc';
@@ -35,7 +35,7 @@
 
 <h2 class="card-title">Catégories 📚</h2>
 <div class="flex">
-	<CategoryModal handleCreate="{createCateory}" />
+	<CreateCategoryModal handleCreate="{createCateory}" />
 	<div class="tooltip" data-tip="Supprimer des catégories">
 		<button
 			class="btn {deleteModeCat ? 'btn-primary' : 'btn-ghost'} btn-circle"
