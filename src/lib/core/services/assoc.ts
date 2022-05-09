@@ -13,10 +13,12 @@ export async function fetchUserWords(): Promise<AssocWord[]> {
 	const res = await api.get({ path: 'assoc/' });
 	const data = await api.handleRes(res);
 
-	assocStore.setList(data.words);
-	categoryStore.setList(data.categories);
-
-	return data.words;
+	if (res.ok) {
+		assocStore.setList(data.words);
+		categoryStore.setList(data.categories);
+		
+		return data.words;
+	}
 }
 
 export async function addWord(word: string): Promise<null | Response> {
@@ -29,13 +31,11 @@ export async function addWord(word: string): Promise<null | Response> {
 	}
 }
 
-export async function removeWord(word: string): Promise<null | Response> {
+export async function removeWord(word: string): Promise<void> {
 	const res = await api.del({ path: `assoc`, data: { word } });
 	api.handleRes(res);
 	if (res.ok) {
 		assocStore.removeWord(word);
 		toast.push(`Successfully removed ${word}`);
 	}
-
-	return null;
 }

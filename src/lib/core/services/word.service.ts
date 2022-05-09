@@ -16,9 +16,8 @@ export async function fetchResemblingWord(input: string): Promise<WordListModel>
 export async function getWord(word: string): Promise<WordModel> {
 	const res = await get({ path: `word/${word}` });
 	const data = await handleRes(res, 'Words');
-	if (!res.ok) {
-		throw Error(data?.message);
+	if (res.ok) {
+		const wordModel = new WordModel().deserialize(data.word as unknown as IWord);
+		return wordModel;
 	}
-	const wordModel = new WordModel().deserialize(data.word as unknown as IWord);
-	return wordModel;
 }

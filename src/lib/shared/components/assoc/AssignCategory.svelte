@@ -11,16 +11,15 @@
 
 	onMount(() => (id = Date.now().toString()));
 
-	$: wordId = (<AssocWord>word).id || (<WordModel>word).word;
+	$: wordId = (<AssocWord>word)?.id || (<WordModel>word)?.word;
 
 	$: selected = $assocStore.find(({ id }) => id === wordId) || ({} as AssocWord);
 
 	$: filteredList = $categoryStore.filter(({ name }) => !selected.categories?.includes(name));
 </script>
-
 <label for="{id}" class="btn btn-ghost btn-circle modal-button">
 	<div class="tooltip tooltip-left font-normal capitalize" data-tip="Assigner une catégorie">
-		<span >📚</span>
+		<span>📚</span>
 	</div>
 </label>
 
