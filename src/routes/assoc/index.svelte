@@ -107,7 +107,7 @@
 			</div>
 		</div>
 		{#if currentWord}
-			<div class="w-80 lg:w-full" bind:this="{detailElem}">
+			<div class="w-80 lg:w-full max-h-[95vh]" bind:this="{detailElem}">
 				<Detail word="{currentWord}" />
 			</div>
 		{:else}
