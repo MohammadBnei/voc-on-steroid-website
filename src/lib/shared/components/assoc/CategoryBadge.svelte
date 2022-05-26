@@ -15,10 +15,10 @@
 </script>
 
 {#each wordCatList as wCat, i}
-	<div class="tooltip lg:tooltip-left capitalize text-xs" data-tip="Supprimer">
+	<div class="tooltip lg:tooltip-left capitalize" data-tip="Supprimer">
 		<label
 			for="{id + i}"
-			class="badge badge-lg uppercase gap-2 modal-button hover:badge-warning p-3 cursor-pointer mr-2"
+			class="badge badge-lg text-xs whitespace-nowrap uppercase gap-2 modal-button hover:badge-warning p-3 cursor-pointer mr-2"
 		>
 			{wCat.name}
 		</label>
