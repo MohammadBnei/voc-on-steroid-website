@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ session }) => {
+	export const load: Load = async ({ session, url, params }) => {
 		if (!session.user) {
 			return {
 				status: 302,
@@ -9,7 +9,11 @@
 			};
 		}
 
-		return {};
+		return {
+			props: {
+				queryWord: url.searchParams.get('word'),
+			},
+		};
 	};
 </script>
 
@@ -24,6 +28,10 @@
 	import type { AssocWord, Category } from '$lib/models/interfaces/assoc';
 	import AssocComponent from '$lib/shared/components/assoc/AssocComponent.svelte';
 	import CategoryComponent from '$lib/shared/components/assoc/CategoryComponent.svelte';
+	import { page } from '$app/stores';
+	import { browser } from '$app/env';
+
+	export let queryWord: string;
 
 	onMount(() => {
 		const localAssoc = localStorage.getItem('assoc');
@@ -39,6 +47,10 @@
 		}
 
 		const unCategory = categoryStore.subscribe((c) => localStorage.setItem('category', JSON.stringify(c)));
+
+		if (queryWord) {
+			selectedWord = $assocStore.find(({ id }) => id === queryWord);
+		}
 
 		return () => {
 			unAssoc();
@@ -66,6 +78,8 @@
 			currentWord = r;
 		});
 	} else {
+		$page.url.searchParams.delete('word');
+		browser && history.replaceState({}, '', $page.url);
 		currentWord = null;
 	}
 
@@ -80,6 +94,8 @@
 			selectedWord = null;
 		} else {
 			selectedWord = w;
+			$page.url.searchParams.set('word', w.id);
+			browser && history.replaceState({}, '', $page.url);
 		}
 	};
 </script>
