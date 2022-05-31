@@ -28,7 +28,7 @@
 	$: selectedCategories = selectedCategories.filter(({ name }) => mapSCatStore.includes(name));
 
 	// Filter word list on search input
-	$: filteredWordList = search.length ? $assocStore.filter(({ id }) => id.includes(search)) : $assocStore;
+	$: filteredWordList = search.length ? $assocStore.filter(({ id }) => id.startsWith(search)) : $assocStore;
 
 	// Filter word list on category
 	$: cFilteredList = selectedCategories.length
