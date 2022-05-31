@@ -32,7 +32,7 @@
 	export let word: WordModel;
 
 	let metaData: Partial<IMetaTagProperties> = {
-		title: `${word?.word}`,
+		title: `${word?.word.toUpperCase()}`,
 		description: ` Definitions : ${word.types.reduce((acc, cur) => {
 			acc += cur.type + ' : ';
 			acc += cur.definitions.reduce((acc, cur) => {
