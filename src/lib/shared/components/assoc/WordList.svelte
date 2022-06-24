@@ -9,7 +9,7 @@
 
 	export let words: AssocWord[];
 	export let currentWord: WordModel = null;
-	export let deleteMode: boolean;
+	export let deleteMode = false;
 
 	export let handleClick: (word: AssocWord) => void = (word: AssocWord) => {
 		goto('/word/' + word.id);
