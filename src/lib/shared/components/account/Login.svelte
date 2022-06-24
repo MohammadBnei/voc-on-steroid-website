@@ -9,7 +9,7 @@
 
 	const handleLogin = () => {
 		if (!identity || !password) {
-			toast.push('Vous devez entrer les deux infromations.');
+			toast.push('Vous devez entrer les deux informations.');
 			return;
 		}
 		login(identity, password)
@@ -26,14 +26,14 @@
 	<div class="form-control">
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="label">
-			<span class="label-text">Username / Email</span>
+			<span class="label-text">Pseudo / Email</span>
 		</label>
 		<input type="text" placeholder="email" class="input input-bordered" bind:value="{identity}" />
 	</div>
 	<div class="form-control">
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="label">
-			<span class="label-text">Password</span>
+			<span class="label-text">Mot de passe</span>
 		</label>
 		<input type="password" placeholder="password" class="input input-bordered" bind:value="{password}" />
 		<!-- svelte-ignore a11y-label-has-associated-control -->
@@ -42,10 +42,10 @@
 		</label> -->
 	</div>
 	<div class="form-control mt-6">
-		<button class="btn btn-primary" type="submit">Login</button>
+		<button class="btn btn-primary" type="submit">Se Connecter</button>
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="label">
-			<a href="#register" class="label-text-alt link link-hover">Sign up</a>
+			<a href="#register" class="label-text-alt link link-hover">S'enregistrer'</a>
 		</label>
 	</div>
 </form>

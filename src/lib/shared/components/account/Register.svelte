@@ -35,7 +35,7 @@
 	<div class="form-control">
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="label">
-			<span class="label-text">Username</span>
+			<span class="label-text">Pseudo</span>
 		</label>
 		<input type="text" class="input input-bordered" bind:value="{username}" required />
 	</div>
@@ -49,22 +49,22 @@
 	<div class="form-control">
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="label">
-			<span class="label-text">Password</span>
+			<span class="label-text">Mot de passe</span>
 		</label>
 		<input type="password" class="input input-bordered" bind:value="{password}" required />
 	</div>
 	<div class="form-control">
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="label">
-			<span class="label-text">Confirm Password</span>
+			<span class="label-text">Confirmer le mot de passe</span>
 		</label>
 		<input type="password" class="input input-bordered" bind:value="{confirmPassword}" required />
 	</div>
 	<div class="form-control mt-6">
-		<button class="btn btn-primary" type="submit">Register</button>
+		<button class="btn btn-primary" type="submit">S'enregistrer</button>
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="label">
-			<a href="#signin" class="label-text-alt link link-hover">Sign in</a>
+			<a href="#signin" class="label-text-alt link link-hover">Se connecter</a>
 		</label>
 	</div>
 </form>
