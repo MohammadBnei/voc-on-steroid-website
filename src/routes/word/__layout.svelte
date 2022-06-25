@@ -10,7 +10,7 @@
 </script>
 
 <div class="hero min-h-screen bg-base-200 place-items-start" id="word-data">
-	<div class="hero-content max-w-full w-full flex-col lg:flex-row items-center lg:items-start justify-between">
+	<div class="hero-content max-w-full w-full flex-col-reverse lg:flex-row items-center lg:items-start justify-between">
 		{#if $session.user}
 			<div class="card bg-base-100 shadow-xl assoc m-2 max-h-screen lg:w-80 flex-none">
 				<div class="card-body ">
