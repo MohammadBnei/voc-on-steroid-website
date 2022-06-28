@@ -38,19 +38,19 @@
 		</button>
 		<div class="transition">
 			{#if deleteMode}
-				<label for="{word.id}" class="btn btn-circle btn-ghost modal-button"> ❌ </label>
+				<label for="wl-{word.id}" class="btn btn-circle btn-ghost modal-button"> ❌ </label>
 			{:else}
 				<AssignCategory word="{word}" />
 			{/if}
 		</div>
 
-		<input type="checkbox" id="{word.id}" class="modal-toggle" />
-		<label for="{word.id}" class="modal modal-bottom sm:modal-middle z-10">
+		<input type="checkbox" id="wl-{word.id}" class="modal-toggle" />
+		<label for="wl-{word.id}" class="modal modal-bottom sm:modal-middle z-10">
 			<div class="modal-box relative pt-12">
-				<label for="{word.id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+				<label for="wl-{word.id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 				<h3 class="text-lg mb-8">Voulez-vous retirer le mot <span class="font-semibold">{word.id}</span> ?</h3>
 				<div class="modal-action mt-0">
-					<label for="{word.id}" class="btn btn-warning" on:click="{() => handleDelete(word.id)}"
+					<label for="wl-{word.id}" class="btn btn-warning" on:click="{() => handleDelete(word.id)}"
 						>Supprimer</label
 					>
 				</div>

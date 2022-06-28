@@ -24,23 +24,23 @@
 			{category.name}
 		</button>
 		<label
-			for="{category.name}"
+			for="catlist-{category.name}"
 			class="btn btn-circle btn-ghost modal-button"
 			class:invisible="{!deleteMode}"
 		>
 			❌
 		</label>
 
-		<input type="checkbox" id="{category.name}" class="modal-toggle" />
-		<label for="{category.name}" class="modal modal-bottom sm:modal-middle">
+		<input type="checkbox" id="catlist-{category.name}" class="modal-toggle" />
+		<label for="catlist-{category.name}" class="modal modal-bottom sm:modal-middle">
 			<div class="modal-box relative pt-12">
-				<label for="{category.name}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+				<label for="catlist-{category.name}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 				<h3 class="text-lg"
 					>Voulez-vous supprimer la catégorie <span class="font-semibold">{category.name}</span> ?</h3
 				>
 				<p class="py-4">Cela supprimera la catégorie de tous vos mots sans possibilité de retour</p>
 				<div class="modal-action mt-0">
-					<label for="{category.name}" class="btn btn-warning" on:click="{() => handleDelete(category)}"
+					<label for="catlist-{category.name}" class="btn btn-warning" on:click="{() => handleDelete(category)}"
 						>Supprimer</label
 					>
 				</div>

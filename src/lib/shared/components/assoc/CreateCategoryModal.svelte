@@ -19,12 +19,12 @@
 	};
 </script>
 
-<label for="{id}" class="btn btn-ghost btn-circle modal-button"> <span class="text-2xl">🆕</span></label>
+<label for="create-cat-{id}" class="btn btn-ghost btn-circle modal-button"> <span class="text-2xl">🆕</span></label>
 
-<input type="checkbox" id="{id}" class="modal-toggle" />
-<label for="{id}" class="modal modal-bottom sm:modal-middle">
+<input type="checkbox" id="create-cat-{id}" class="modal-toggle" />
+<label for="create-cat-{id}" class="modal modal-bottom sm:modal-middle">
 	<div class="modal-box relative">
-		<label for="{id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+		<label for="create-cat-{id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 		<input
 			type="text"
 			placeholder="Nom de la catégorie"
@@ -34,7 +34,7 @@
 		/>
 		{#if catName}
 			<div class="modal-action">
-				<label for="{id}" class="btn btn-primary" on:click="{handleClick}" bind:this="{validate}">Créer</label>
+				<label for="create-cat-{id}" class="btn btn-primary" on:click="{handleClick}" bind:this="{validate}">Créer</label>
 			</div>
 		{/if}
 	</div>

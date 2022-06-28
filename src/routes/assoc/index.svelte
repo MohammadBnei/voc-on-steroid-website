@@ -88,6 +88,10 @@
 			behavior: 'smooth',
 		});
 	}
+	
+	const selectWord = (word: WordModel) => {
+		currentWord = word;
+	};
 
 	const handleClick = (w: AssocWord) => {
 		if (w.id === selectedWord?.id) {

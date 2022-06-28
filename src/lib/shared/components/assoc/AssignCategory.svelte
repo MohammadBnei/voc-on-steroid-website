@@ -23,10 +23,10 @@
 	</div>
 </label>
 
-<input type="checkbox" id="{id}" class="modal-toggle" />
+<input type="checkbox" id="assign-{id}" class="modal-toggle" />
 <div class="modal modal-bottom sm:modal-middle">
 	<div class="modal-box relative">
-		<label for="{id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+		<label for="assign-{id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 		<h3 class="text-lg">Catégories présentes : </h3>
 		<CategoryBadge word="{word}" />
 		<div class="divider"></div>
@@ -43,7 +43,7 @@
 			<p class="py-4">Aucune catégorie à attribuer</p>
 		{/each}
 		<div class="modal-action">
-			<label for="{id}" class="btn btn-secondary">Ok</label>
+			<label for="assign-{id}" class="btn btn-secondary">Ok</label>
 		</div>
 	</div>
 </div>
